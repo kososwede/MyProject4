@@ -20,7 +20,15 @@ def logout(request):
 def login(request):
     """ Logs user in """
     if request.method == 'POST':
-        login_form = UserLoginForm
+        login_form = UserLoginForm(request.POST)
+        if login_form.is_valid():
+            user = auth.authenticate(username=request.POST['username'],
+                                     password=request.POST['password'])
+            if user:
+                auth.login(user=user, request=request)
+                messages.success(request, 'Welcome back to Unicorn Attractor, You are now logged in!')
+            else:
+                login_form.add_error(None, 'Your Username or Password are incorrect, Please try again!')
     else:
         login_form = UserLoginForm()
     return render(request, 'login.html', {'login_form': login_form})
