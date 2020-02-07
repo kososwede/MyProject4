@@ -19,5 +19,8 @@ def logout(request):
 
 def login(request):
     """ Logs user in """
-    login_form = UserLoginForm
+    if request.method == 'POST':
+        login_form = UserLoginForm
+    else:
+        login_form = UserLoginForm()
     return render(request, 'login.html', {'login_form': login_form})
