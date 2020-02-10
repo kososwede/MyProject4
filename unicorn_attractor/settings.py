@@ -25,7 +25,7 @@ SECRET_KEY = 'kzrz+ce^t9&2as)^7^29_9m2_4*z1yv@8o1n)(pe%0*y533t-^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-a3ca3a8e-3084-44ec-a340-55e978a13112.ws-eu01.gitpod.io']
+ALLOWED_HOSTS = ['8080-a3ca3a8e-3084-44ec-a340-55e978a13112.ws-eu01.gitpod.io']
 
 
 # Application definition
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'unicorn_attractor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
