@@ -1,0 +1,30 @@
+body,
+html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.background1{
+    background-image: url('../img/unicorn-back.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+form {
+    width: 50%;
+}
+
+.pass-reset-button {
+    text-align: center;
+}
+
+.page-title{
+    color: white;
+    text-align: center;
+    font-size: 80px;
+    text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
+    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+}

@@ -1,8 +1,14 @@
-{% extends 'base.html' %} {% block page_title %}Login Page{% endblock %} {% block page_heading %}User Login{% endblock %} {% block content %}
-<form method="POST">
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% block page_title %}Login Page{% endblock %} 
+{% block page_heading %}User Login{% endblock %} 
+{% block content %}
+<div class="container text-center">
+<form method="POST" class="justify-content-center mx-auto">
     {% csrf_token %} 
     {{ login_form }}
-    <button type="submit">Login</button>
+    <button class="btn btn-primary" type="submit">Login</button>
 </form>
 <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+</div>
 {% endblock %}
