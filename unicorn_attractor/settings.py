@@ -24,12 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'kzrz+ce^t9&2as)^7^29_9m2_4*z1yv@8o1n)(pe%0*y533t-^'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8080-a3ca3a8e-3084-44ec-a340-55e978a13112.ws-eu01.gitpod.io']
+ALLOWED_HOSTS = [os.environ.get('HOSTNAME')]
 
 
 # Application definition
@@ -133,3 +133,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_PORT = 587
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.EmailAuth'
+]
