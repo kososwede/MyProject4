@@ -20,7 +20,7 @@ html {
     padding-bottom: 10%;
 }
 form {
-    width: 40%;
+    width: 70%;
 }
 
 .pass-reset-button {
@@ -55,7 +55,7 @@ a.navbar-brand {
 .form-box {
     background-color:rgba(0, 219, 188, 0.36);
     border-radius: 30px;
-    width: 50%;
+    width: 80%;
     color: white;
     text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
     #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
@@ -85,4 +85,10 @@ a.navbar-brand {
 hr.divide {
     color: white;
     width: 50%;
+}
+
+.app-link {
+  height: 3rem;
+  width: 10rem;
+  margin: 1rem;
 }
