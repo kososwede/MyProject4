@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+
 body,
 html {
     width: 100%;
@@ -13,8 +15,12 @@ html {
 
 }
 
+
+.reg-box {
+    padding-bottom: 10%;
+}
 form {
-    width: 50%;
+    width: 40%;
 }
 
 .pass-reset-button {
@@ -27,4 +33,56 @@ form {
     font-size: 80px;
     text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
     #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+}
+
+.navbar {
+    color: aquamarine;
+}
+ a.nav-link
+  {
+    color:whitesmoke !important;
+    font-size: 25px;
+}
+.navbar {
+    background-color: rgba(0, 219, 188, 0.36) !important;
+}
+
+a.navbar-brand {
+    color:whitesmoke !important;
+    font-size: 25px;
+}
+
+.form-box {
+    background-color:rgba(0, 219, 188, 0.36);
+    border-radius: 30px;
+    width: 50%;
+    color: white;
+    text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
+    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+    font-size: 23px;
+}
+
+.link-to-sign-in {
+    color: whitesmoke;
+    font-size: 28px;
+    text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
+    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+}
+
+.about-game {
+    color: black;
+    text-shadow: #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px,
+    #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px;
+
+}
+
+.page-title {
+    font-family: 'Righteous', cursive;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+hr.divide {
+    color: white;
+    width: 50%;
 }

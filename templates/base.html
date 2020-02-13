@@ -3,40 +3,41 @@
 <html>
     <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">    
-        <title>{% block page_title %}{% endblock %}</title>
+        <title>{% block page_title %}{% endblock %}UnicornAttractor</title>
     </head>
     <body class="background1">
         
             <!-----------nav bar------------->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{% url 'index' %}">Unicorn Attractor</a>
+            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/unicorn-logo2.png' %}" width="30" height="30" class="d-inline-block align-top" alt="unicorn-logo">  Unicorn Attractor</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                        <a class="nav-link" href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tickets</a>
+                        <a class="nav-link" href="#"><i class="fa fa-ticket"></i> Tickets</a>
                     </li> 
                     
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                            <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                            <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-sign-out"></i> Profile</a>
                         </li>
                         
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration' %}">Register</a>
+                            <a class="nav-link" href="{% url 'registration' %}"><i class="fa fa-registered"></i> Register</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -46,7 +47,7 @@
          <!--main content-->
     <main class="container">
             <!--Page Heading-->
-            <h1 class=" page-title center-align">{% block page_heading %}{% endblock %}</h1>
+            <h1 class="page-title center-align">{% block page_heading %}{% endblock %}</h1>
             {% block content %}
             {% endblock %}
     </main>
