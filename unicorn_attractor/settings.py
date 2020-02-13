@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [os.environ.get('HOSTNAME'),
-                 os.environ.get('HEROKU_HOST')]
+                 os.environ.get('HEROKU_HOST')], 'myproject-4.herokuapp.com'
 
 
 # Application definition
