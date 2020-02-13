@@ -16,6 +16,12 @@ from os import path
 if path.exists("env.py"):
     import env
 
+# Set debug to True only in test environment
+if 'HOSTNAME' in os.environ:
+    DEBUG = True
+else:
+    DEBUG = False
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -30,7 +36,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [os.environ.get('HOSTNAME'),
-                 os.environ.get('HEROKU_HOST')], 'myproject-4.herokuapp.com'
+                 os.environ.get('HEROKU_HOST')]
 
 
 # Application definition
