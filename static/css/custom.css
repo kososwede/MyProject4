@@ -70,9 +70,9 @@ a.navbar-brand {
 }
 
 .about-game {
-    color: black;
-    text-shadow: #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px,
-    #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px;
+    color: #ffff;
+    text-shadow: #0000 0px 0px 1px, #0000 0px 0px 1px, #0000 0px 0px 1px,
+    #0000 0px 0px 1px, #0000 0px 0px 1px, #0000 0px 0px 1px;
 
 }
 
