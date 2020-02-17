@@ -28,11 +28,11 @@ form {
 }
 
 .page-title{
-    color: white;
+    color: darkviolet;
     text-align: center;
     font-size: 80px;
-    text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
-    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+    text-shadow: #ffff 0px 0px 7px, #ffff 0px 0px 7px, #ffff 0px 0px 7px,
+    #ffff 0px 0px 7px, #ffff 0px 0px 7px, #ffff 0px 0px 7px;
 }
 
 .navbar {
@@ -56,9 +56,9 @@ a.navbar-brand {
     background-color:rgba(0, 219, 188, 0.36);
     border-radius: 30px;
     width: 80%;
-    color: white;
-    text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
-    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+    color: darkviolet;
+    text-shadow: #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px,
+    #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px;
     font-size: 23px;
 }
 
@@ -69,11 +69,16 @@ a.navbar-brand {
     #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
 }
 
-.about-game {
+div.about-game {
     color: #ffff;
     text-shadow: #0000 0px 0px 1px, #0000 0px 0px 1px, #0000 0px 0px 1px,
     #0000 0px 0px 1px, #0000 0px 0px 1px, #0000 0px 0px 1px;
+}
 
+h1.headers{
+    color:darkviolet;
+    text-shadow: #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px,
+    #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px;
 }
 
 .page-title {
@@ -83,8 +88,8 @@ a.navbar-brand {
 }
 
 hr.divide {
-    color: white;
     width: 50%;
+    border: 0.5px solid white;
 }
 
 .app-link {
