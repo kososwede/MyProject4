@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block page_title %}{{ user }}'s Profile {% endblock %}
 {% block page_heading %}{{ user }}'s Profile {% endblock %}
 {% block content %}
-<p>{{ profile.email }}</p>
+<div class="container text-center reg-box">
+<div class="form-box mx-auto">
+<p>{{ user.email }}</p>
+<p>{{ user.first_name }} {{ user.last_name }}</p>
+</div>
+</div>
 {% endblock %}
