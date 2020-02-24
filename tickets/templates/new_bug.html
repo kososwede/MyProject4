@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap_tags %}
+{% block page_title %}New Bug | {% endblock %}
+{% block page_heading %}Leave a BUG report{% endblock %}
+{% block content %}
+<div class="container text-center reg-box">
+    <div class="form-box mx-auto">
+        <form method="POST" class="mx-auto font-weight-bold">
+            <p>Please leave your BUG report below.</p>
+            {% csrf_token %}
+            <p>Title of BUG</p>
+            {{ bug_form.title }}
+            <p>Description of BUG</p>
+            {{ bug_form.description }}
+            <button>Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

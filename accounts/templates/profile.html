@@ -4,9 +4,16 @@
 {% block page_heading %}{{ user }}'s Profile {% endblock %}
 {% block content %}
 <div class="container text-center reg-box">
-<div class="form-box mx-auto">
-<p>{{ user.email }}</p>
-<p>{{ user.first_name }} {{ user.last_name }}</p>
-</div>
+    <div class="form-box mx-auto">
+        <p>{{ user.email }}</p>
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
+    </div>
+    <div class="form-box mx-auto">
+        <p class="center-align">Submit a new 
+            <a href="{% url 'new_bug_ticket' %}">
+                    Bug Report
+            </a>
+        </p>
+    </div>
 </div>
 {% endblock %}

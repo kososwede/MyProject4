@@ -3,3 +3,86 @@
 {% load bootstrap_tags %}
 {% block page_title %}Tickets | {% endblock %} 
 {% block page_heading %}Tickets{% endblock %} 
+
+{% block content %}
+<!-- Log Bug or Feature Section - Asks user to log in/register if not logged in -->
+    <div class="container text-center form-box">
+        <!-- BUG SECTION -->
+            <h1 class="font-weight-bold headers">Bugs</h1>
+            {% if user.is_authenticated %}
+                <p class="bold">
+                    Noticed an issue?
+                    <br>
+                    Submit a new Bug Report!
+                </p>
+                <p class="italic">
+                    Bug Reports are FREE to open!
+                </p>
+                <a href="{% url 'new_bug_ticket' %}" class="btn btn-primary">
+                    New Bug
+                </a>
+            {% else %}
+                <p>
+                    Noticed an issue?
+                </p>
+                <p>
+                    <a href="{% url 'login' %}">
+                        Login
+                    </a>
+                    or
+                    <a href="{% url 'registration' %}">
+                        Register
+                    </a>
+                    to submit a Bug Report.
+                </p>
+            {% endif %}
+        </div>
+        <div class="container text-center form-box">
+        <div class="form-box mx-auto">
+            {% for ticket in tickets %}
+                <a href="#" aria-label="View Ticket Details"></a>
+                            <!-- Ticket Type Icon -->
+                            {% if ticket.ticket_type.ticket_type == "Bug" %}
+                                <i class="fa fa-bug" aria-hidden="true"></i>
+                            {% elif ticket.ticket_type.ticket_type == "Feature" %}
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                            {% endif %}
+                        <!-- Ticket Title -->
+                        <div class="form-box mx-auto">
+                            <h4>{{ ticket.title }}</h4>
+                        <!-- Ticket Details -->
+                        <div class="form-box mx-auto">
+                            <p>
+                                {{ ticket.ticket_type }}
+                            </p>
+                            <p>
+                               
+                                {{ ticket.ticket_status }}
+                            </p>
+                            <p>
+                                <i class="fa fa-user"></i>
+                                {{ ticket.user.username }}
+                            </p>
+                            <p>
+                                {{ ticket.description }}
+                            </p>
+                        
+                        <!-- Ticket Quick Stats -->
+                        <div class="form-box mx-auto">
+                            <!-- Views -->
+                            <span>
+                                <i class="fa fa-eye"></i>
+                                {{ ticket.views }}
+                            </span>
+                            <span>
+                                <!-- Upvotes -->
+                                <i class="fa fa-thumbs-up"></i>
+                                {{ ticket.upvotes }}
+                            </span>
+                        </div>
+                        </div>
+                
+        </div>                
+        </div>                    
+{% endfor %}
+{% endblock %}
