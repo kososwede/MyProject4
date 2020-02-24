@@ -21,7 +21,7 @@
                         <a class="nav-link" href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-ticket"></i> Tickets</a>
+                        <a class="nav-link" href="{% url 'get_tickets' %}"><i class="fa fa-ticket"></i> Tickets</a>
                     </li> 
                     
                     {% if user.is_authenticated %}
