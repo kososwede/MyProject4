@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class TypeOfTicket(models.Model):
     """ Choose ticket type (big or feature)"""
-    TicketTypeChoice = ("Bug", "Feature")
+    TicketTypeChoice = (("Bug", "Bug"), ("Feature", "Feature"))
     TicketType = models.CharField(
         max_length=7,
         unique=True,
@@ -18,7 +18,7 @@ class TypeOfTicket(models.Model):
 
 class StatusOfTicket(models.Model):
     """status of ticket open, working on or closed"""
-    StatusChoice = ("Open", "Working on", "Closed")
+    StatusChoice = (("Open", "Open"), ("Working on", "Working on"), ("Closed", "Closed"))
     TicketStatus = models.CharField(
         max_length=10,
         unique=True,
