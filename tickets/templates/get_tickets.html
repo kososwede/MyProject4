@@ -38,13 +38,17 @@
             {% endif %}
         </div>
         <div class="container text-center form-box">
-           
-            {% for ticket in tickets %}
-                
-                
-                        
-                        <!-- Ticket Title -->
-                    <div class="form-box mx-auto">
+           {% for ticket in tickets %}
+           <div class="ticket-type center-align">
+                            <!-- Ticket Type  -->
+                            {% if ticket.TicketType.TicketType == "Bug" %}
+                                <i class="fa fa-bug" aria-hidden="true"></i>
+                            {% elif ticket.TicketType.TicketType == "Feature" %}
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                            {% endif %}
+                        </div>
+                <!-- Ticket Title -->
+                <div class="form-box mx-auto">
                             <h4>{{ ticket.title }}</h4>
                         <!-- Ticket Details -->
                         
