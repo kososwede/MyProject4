@@ -38,26 +38,22 @@
             {% endif %}
         </div>
         <div class="container text-center form-box">
-        <div class="form-box mx-auto">
+           
             {% for ticket in tickets %}
-                <a href="#" aria-label="View Ticket Details"></a>
-                            <!-- Ticket Type Icon -->
-                            {% if ticket.ticket_type.ticket_type == "Bug" %}
-                                <i class="fa fa-bug" aria-hidden="true"></i>
-                            {% elif ticket.ticket_type.ticket_type == "Feature" %}
-                                <i class="fa fa-cogs" aria-hidden="true"></i>
-                            {% endif %}
+                
+                
+                        
                         <!-- Ticket Title -->
-                        <div class="form-box mx-auto">
+                    <div class="form-box mx-auto">
                             <h4>{{ ticket.title }}</h4>
                         <!-- Ticket Details -->
-                        <div class="form-box mx-auto">
+                        
                             <p>
-                                {{ ticket.ticket_type }}
+                                {{ ticket.TicketType }}
                             </p>
                             <p>
                                
-                                {{ ticket.ticket_status }}
+                                {{ ticket.TicketStatus }}
                             </p>
                             <p>
                                 <i class="fa fa-user"></i>
@@ -68,7 +64,7 @@
                             </p>
                         
                         <!-- Ticket Quick Stats -->
-                        <div class="form-box mx-auto">
+                        
                             <!-- Views -->
                             <span>
                                 <i class="fa fa-eye"></i>
@@ -79,10 +75,15 @@
                                 <i class="fa fa-thumbs-up"></i>
                                 {{ ticket.upvotes }}
                             </span>
-                        </div>
-                        </div>
+                    </div>
+                    
                 
-        </div>                
+           
+                <hr> 
+                
+            </a>
+            {% endfor %} 
+                      
         </div>                    
-{% endfor %}
+            
 {% endblock %}
