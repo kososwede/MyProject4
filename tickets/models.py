@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class TypeOfTicket(models.Model):
-    """ Choose ticket type (big or feature)"""
+    """ Choose ticket type (bug or feature)"""
     TicketTypeChoice = (("Bug", "Bug"), ("Feature", "Feature"))
     TicketType = models.CharField(
         max_length=7,

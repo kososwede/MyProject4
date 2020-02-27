@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-
+from .models import Profile
+from django.utils.safestring import mark_safe
 
 class UserLoginForm(forms.Form):
     """Form to be used to log users in"""
@@ -75,3 +76,40 @@ class UserRegistrationForm(UserCreationForm):
             raise forms.ValidationError(u'Passwords must match')
 
         return password2
+
+
+class UserUpdateForm(forms.ModelForm):
+    '''used to update the User model'''
+    # Email Address
+    email = forms.CharField(label='Email Address',
+                            min_length=6,
+                            max_length=40,
+                            widget=forms.EmailInput(),
+                            required=False)
+    # First Name
+    first_name = forms.CharField(label='First Name',
+                                 min_length=1,
+                                 max_length=40,
+                                 widget=forms.TextInput(),
+                                 required=False)
+    # First Name
+    last_name = forms.CharField(label='Last Name',
+                                min_length=1,
+                                max_length=40,
+                                widget=forms.TextInput(),
+                                required=False)
+
+    class Meta:
+        model = User
+        fields = ['email', 'first_name', 'last_name']
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    '''used to update the Profile model for the profile image'''
+    image = forms.ImageField(
+        label=mark_safe('<i class="fa fa-image" aria-hidden="true"></i>'),
+        widget=forms.FileInput())
+
+    class Meta:
+        model = Profile
+        fields = ['image']

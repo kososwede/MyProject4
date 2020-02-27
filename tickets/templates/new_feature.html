@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% load staticfiles %}
+
+{% block title %}New Feature | {% endblock %}
+
+{% block content %}
+
+    <div class="container text-center reg-box">
+        <div class="form-box mx-auto">
+            <form class="mx-auto font-weight-bold" method="POST" id="payment-form" data-token="{{ publishable }}">
+                <div class="new-feature-wrapper">
+                    <h3 class="form-title center-align">New Feature</h3>
+                    <div class="row">
+                        <div class="col s12 center-align">
+                            {% csrf_token %}
+                            {{ feature_form.title }}
+                            {{ feature_form.description }}
+                            <p class="center-align">
+                                Please make a small donation to submit your Feature Request
+                                <br>
+                                <small class="italic">
+                                    Production of a Feature Request won't begin until the donation goal of £100 is reached!
+                                </small>
+                            </p>
+                            {{ donation_form }}
+                        </div>
+                        <div class="col s12">
+                            <!-- Stripe Payment form -->
+                            <label for="card-element" class="payment-form-label">
+                                Credit or Debit Card
+                            </label>
+                            <div id="card-element" class="center-align">
+                                <!-- A Stripe Element will be inserted here. -->
+                            </div>
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                        <!--Add and Cancel buttons-->
+                        <div class="col s12 center-align">
+                            <button class="btn waves-effect waves-light add-btn sm-md-btn" type="submit" aria-label="Add Feature button">
+                                <span class="hide-on-small-and-down">Pay &amp; Add</span>
+                                <i class="fas fa-plus-circle icon-right" aria-hidden="true"></i>
+                            </button>
+                            <a class="btn waves-effect waves-light sm-md-btn" aria-label="Cancel button" onclick="history.back()">
+                                <span class="hide-on-small-and-down">Cancel</span>
+                                <i class="fas fa-times-circle icon-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>    
+        </div>
+    </div>
+{% endblock %}

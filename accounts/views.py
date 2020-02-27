@@ -2,8 +2,8 @@ from django.shortcuts import render, reverse, redirect, HttpResponseRedirect
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from accounts.forms import UserLoginForm, UserRegistrationForm
-
+from accounts.forms import (UserLoginForm, UserRegistrationForm, UserUpdateForm, ProfileUpdateForm)
+from tickets.models import Tickets
 # Create your views here.
 
 
@@ -47,7 +47,7 @@ def login(request):
 
     args = {'login_form': login_form, 'next': request.GET.get('next', '')}
     
-    return render(request, 'login.html', {'login_form': login_form})
+    return render(request, 'login.html', args)
 
 
 def registration(request):
@@ -70,10 +70,38 @@ def registration(request):
     else:
         registration_form = UserRegistrationForm()
 
-    return render(request, "registration.html", {"registration_form": registration_form})
+    args = {'registartion_form': registration_form}
+
+    return render(request, "registration.html", args)
 
 
+@login_required
 def user_profile(request):
-    """ Render the user profile page """
-    user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {'profile': user})
+    '''renders user's profile page and allows the user to update their User details and Profile image'''
+    user_tickets = Tickets.objects.filter(user_id=request.user.id)
+
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST,
+                                   instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST,
+                                         request.FILES,
+                                         instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            """ Save data if both forms are valid"""
+            user_form.save()
+            profile_form.save()
+            messages.success(request, "Your account at Unicorn Attractor has been successfully updated!")
+            return redirect(reverse('profile'))
+
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
+
+    args = {
+        'user_form': user_form,
+        'profile_form': profile_form,
+        'user_tickets': user_tickets
+    }
+
+    return render(request, 'profile.html', args)

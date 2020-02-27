@@ -23,6 +23,18 @@ class TicketForm(forms.ModelForm):
         fields = ["title", "description"]
 
 
+class DonationForm(forms.Form):
+    '''users can select a donation amount
+    its only used when adding or upvoting features
+    users get a list of donation amounts, in multiples of 5'''
+    DONATION_AMOUNT_CHOICES = [(i, i) for i in range(5, 105, 5)]
+
+    donation_amount = forms.ChoiceField(
+        label="Donation Amount",
+        choices=DONATION_AMOUNT_CHOICES,
+        required=False)
+
+
 class CommentForm(forms.ModelForm):
     """Allows users to comment on any tickets"""
     description = forms.CharField(
