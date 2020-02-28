@@ -1,8 +1,7 @@
 from django.shortcuts import render, reverse, redirect, HttpResponseRedirect
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from accounts.forms import (UserLoginForm, UserRegistrationForm, UserUpdateForm, ProfileUpdateForm)
+from accounts.forms import (UserLoginForm, UserRegistrationForm, UserUpdateForm)
 from tickets.models import Tickets
 # Create your views here.
 
@@ -54,8 +53,10 @@ def registration(request):
     """ Render the registration page """
     if request.user.is_authenticated():
         return redirect(reverse('index'))
+    
     if request.method == 'POST':
         registration_form = UserRegistrationForm(request.POST)
+        
         if registration_form.is_valid():
             registration_form.save()
 
@@ -64,13 +65,16 @@ def registration(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully registered and are now logged in to UNICORN ATTRACTOR")
+
+                return redirect(reverse('profile'))
+
             else:
                 messages.error(request, "Unable to register at this time, Please try again")
 
     else:
         registration_form = UserRegistrationForm()
 
-    args = {'registartion_form': registration_form}
+    args = {'registration_form': registration_form}
 
     return render(request, "registration.html", args)
 
@@ -83,24 +87,18 @@ def user_profile(request):
     if request.method == "POST":
         user_form = UserUpdateForm(request.POST,
                                    instance=request.user)
-        profile_form = ProfileUpdateForm(request.POST,
-                                         request.FILES,
-                                         instance=request.user.profile)
 
-        if user_form.is_valid() and profile_form.is_valid():
-            """ Save data if both forms are valid"""
+        if user_form.is_valid():
+            """ Save data if form is valid"""
             user_form.save()
-            profile_form.save()
             messages.success(request, "Your account at Unicorn Attractor has been successfully updated!")
             return redirect(reverse('profile'))
 
     else:
         user_form = UserUpdateForm(instance=request.user)
-        profile_form = ProfileUpdateForm(instance=request.user.profile)
-
+    
     args = {
         'user_form': user_form,
-        'profile_form': profile_form,
         'user_tickets': user_tickets
     }
 

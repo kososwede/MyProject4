@@ -40,11 +40,11 @@
                         <div class="col s12 center-align">
                             <button class="btn waves-effect waves-light add-btn sm-md-btn" type="submit" aria-label="Add Feature button">
                                 <span class="hide-on-small-and-down">Pay &amp; Add</span>
-                                <i class="fas fa-plus-circle icon-right" aria-hidden="true"></i>
+                                <i class="fa fa-plus-circle icon-right" aria-hidden="true"></i>
                             </button>
                             <a class="btn waves-effect waves-light sm-md-btn" aria-label="Cancel button" onclick="history.back()">
                                 <span class="hide-on-small-and-down">Cancel</span>
-                                <i class="fas fa-times-circle icon-right" aria-hidden="true"></i>
+                                <i class="fa fa-times-circle icon-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -52,4 +52,11 @@
             </form>    
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <!-- Stripe payment API tag -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- stripe.js file tag -->
+    <script src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}

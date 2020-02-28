@@ -15,5 +15,23 @@
             </a>
         </p>
     </div>
-</div>
+
+<!-- Edit Account Modal -->
+    <div id="edit_profile_modal" class="modal">
+        <div class="form-box mx-auto">
+            <h4 class="title">Edit Profile</h4>
+            <form id="edit_profile_form" method="POST" class="userform" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{  user_form.email }}
+                {{  user_form.first_name }}
+                {{  user_form.last_name }}
+                
+                <button type="submit" class="btn btn-primary large-btn" aria-label="Update Profile Changes button">
+                    Update
+                    <i class="fa fa-edit icon-right" aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+    </div>    
+    </div>
 {% endblock %}
