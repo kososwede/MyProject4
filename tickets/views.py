@@ -130,7 +130,7 @@ def new_feature_ticket(request):
     return render(request, "new_feature.html", args)
 
 
-def view_single_ticket(request, pk):
+def view_one_ticket(request, pk):
     '''the user can view the details of selected ticket, it
     returns the selected ticket based on its ticket ID (pk) and renders it to the single_ticket.html template, or returns 404 error if object isn't found'''
     # Get the ticket details
@@ -164,7 +164,7 @@ def view_single_ticket(request, pk):
             ticket.views -= 2
             ticket.save()
             messages.success(request, f"Your comment has been added to this thread!")
-            return redirect(view_single_ticket, ticket.pk)
+            return redirect(view_one_ticket, ticket.pk)
     else:
         comment_form = CommentForm()
 
