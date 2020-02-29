@@ -97,3 +97,7 @@ hr.divide {
   width: 10rem;
   margin: 1rem;
 }
+
+.butt-pos {
+    position: relative;
+}

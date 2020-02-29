@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from accounts.models import Profile
 import stripe
 # Create your views here.
-stripe_api_key = settings.STRIPE_SECRET
+stripe.api_key = settings.STRIPE_SECRET
 
 
 def get_tickets(request):
@@ -82,7 +82,7 @@ def new_feature_ticket(request):
                     amount=int(donation_amount * 100),
                     currency="GBP",
                     description=request.user.email,
-                    source=request.POST["stripeToken"],
+                    source=request.POST["stripeToken"]
                 )
             except stripe.error.CardError:
                 """ shows error message if the card is declined"""

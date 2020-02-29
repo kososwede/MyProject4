@@ -7,12 +7,12 @@
 {% block content %}
 
     <div class="container text-center reg-box">
-        <div class="form-box mx-auto">
+        <div class="form-box mx-auto" id="new_feature">
             <form class="mx-auto font-weight-bold" method="POST" id="payment-form" data-token="{{ publishable }}">
                 <div class="new-feature-wrapper">
                     <h3 class="form-title center-align">New Feature</h3>
                     <div class="row">
-                        <div class="col s12 center-align">
+                        <div class="col-sm-12 center-align">
                             {% csrf_token %}
                             {{ feature_form.title }}
                             {{ feature_form.description }}
@@ -25,7 +25,7 @@
                             </p>
                             {{ donation_form }}
                         </div>
-                        <div class="col s12">
+                        <div class="col-sm-12">
                             <!-- Stripe Payment form -->
                             <label for="card-element" class="payment-form-label">
                                 Credit or Debit Card
@@ -37,7 +37,7 @@
                             <div id="card-errors" role="alert"></div>
                         </div>
                         <!--Add and Cancel buttons-->
-                        <div class="col s12 center-align">
+                        <div class="col-sm-12 center-align">
                             <button class="btn waves-effect waves-light add-btn sm-md-btn" type="submit" aria-label="Add Feature button">
                                 <span class="hide-on-small-and-down">Pay &amp; Add</span>
                                 <i class="fa fa-plus-circle icon-right" aria-hidden="true"></i>

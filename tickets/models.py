@@ -6,11 +6,11 @@ from django.contrib.auth.models import User
 
 class TypeOfTicket(models.Model):
     """ Choose ticket type (bug or feature)"""
-    TicketTypeChoice = (("Bug", "Bug"), ("Feature", "Feature"))
+    TICKET_TYPE_CHOICE = (("Bug", "Bug"), ("Feature", "Feature"))
     TicketType = models.CharField(
         max_length=7,
         unique=True,
-        choices=TicketTypeChoice)
+        choices=TICKET_TYPE_CHOICE)
 
     def __str__(self):
         return self.TicketType
@@ -18,11 +18,11 @@ class TypeOfTicket(models.Model):
 
 class StatusOfTicket(models.Model):
     """status of ticket open, working on or closed"""
-    StatusChoice = (("Open", "Open"), ("Working on", "Working on"), ("Closed", "Closed"))
+    STATUS_CHOICE = (("Open", "Open"), ("Working on", "Working on"), ("Closed", "Closed"))
     TicketStatus = models.CharField(
         max_length=10,
         unique=True,
-        choices=StatusChoice)
+        choices=STATUS_CHOICE)
 
     def __str__(self):
         return self.TicketStatus
