@@ -5,19 +5,19 @@
 {% block page_heading %}Tickets{% endblock %}
 
 {% block content %}
-<!-- Log Bug or Feature Section - Asks user to log in/register if not logged in -->
-<div class="container text-center form-box">
+<!-- Log a Bug or Feature. User must register or login -->
+<div class="row container text-center form-box">
 	<!-- BUG SECTION -->
-	<div class="form-box mx-auto">
-		<h1 class="font-weight-bold headers">Bugs</h1>
+	<div class="col-sm-12 col-md-6 ticket-card card form-box mx-auto">
+		<h1 class="card-title font-weight-bold headers">Bugs</h1>
 		{% if user.is_authenticated %}
-		<p class="bold">
+		    <p class="bold">
 			Noticed an issue?
 			<br>
-                    Submit a new Bug Report!
-                </p>
+                Submit a new Bug Report!
+            </p>
 			<p class="italic">
-				Bug Reports are FREE to open!
+				Bug Reports are FREE!
 			</p>
 			<a href="{% url 'new_bug_ticket' %}" class="btn btn-primary">
 				<i class="fa fa-bug icon-left" aria-hidden="true"></i>
@@ -39,25 +39,23 @@
 			</p>
 			{% endif %}
 	</div>
-</div>
-<div class="container text-center form-box">
 	<!--feature-->
-	<div class="form-box mx-auto">
-		<h1 class="card-title center-align">Features</h1>
+	<div class="col-sm-12 col-lg-6 ticket-card card form-box mx-auto">
+		<h2 class="card-title center-align">Features</h2>
 		{% if user.is_authenticated %}
 		<p class="bold">
 			Want something new?
 			<br>
-                    Submit a new Feature Request!
-                </p>
-			<p class="italic">
-				Feature Requests require a small donation!
-			</p>
-			<a href="{% url 'new_feature_ticket' %}" class="btn btn-primary" aria-label="New Feature Page">
+            Submit a new Feature Request!
+        </p>
+		<p class="italic">
+			Feature Requests require a small donation!
+		</p>
+		    <a href="{% url 'new_feature_ticket' %}" class="btn btn-primary" aria-label="New Feature Page">
 				<i class="fa fa-cogs icon-left" aria-hidden="true"></i>
 				New Feature
 			</a>
-			{% else %}
+		{% else %}
 			<p class="bold">
 				Want something new?
 			</p>
@@ -71,56 +69,74 @@
 				</a>
 				to submit a Feature Request.
 			</p>
-			{% endif %}
-	</div>
-</div>
-
-<div class="container text-center form-box">
-	{% for ticket in tickets %}
-	<div class="ticket-type center-align">
-		<!-- Ticket Type  -->
-		{% if ticket.TicketType.TicketType == "Bug" %}
-		<i class="fa fa-bug" aria-hidden="true"></i>
-		{% elif ticket.TicketType.TicketType == "Feature" %}
-		<i class="fa fa-cogs" aria-hidden="true"></i>
 		{% endif %}
 	</div>
-	<!-- Ticket Title -->
-	<div class="form-box mx-auto">
-		<h4>{{ ticket.title }}</h4>
-		<!-- Ticket Details -->
-
-		<p>
-			<i class="fa fa-ticket" aria-hidden="true"></i>
-			{{ ticket.TicketType }}
-		</p>
-		<p>
-			<i class="fa fa-tools" aria-hidden="true"></i>
-			{{ ticket.TicketStatus }}
-		</p>
-		<p>
-			<i class="fa fa-user"></i>
-			{{ ticket.user.username }}
-		</p>
-		<p>
-			{{ ticket.description }}
-		</p>
-
-		<!-- Ticket Quick Stats -->
-
-		<!-- Views -->
-		<span>
-            <i class="fa fa-eye"></i>
-            {{ ticket.views }}
-        </span>
-		<span>
-        <!-- Upvotes -->
-            <i class="fa fa-thumbs-up"></i>
-            {{ ticket.upvotes }}
-        </span>
-	</div>
-	<hr>
-	{% endfor %}
 </div>
 
+<div class="row container text-center form-box">
+	{% for ticket in tickets %}
+        <a href="{ url 'view_one_ticket' ticket.id}" aria-label="View This Tickets Details">
+	        <div class="col-sm-12 col-md-6 ticket-preview-card">
+                <div class="card hoverable results-card">
+                    <div class="ticket-type center-align">
+                        {% if ticket.ticket_type.ticket_type == "Bug" %}
+                            <i class="fa fa-bug" aria-hidden="true"></i>
+                        {% elif ticket.ticket_type.ticket_type == "Feature" %}
+                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                        {% endif %}
+                    </div>
+	<!-- Ticket Title -->
+	                <div class="card-title center-align">
+                        <h3>{{ ticket.title }}</h3>
+	                </div>
+                    <div class="card-content center-align">
+                        <p class="ticket-status">
+                            <i class="fa fa-ticket" aria-hidden="true"></i>
+                            {{ ticket.ticket_type }}
+                        </p>
+                        <p class="ticket-status">
+                            <i class="fa fa-tools" aria-hidden="true"></i>
+                            {{ ticket.ticket_status }}
+                        </p>
+                        <p class="ticket-status">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            {{ ticket.username }}
+                        </p>
+                        <p class="ticket-status truncate">
+                            <i class="fa fa-file" aria-hidden="true"></i>
+                            {{ ticket.description }}
+                        </p>
+                    </div>
+                    <!--ticket stats-->
+                    <div class="card-action card-stats">
+                        <span>
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            {{ ticket.views }}
+                        </span>
+                        <span>
+                            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                            {{ ticket.upvotes }}
+                        </span>
+                        <span>
+                            <i class="fa fa-pound-sign" aria-hidden="true"></i>
+                            {% if ticket.ticket_type == "Feature" %}
+                                {% if ticket.total_donations >= 100 %}
+                                    <i class="fa fa-check target-reached"></i>
+                                {% else %}
+                                    {{ ticket.total_donations }}
+                                {% endif %}
+                            {% else %}
+                                <span>FREE!</span>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+	        </div>
+        </a>
+    {% empty %}
+        <h3 tick-detail-txt>
+            <span class="ticket-count">No Tickets Found</span>
+        </h3>
+    {% endfor %}
+</div>
 {% endblock %}

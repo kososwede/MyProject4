@@ -16,28 +16,28 @@ def get_tickets(request):
     """ Return a list of tickets that were published prior to now
     and render them in the tickets.html page """
     tickets = Tickets.objects.all()
-    type_of_ticket_dropdown = TypeOfTicket.objects.all()
-    status_of_ticket_dropdown = StatusOfTicket.objects.all()
+    ticket_type_dropdown = TypeOfTicket.objects.all()
+    ticket_status_dropdown = StatusOfTicket.objects.all()
 
     """parameters"""
-    TicketType = request.GET.get("TicketType")
-    TicketStatus = request.GET.get("TicketStatus")
+    ticket_type = request.GET.get("ticket_type")
+    ticket_status = request.GET.get("ticket_status")
 
     """ filter by parameters"""
-    if TicketType:
-        tickets = tickets.filter(type_of_ticket__id=TicketType)
+    if ticket_type:
+        tickets = tickets.filter(ticket_type__id=ticket_type)
     else:
         tickets
 
-    if TicketStatus:
-        tickets = tickets.filter(status_of_ticket__id=TicketStatus)
+    if ticket_status:
+        tickets = tickets.filter(ticket_status__id=ticket_status)
     else:
         tickets
 
     args = {
         "tickets": tickets,
-        "type_of_ticket_dropdown": type_of_ticket_dropdown,
-        "status_of_ticket_dropdown": status_of_ticket_dropdown
+        "ticket_type_dropdown": ticket_type_dropdown,
+        "ticket_status_dropdown": ticket_status_dropdown
     }
 
     return render(request, "get_tickets.html", args)
@@ -179,7 +179,7 @@ def view_one_ticket(request, pk):
         "ticket_status_dropdown": ticket_status_dropdown,
     }
 
-    return render(request, "single_ticket.html", args)
+    return render(request, "view_one_ticket.html", args)
 
 
 @login_required
@@ -245,7 +245,7 @@ def upvote(request, pk):
                     Tickets.objects.filter(id=ticket.pk)\
                                   .update(ticket_status_id=2)
                 messages.success(request, f"Thanks, your payment has been taken and your upvote has been registered!")
-                return redirect(view_single_ticket, ticket.pk)
+                return redirect(view_one_ticket, ticket.pk)
             else:
                 messages.error(request, "Sorry, Unable to take payment at this time")
         # If feature form or the donation form are not valid
@@ -260,12 +260,12 @@ def upvote(request, pk):
 
         messages.success(request, f"Thankyou, your upvote has been registered!")
 
-    return redirect(view_single_ticket, ticket.pk)
+    return redirect(view_one_ticket, ticket.pk)
 
 
 @login_required
 def downvote(request, pk):
-    #Allows users to remove their upvote
+    # Allows users to remove their upvote
     ticket = get_object_or_404(Tickets, pk=pk)
     # Decrease upvote by 1 and views by 1
     ticket.upvotes -= 1
@@ -277,7 +277,7 @@ def downvote(request, pk):
                           user_id=request.user.id).delete()
     messages.success(request, f"Your upvote has successfully been removed!")
 
-    return redirect(view_single_ticket, ticket.pk)
+    return redirect(view_one_ticket, ticket.pk)
 
 
 @login_required
@@ -300,4 +300,4 @@ def admin_update_status(request, pk):
     else:
         messages.success(request, f"Please choose a ticket status")
 
-    return redirect(view_single_ticket, ticket.pk)
+    return redirect(view_one_ticket, ticket.pk)

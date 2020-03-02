@@ -7,25 +7,25 @@ from django.contrib.auth.models import User
 class TypeOfTicket(models.Model):
     """ Choose ticket type (bug or feature)"""
     TICKET_TYPE_CHOICE = (("Bug", "Bug"), ("Feature", "Feature"))
-    TicketType = models.CharField(
+    ticket_type = models.CharField(
         max_length=7,
         unique=True,
         choices=TICKET_TYPE_CHOICE)
 
     def __str__(self):
-        return self.TicketType
+        return self.ticket_type
 
 
 class StatusOfTicket(models.Model):
     """status of ticket open, working on or closed"""
     STATUS_CHOICE = (("Open", "Open"), ("Working on", "Working on"), ("Closed", "Closed"))
-    TicketStatus = models.CharField(
+    ticket_status = models.CharField(
         max_length=10,
         unique=True,
         choices=STATUS_CHOICE)
 
     def __str__(self):
-        return self.TicketStatus
+        return self.ticket_status
 
 
 class Tickets(models.Model):
@@ -38,10 +38,10 @@ class Tickets(models.Model):
         blank=False,
         null=False,
         auto_now_add=True)
-    TicketType = models.ForeignKey(
+    ticket_type = models.ForeignKey(
         TypeOfTicket,
         null=True)
-    TicketStatus = models.ForeignKey(
+    ticket_status = models.ForeignKey(
         StatusOfTicket,
         null=True)
     title = models.CharField(
@@ -66,7 +66,7 @@ class Tickets(models.Model):
 
     def __str__(self):
         return "#{0} [{1} - {2}] - {3}".format(
-            self.id, self.TicketType, self.TicketStatus, self.title)
+            self.id, self.ticket_type, self.ticket_status, self.title)
 
 
 class Comments(models.Model):

@@ -4,9 +4,9 @@
 {% block page_title %}New Bug | {% endblock %}
 {% block page_heading %}Leave a BUG report{% endblock %}
 {% block content %}
-<div class="container text-center reg-box">
-    <div class="form-box mx-auto">
-        <form method="POST" class="mx-auto font-weight-bold">
+<div class="row container text-center reg-box">
+    <div id="new_bug" class="col-sm-12 form-box mx-auto">
+        <form method="POST" id="new_bug_form" class=" col-sm-12 mx-auto font-weight-bold">
             <p>Please leave your BUG report below.</p>
             {% csrf_token %}
             <p>Title of BUG</p>

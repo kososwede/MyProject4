@@ -5,94 +5,94 @@
 {% block content %}
 <div class="row container ticket-card text-center reg-box">
 	<div class="col-sm-12 form-box mx-auto">
-		
+
 		<p>
-        <i class="fa fa-signature" aria-hidden="true"></i>
-        {{ user.first_name }} {{ user.last_name }}
-        </p>
-        <p>
-        <i class="fa fa-user" aria-hidden="true"></i>
-        {{ user.username }}
-        </p>
-        <p>
-        <i class="fa fa-envelope" aria-hidden="true"></i>
-        {{ user.email }}
-        </p>
+			<i class="fa fa-signature" aria-hidden="true"></i>
+			{{ user.first_name }} {{ user.last_name }}
+		</p>
+		<p>
+			<i class="fa fa-user" aria-hidden="true"></i>
+			{{ user.username }}
+		</p>
+		<p>
+			<i class="fa fa-envelope" aria-hidden="true"></i>
+			{{ user.email }}
+		</p>
 	</div>
-	
-    <div class="col-sm-12 form-box mx-auto">
-        <a href="#edit_profile_modal" class="btn modal-trigger change-pwd-btn btn-lrg" aria-label="Edit Profile Modal">
-		<i class="fa fa-edit icon-left" aria-hidden="true"></i> 
-        Edit Profile
+
+	<div class="col-sm-12 form-box mx-auto">
+		<a href="#edit_profile_modal" class="btn modal-trigger change-pwd-btn btn-lrg" aria-label="Edit Profile Modal">
+			<i class="fa fa-edit icon-left" aria-hidden="true"></i>
+			Edit Profile
 		</a>
-    </div>
+	</div>
 </div>
 
 <div class="row ticket-card card">
-    <div class="col-sm-12 col-md-6 profile-bugs">
-        <h4 class="card-title center-align">
-            <i class="fa fa-bug" aria-hidden="true"></i>
-            My Bugs
-        </h4>
-        <ul class="collection collection-wrapper">
-            {% for ticket in user_tickets %}
-                {% if ticket.TicketType == "Bug" %}
-                    <li class="collection-item">
-                        <a href="{% url 'view_single_ticket' ticket.id %}" aria-label="Details of Bug">
-                            <h4 class="title">{{ ticket.title }}</h4>
-                            <p class="helper italic truncate">{{ ticket.description }}</p>
-                        </a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+	<div class="col-sm-12 col-md-6 profile-bugs">
+		<h4 class="card-title center-align">
+			<i class="fa fa-bug" aria-hidden="true"></i>
+			My Bugs
+		</h4>
+		<ul class="collection collection-wrapper">
+			{% for ticket in user_tickets %}
+			{% if ticket.ticket_type == "Bug" %}
+			<li class="collection-item">
+				<a href="{% url 'view_single_ticket' ticket.id %}" aria-label="Details of Bug">
+					<h4 class="title">{{ ticket.title }}</h4>
+					<p class="helper italic truncate">{{ ticket.description }}</p>
+				</a>
+			</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
 
-        <p class="center-align">
-            <a href="{url 'new_bug_ticket'}" aria-label="New Bug Report">
-            Submit New Bug Report Here
-            </a> 
-        </p>
-    </div>
-    <div class="col-sm-12 col-md-6 profile-features">
-        <h4 class="card-title center-align">
-            <i class="fa fa-cogs" aria-hidden="true"></i>
-            My Features
-        </h4>
-        <ul class="collection collection-wrapper">
-            {% for ticket in user_tickets %}
-                {% if ticket.TicketType.TicketType == "Feature" %}
-                    <li class="collection-item">
-                        <a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Feature">
-                            <h6 class="title">{{ ticket.title }}</h6>
-                            <p class="helper italic truncate">{{ ticket.description }}</p>
-                        </a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+		<p class="center-align">
+			<a href="{% url 'new_bug_ticket' %}" aria-label="New Bug Report">
+				Submit New Bug Report Here
+			</a>
+		</p>
+	</div>
+	<div class="col-sm-12 col-md-6 profile-features">
+		<h4 class="card-title center-align">
+			<i class="fa fa-cogs" aria-hidden="true"></i>
+			My Features
+		</h4>
+		<ul class="collection collection-wrapper">
+			{% for ticket in user_tickets %}
+			{% if ticket.ticket_type.ticket_type == "Feature" %}
+			<li class="collection-item">
+				<a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Feature">
+					<h6 class="title">{{ ticket.title }}</h6>
+					<p class="helper italic truncate">{{ ticket.description }}</p>
+				</a>
+			</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
 
-        <p class="center-align">
-            <a href="{% url 'new_feature_ticket' %}" aria-label="New Feature">
-                Request a Feature
-            </a>
-        </p>
-    </div>
+		<p class="center-align">
+			<a href="{% url 'new_feature_ticket' %}" aria-label="New Feature">
+				Request a Feature
+			</a>
+		</p>
+	</div>
 </div>
 
 <div id="edit_profile_modal" class="modal">
-    <div class="modal-content center-align">
-        <h5 class="title">Edit Profile</h5>
-        <form id="edit_profile_form" method="POST" class="userform" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ user_form.email }}
-            {{ user_form.first_name }}
-            {{ user_form.last_name }}
-            <button type="submit" class="btn btn primary btn-lg" aria-label="Update Profile">
+	<div class="modal-content center-align">
+		<h5 class="title">Edit Profile</h5>
+		<form id="edit_profile_form" method="POST" class="userform" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ user_form.email }}
+			{{ user_form.first_name }}
+			{{ user_form.last_name }}
+			<button type="submit" class="btn btn primary btn-lg" aria-label="Update Profile">
                 Update
                 <i class="fa fa-edit icon-right" aria-hidden="true"></i>
             </button>
-        </form>
-    </div>
+		</form>
+	</div>
 </div>
 
 {% endblock %}

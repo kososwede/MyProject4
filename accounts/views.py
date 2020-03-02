@@ -33,7 +33,7 @@ def login(request):
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully logged in to Unicorn Attractor!")
 
-                 # Redirect user to home page once logged in
+                # Redirect user to home page once logged in
                 if request.GET and request.GET['next'] != '':
                     next = request.GET['next']
                     return HttpResponseRedirect(next)
