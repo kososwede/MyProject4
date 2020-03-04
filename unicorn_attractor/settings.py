@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
-import env
+from os import path
+if path.exists("env.py"):
+    import env
 # Set debug to True only in test environment
-if 'HOSTNAME' in os.environ:
+if 'GITPOD_HOSTNAME' in os.environ:
     DEBUG = True
 else:
     DEBUG = False
@@ -30,7 +32,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = [os.environ.get('SECRET_KEY')]
 
 
-ALLOWED_HOSTS = [os.environ.get('HOSTNAME')]
+ALLOWED_HOSTS = [os.environ.get('GITPOD_HOSTNAME')]
 
 
 # Application definition
