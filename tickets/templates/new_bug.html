@@ -5,16 +5,32 @@
 {% block page_heading %}Leave a BUG report{% endblock %}
 {% block content %}
 <div class="row container text-center reg-box">
-    <div id="new_bug" class="col-sm-12 form-box mx-auto">
-        <form method="POST" id="new_bug_form" class=" col-sm-12 mx-auto font-weight-bold">
-            <p>Please leave your BUG report below.</p>
-            {% csrf_token %}
-            <p>Title of BUG</p>
-            {{ bug_form.title }}
-            <p>Description of BUG</p>
-            {{ bug_form.description }}
-            <button>Submit</button>
-        </form>
-    </div>
+	<div id="new_bug" class="col-sm-12 form-box mx-auto">
+		<form method="POST" id="new_bug_form" class=" col-sm-12 mx-auto font-weight-bold">
+			<div class="new_bug_wrapper center-align">
+				<p>Please leave your BUG report below.</p>
+				<div class="row">
+					<div class="col-sm-12">
+						{% csrf_token %}
+						<p>Title of BUG</p>
+						{{ bug_form.title }}
+						<p>Description of BUG</p>
+						{{ bug_form.description }}
+					</div>
+					<div class="col-sm-12">
+						<button class="btn waves-effect waves-light add-btn sm-md-btn" type="submit" aria-label="Add bug button">
+                                <span>Add</span>
+                                <i class="fa fa-plus-circle icon-right" aria-hidden="true"></i>
+                        </button>
+						<a class="btn waves-effect waves-light sm-md-btn" aria-label="Cancel button" onclick="history.back()">
+							<span>Cancel</span>
+							<i class="fa fa-times-circle icon-right" aria-hidden="true"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
+
 {% endblock %}

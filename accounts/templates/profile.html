@@ -35,8 +35,8 @@
 			My Bugs
 		</h4>
 		<ul class="collection collection-wrapper">
-			{% for ticket in user_tickets %}
-			{% if ticket.ticket_type == "Bug" %}
+		{% for ticket in user_tickets %}
+			{% if ticket.ticket_type.ticket_type == "Bug" %}
 			<li class="collection-item">
 				<a href="{% url 'view_single_ticket' ticket.id %}" aria-label="Details of Bug">
 					<h4 class="title">{{ ticket.title }}</h4>
@@ -44,7 +44,7 @@
 				</a>
 			</li>
 			{% endif %}
-			{% endfor %}
+		{% endfor %}
 		</ul>
 
 		<p class="center-align">
@@ -59,7 +59,7 @@
 			My Features
 		</h4>
 		<ul class="collection collection-wrapper">
-			{% for ticket in user_tickets %}
+		{% for ticket in user_tickets %}
 			{% if ticket.ticket_type.ticket_type == "Feature" %}
 			<li class="collection-item">
 				<a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Feature">
@@ -68,7 +68,7 @@
 				</a>
 			</li>
 			{% endif %}
-			{% endfor %}
+		{% endfor %}
 		</ul>
 
 		<p class="center-align">

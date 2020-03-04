@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-class TypeOfTicket(models.Model):
+class TypeTicket(models.Model):
     """ Choose ticket type (bug or feature)"""
     TICKET_TYPE_CHOICE = (("Bug", "Bug"), ("Feature", "Feature"))
     ticket_type = models.CharField(
@@ -16,9 +16,9 @@ class TypeOfTicket(models.Model):
         return self.ticket_type
 
 
-class StatusOfTicket(models.Model):
+class StatusTicket(models.Model):
     """status of ticket open, working on or closed"""
-    STATUS_CHOICE = (("Open", "Open"), ("Working on", "Working on"), ("Closed", "Closed"))
+    STATUS_CHOICE = (("Open", "Open"), ("Working on", "Working on"), ("Closed", "Closed"),)
     ticket_status = models.CharField(
         max_length=10,
         unique=True,
@@ -28,7 +28,7 @@ class StatusOfTicket(models.Model):
         return self.ticket_status
 
 
-class Tickets(models.Model):
+class Ticket(models.Model):
     '''Allows users to log bug/feature tickets'''
     user = models.ForeignKey(
         User,
@@ -39,10 +39,10 @@ class Tickets(models.Model):
         null=False,
         auto_now_add=True)
     ticket_type = models.ForeignKey(
-        TypeOfTicket,
+        TypeTicket,
         null=True)
     ticket_status = models.ForeignKey(
-        StatusOfTicket,
+        StatusTicket,
         null=True)
     title = models.CharField(
         max_length=80,
@@ -75,7 +75,7 @@ class Comments(models.Model):
     comment_date = models.DateTimeField(
         auto_now_add=True)
     ticket = models.ForeignKey(
-        Tickets,
+        Ticket,
         null=True,
         on_delete=models.CASCADE)
     user = models.ForeignKey(
@@ -95,7 +95,7 @@ class Comments(models.Model):
 class Upvote(models.Model):
     '''users can upvote any ticket'''
     ticket = models.ForeignKey(
-        Tickets,
+        Ticket,
         null=True,
         on_delete=models.CASCADE)
     user = models.ForeignKey(

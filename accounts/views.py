@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse, redirect, HttpResponseRedirect
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from accounts.forms import (UserLoginForm, UserRegistrationForm, UserUpdateForm)
-from tickets.models import Tickets
+from tickets.models import Ticket
 # Create your views here.
 
 
@@ -82,7 +82,7 @@ def registration(request):
 @login_required
 def user_profile(request):
     '''renders user's profile page and allows the user to update their User details and Profile image'''
-    user_tickets = Tickets.objects.filter(user_id=request.user.id)
+    user_tickets = Ticket.objects.filter(user_id=request.user.id)
 
     if request.method == "POST":
         user_form = UserUpdateForm(request.POST,

@@ -105,27 +105,27 @@
                 <!-- If a Feature's donation goal hasn't been met, the user will need to donate to upvote -->
                 {% if ticket.ticket_type.ticket_type == "Feature" and ticket.total_donations < 100 %}
                     <!-- Upvote button brings up a payment modal for feature tickets -->
-                    <div class="col s12">
+                    <div class="col-sm-12">
                         <h3 class="card-title center-align">Want to donate for this cause?</h3>
                         <small class="italic">We will begin development once the &pound;100 donation goal is reached!</small>
                     </div>
-                    <div class="col s12">
+                    <div class="col-sm-12">
                         <a href="#payment_modal" class="waves-effect waves-light btn sm-md-btn modal-trigger" aria-label="Donate and Upvote modal">
-                            <i class="fas fa-thumbs-up icon-left" aria-hidden="true"></i>
+                            <i class="fa fa-thumbs-up icon-left" aria-hidden="true"></i>
                             <span class="hide-on-small-and-down">Donate &amp; Upvote</span>
                         </a>
                     </div>
                 <!-- If a Feature's donation goal has been met, or if it is a Bug, users can upvote for free -->
                 {% else %}
-                    <div class="col s12">
+                    <div class="col-sm-12">
                         <h3 class="card-title center-align">Want to support this cause?</h3>
                         {% if ticket.ticket_type.ticket_type == "Feature" and ticket.total_donations >= 100 %}
                             <small class="italic">The &pound;100 dontation goal has been reached so upvotes are now free!</small>
                         {% endif %}
                     </div>
-                    <div class="col s12">
+                    <div class="col-sm-12">
                         <a href="{% url 'upvote' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn" aria-label="Upvote button">
-                            <i class="fas fa-thumbs-up icon-left" aria-hidden="true"></i>
+                            <i class="fa fa-thumbs-up icon-left" aria-hidden="true"></i>
                             <span class="hide-on-small-and-down">Upvote</span>
                         </a>
                     </div>

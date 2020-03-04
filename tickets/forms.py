@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tickets, Comments
+from .models import Ticket, Comments
 from datetime import datetime
 
 
@@ -19,7 +19,7 @@ class TicketForm(forms.ModelForm):
         required=True)
 
     class Meta:
-        model = Tickets
+        model = Ticket
         fields = ["title", "description"]
 
 
