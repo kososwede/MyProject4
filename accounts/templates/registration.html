@@ -1,17 +1,35 @@
 {% extends 'base.html' %}
+{% load materializecss %}
 {% load staticfiles %}
-{% load bootstrap_tags %}
+
 {% block page_title %}Registration Page | {% endblock %} 
 {% block page_heading %}User Registration{% endblock %} 
 {% block content %}
-<div class="container text-center reg-box">
-<p class="link-to-sign-in font-weight-bold">If you already have an account with Unicorn Attractor please <a href="{% url 'login' %}">Sign In</a></p>
-<div class="form-box mx-auto">
-<form method="POST" class="mx-auto font-weight-bold">
-    {% csrf_token %} 
-    {{ registration_form | as_bootstrap }}
-    <button type="submit" class="btn btn-success">Register</button>
-</form>
-</div>
-</div>
+    <div class="row">
+        <div id="register" class="col s12">
+            <form id="registration_form" method="POST" action="{% url 'registration' %}" class="col s12">
+                <div class="center-align">
+                    <h2>REGISTER</h2>
+                    <div class="row">
+                        <div class="col s12">
+                            <p>If you already have an account login<a href="{% url 'login' %}">HERE
+                                </a>
+                            </p>
+                            {% csrf_token %} 
+                            {{ registration_form.username|materializecss:'icon=fa fa-user' }}
+                            {{ registration_form.email|materializecss:'icon=fa fa-mail' }}
+                            {{ registration_form.first_name|materializecss:'icon=fas fa-signature' }}
+                            {{ registration_form.last_name|materializecss:'icon=fa fa-signature' }}
+                            {{ registration_form.password1|materializecss:'icon=fa fa-lock' }}
+                            {{ registration_form.password2|materializecss:'icon=fa fa-key' }}
+                            <button type="submit" class="btn btn-primary large-btn">CREATE ACCOUNT
+                                <i class="fa fa-user-plus icon-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+                            
 {% endblock %}
