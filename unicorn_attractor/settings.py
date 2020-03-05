@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
+    'materializecssform',
     'accounts',
     'tickets',
     'storages',
@@ -97,7 +98,7 @@ if 'DATABASE_URL' in os.environ:
     }
 else:
     print("Database URL not found. Using SQLite instead")
-    DATABASES = {
+DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),

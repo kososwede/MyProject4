@@ -1,16 +1,21 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+
 # Create your models here.
 
 
 class TypeTicket(models.Model):
     """ Choose ticket type (bug or feature)"""
-    TICKET_TYPE_CHOICE = (("Bug", "Bug"), ("Feature", "Feature"))
+    TICKET_TYPE_CHOICES = (
+        ("Bug", "Bug"),
+        ("Feature", "Feature"),
+    )
     ticket_type = models.CharField(
         max_length=7,
         unique=True,
-        choices=TICKET_TYPE_CHOICE)
+        choices=TICKET_TYPE_CHOICES,
+    )
 
     def __str__(self):
         return self.ticket_type
@@ -18,11 +23,15 @@ class TypeTicket(models.Model):
 
 class StatusTicket(models.Model):
     """status of ticket open, working on or closed"""
-    STATUS_CHOICE = (("Open", "Open"), ("Working on", "Working on"), ("Closed", "Closed"),)
+    TICKET_STATUS_CHOICES = [
+        ('Open', "Open"),
+        ('In Progress', "In Progress"),
+        ('Closed', "Closed"),
+    ]
     ticket_status = models.CharField(
         max_length=10,
         unique=True,
-        choices=STATUS_CHOICE)
+        choices=TICKET_STATUS_CHOICES)
 
     def __str__(self):
         return self.ticket_status

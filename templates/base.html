@@ -7,47 +7,112 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">    
     
     <title>{% block page_title %}{% endblock %}UnicornAttractor</title>
     </head>
     <body class="background1">
         
+        <header class="container-fluid">
             <!-----------nav bar------------->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/unicorn-logo2.png' %}" width="30" height="30" class="d-inline-block align-top" alt="unicorn-logo">  Unicorn Attractor</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'get_tickets' %}"><i class="fa fa-ticket"></i> Tickets</a>
-                    </li> 
+            <nav class="nav-extended">
+                <div class="nav-wrapper">
+                    <a class="brand-logo" href="{% url 'index' %}"><img src="{% static 'img/unicorn-logo2.png' %}" width="30" height="30" class="d-inline-block align-top" alt="unicorn-logo">
+                        <span class="brand-logo-title">Unicorn Attractor</span>
+                    </a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"  aria-label="Sidenav trigger">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a href="{% url 'index' %}"><i class="btn-icon fa fa-home"></i>
+                            <span class="btn-text">HOME</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'get_tickets' %}"><i class="btn-icon fa fa-ticket"></i>
+                            <span class="btn-text">TICKETS</span>
+                            </a>
+                        </li> 
                     
+                        {% if user.is_authenticated %}
+                            <li>
+                                <a href="{% url 'profile' %}"><i class="btn-icon fa fa-user"></i>
+                                <span class="btn-text">PROFILE</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}"><i class="btn-icon fa fa-sign-out"></i>
+                                <span class="btn-text">LOGOUT</span>
+                                </a>
+                            </li>  
+                        {% else %}
+                            <li>
+                                <a href="{% url 'login' %}"><i class="btn-icon fa fa-sign-in"></i>
+                                <span class="btn-text">LOGIN</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'registration' %}"><i class="btn-icon fa fa-user-plus"></i>
+                                <span class="btn-text">REGISTER</span>
+                                </a>
+                            </li>  
+                        {% endif %}
+                    </ul>
+                </div>
+                <ul class="sidenav" id="mobile-demo">
+                    <li>
+                        <a href="{% url 'index' %}" class="brand-logo avatar">
+                            <img src="{% static 'img/unicorn-logo2.png' %}" alt="brand logo">
+                            <span class="brand-logo-title">Unicorn Attractor</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'get_tickets' %}"><i class="btn-icon fa fa-ticket"></i>
+                        <span class="btn-text">TICKETS</span>
+                        </a>
+                    </li> 
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
+                        <li>
+                            <a href="{% url 'profile' %}"><i class="btn-icon fa fa-user"></i>
+                            <span class="btn-text">PROFILE</span>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-user"></i> Profile</a>
-                        </li>
-                        
+                        <li>
+                            <a href="{% url 'logout' %}"><i class="btn-icon fa fa-sign-out"></i>
+                            <span class="btn-text">LOGOUT</span>
+                            </a>
+                        </li>  
                     {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login</a>
+                        <li>
+                            <a href="{% url 'login' %}"><i class="btn-icon fa fa-sign-in"></i>
+                            <span class="btn-text">LOGIN</span>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration' %}"><i class="fa fa-registered"></i> Register</a>
-                        </li>
+                        <li>
+                            <a href="{% url 'registration' %}"><i class="btn-icon fa fa-user-plus"></i>
+                            <span class="btn-text">REGISTER</span>
+                            </a>
+                        </li>  
                     {% endif %}
                 </ul>
-            </div>
-        </nav>
+            </nav>
+        </header>
         <!---------end of navbar--------->
+        
+        <!---------messages for user------>
+      
+    {% if messages %}
+        <div class="flash-message center-align" id="flash_message">
+            <div class="messages">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+         
          <!--main content-->
     <main class="container">
             <!--Page Heading-->
@@ -56,20 +121,14 @@
             {% endblock %}
     </main>
 
-        <!---------messages for user------>
-      
-        {% if messages %}
-        <div>
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        </div>
-        {% endif %}
+        
         
         <!---------end of messages for user--------->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
         {% block js %}
         {% endblock %}
         <script rel="stylesheet" href="{% static 'js/stripe.js' %}"></script>
