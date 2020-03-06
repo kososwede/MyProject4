@@ -54,7 +54,8 @@ def new_bug_ticket(request):
             bug_form.instance.ticket_type_id = 1
             bug_form.instance.ticket_status_id = 1
             bug_form.save()
-            messages.success(request, f"Thanks for making Unicorn Attractor better by submitting a Bug Report!")
+            messages.success(
+                request, f"Thanks for making Unicorn Attractor better by submitting a Bug Report!")
             return redirect(get_tickets)
 
     else:
@@ -110,13 +111,16 @@ def new_feature_ticket(request):
                     """ If the goal amount has not reached the target ammount, the status of the ticket will be Open"""
                     feature_form.instance.ticket_status_id = 1
                 feature_form.save()
-                messages.success(request, f"Thanks for submitting a Feature Request for Unicorn Attractor!")
+                messages.success(
+                    request, f"Thanks for submitting a Feature Request for Unicorn Attractor!")
                 return redirect(get_tickets)
             else:
-                messages.error(request, "Unable to take a payment at this time")
+                messages.error(
+                    request, "Unable to take a payment at this time")
             """If the feature form or donation_form aren't valid"""
         else:
-            messages.error(request, f"Sorry, We were unable to take a payment with that card. Please try again.")
+            messages.error(
+                request, f"Sorry, We were unable to take a payment with that card. Please try again.")
     else:
         feature_form = TicketForm()
         donation_form = DonationForm()
@@ -163,7 +167,8 @@ def view_one_ticket(request, pk):
             # Decrement views by -2 to prevent incorrect incrementation
             ticket.views -= 2
             ticket.save()
-            messages.success(request, f"Your comment has been added to this thread!")
+            messages.success(
+                request, f"Your comment has been added to this thread!")
             return redirect(view_one_ticket, ticket.pk)
     else:
         comment_form = CommentForm()
@@ -244,13 +249,16 @@ def upvote(request, pk):
                 if new_ticket_donations >= int(100):
                     Ticket.objects.filter(id=ticket.pk)\
                                   .update(ticket_status_id=2)
-                messages.success(request, f"Thanks, your payment has been taken and your upvote has been registered!")
+                messages.success(
+                    request, f"Thanks, your payment has been taken and your upvote has been registered!")
                 return redirect(view_one_ticket, ticket.pk)
             else:
-                messages.error(request, "Sorry, Unable to take payment at this time")
+                messages.error(
+                    request, "Sorry, Unable to take payment at this time")
         # If feature form or the donation form are not valid
         else:
-            messages.error(request, f"Ooops, We were unable to take a payment with that card. Please try again.")
+            messages.error(
+                request, f"Ooops, We were unable to take a payment with that card. Please try again.")
     else:
         '''Create an object of the Upvote model to store the user's
         ID against the ticket - enables the user's upvote to
@@ -258,7 +266,8 @@ def upvote(request, pk):
         Upvote.objects.create(ticket_id=ticket.pk,
                               user_id=request.user.id)
 
-        messages.success(request, f"Thankyou, your upvote has been registered!")
+        messages.success(
+            request, f"Thankyou, your upvote has been registered!")
 
     return redirect(view_one_ticket, ticket.pk)
 
@@ -316,7 +325,8 @@ def edit_ticket(request, pk):
 
             ticket.views -= 1
             ticket.save()
-            messages.success(request, f"Your ticket has been successfully edited, Thankyou.")
+            messages.success(
+                request, f"Your ticket has been successfully edited, Thankyou.")
             return redirect(view_one_ticket, ticket.pk)
         else:
             edit_form = TicketForm(instance=ticket)

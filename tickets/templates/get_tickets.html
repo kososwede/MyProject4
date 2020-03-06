@@ -134,7 +134,7 @@
     
     <div class="row center-align">
 	    {% for ticket in tickets %}
-	        <a href="{ url 'view_one_ticket' ticket.id}" aria-label="View This Tickets Details">
+	        <a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View This Tickets Details">
 		        <div class="col s12 m6 ticket-preview-card">
 			        <div class="card hoverable results-card">
 				        <div class="ticket-type center-align">
