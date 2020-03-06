@@ -16,14 +16,14 @@
                                 </a>
                             </p>
                             {% csrf_token %} 
-                            {{ registration_form.username|materializecss:'icon=fa fa-user' }}
-                            {{ registration_form.email|materializecss:'icon=fa fa-mail' }}
+                            {{ registration_form.username|materializecss:'icon=fas fa-user' }}
+                            {{ registration_form.email|materializecss:'icon=fas fa-envelope' }}
                             {{ registration_form.first_name|materializecss:'icon=fas fa-signature' }}
-                            {{ registration_form.last_name|materializecss:'icon=fa fa-signature' }}
-                            {{ registration_form.password1|materializecss:'icon=fa fa-lock' }}
-                            {{ registration_form.password2|materializecss:'icon=fa fa-key' }}
+                            {{ registration_form.last_name|materializecss:'icon=fas fa-signature' }}
+                            {{ registration_form.password1|materializecss:'icon=fas fa-lock' }}
+                            {{ registration_form.password2|materializecss:'icon=fas fa-key' }}
                             <button type="submit" class="btn btn-primary large-btn">CREATE ACCOUNT
-                                <i class="fa fa-user-plus icon-left"></i>
+                                <i class="fas fa-user-plus icon-left"></i>
                             </button>
                         </div>
                     </div>

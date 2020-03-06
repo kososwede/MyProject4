@@ -1,30 +1,30 @@
 {% extends 'base.html' %}
+{% load materialzecss %}
 {% load staticfiles %}
-{% load bootstrap_tags %}
+
 {% block page_title %}New Bug | {% endblock %}
 {% block page_heading %}Leave a BUG report{% endblock %}
 {% block content %}
-<div class="row container text-center reg-box">
-	<div id="new_bug" class="col-sm-12 form-box mx-auto">
-		<form method="POST" id="new_bug_form" class=" col-sm-12 mx-auto font-weight-bold">
-			<div class="new_bug_wrapper center-align">
-				<p>Please leave your BUG report below.</p>
+
+<div class="row text-center">
+	<div id="new_bug" class="col s12">
+		<form method="POST" id="new_bug_form" class=" col s12">
+			<div class="center-align">
+				<p class="form-title">Report a BUG</p>
 				<div class="row">
-					<div class="col-sm-12">
+					<div class="col s12">
 						{% csrf_token %}
-						<p>Title of BUG</p>
-						{{ bug_form.title }}
-						<p>Description of BUG</p>
-						{{ bug_form.description }}
+						{{ bug_form.title|materializecss:'icon=fas fa-heading' }}
+						{{ bug_form.description|materializecss:'icon=fas fa-file-alt' }}
 					</div>
-					<div class="col-sm-12">
+					<div class="col s12">
 						<button class="btn waves-effect waves-light add-btn sm-md-btn" type="submit" aria-label="Add bug button">
-                                <span>Add</span>
-                                <i class="fa fa-plus-circle icon-right" aria-hidden="true"></i>
+                                <span class="hide-on-small-and-down">Add</span>
+                                <i class="fas fa-plus-circle icon-left" aria-hidden="true"></i>
                         </button>
 						<a class="btn waves-effect waves-light sm-md-btn" aria-label="Cancel button" onclick="history.back()">
 							<span>Cancel</span>
-							<i class="fa fa-times-circle icon-right" aria-hidden="true"></i>
+							<i class="fas fa-times-circle icon-left" aria-hidden="true"></i>
 						</a>
 					</div>
 				</div>

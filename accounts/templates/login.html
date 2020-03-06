@@ -13,15 +13,15 @@
                     <div class="row">
                         <div class="col s12">
                             {% csrf_token %} 
-                            {{ login_form.username|materializecss:'icon=fa fa-user' }}
-                            {{ login_form.password|materializecss:'icon=fa fa-lock' }}
+                            {{ login_form.username|materializecss:'icon=fas fa-user' }}
+                            {{ login_form.password|materializecss:'icon=fas fa-lock' }}
                             <p>
                                 <a href="{% url 'password_reset' %}">FORGOT YOUR PASSWORD</a>
                                 <br>
                                 Dont have an account, Dont worry you can register <a href="{% url 'registration' %}">HERE</a>
                             </p>
                              <button type="submit" class="btn btn-primary large-btn">LOGIN
-                                <i class="fa fa-sign-in icon-left"></i>
+                                <i class="fas fa-sign-in icon-left"></i>
                             </button>
                         </div>
                     </div>

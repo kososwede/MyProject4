@@ -8,22 +8,22 @@
     <div class="row ticket-card center-align">
     	<div class="col s12">
     		<p>
-	    		<i class="fa fa-signature" aria-hidden="true"></i>
+	    		<i class="fas fa-signature" aria-hidden="true"></i>
 	    		{{ user.first_name }} {{ user.last_name }}
 	    	</p>
 		    <p>
-			    <i class="fa fa-user" aria-hidden="true"></i>
+			    <i class="fas fa-user" aria-hidden="true"></i>
 			    {{ user.username }}
     		</p>
 	    	<p>
-		    	<i class="fa fa-envelope" aria-hidden="true"></i>
+		    	<i class="fas fa-envelope" aria-hidden="true"></i>
 			    {{ user.email }}
 	    	</p>
 	    </div>
 
 	    <div class="col s12">
 		    <a href="#edit_profile_modal" class="waves-effect waves-light btn modal-trigger change-pwd-btn large-btn" aria-label="Edit Profile Modal">
-			    <i class="fa fa-edit icon-left" aria-hidden="true"></i>
+			    <i class="fas fa-edit icon-left" aria-hidden="true"></i>
 		    	Edit Profile
 	    	</a>
 	    </div>
@@ -32,19 +32,19 @@
     <div class="row ticket-card card">
 	    <div class="col s12 m6 profile-bugs">
 		    <h4 class="card-title center-align">
-			    <i class="fa fa-bug" aria-hidden="true"></i>
+			    <i class="fas fa-bug" aria-hidden="true"></i>
 			    My Bugs
 		    </h4>
 		    <ul class="">
 			    {% for ticket in user_tickets %}
-			    {% if ticket.ticket_type.ticket_type == "Bug" %}
-			    <li class="">
-				    <a href="{% url 'view_single_ticket' ticket.id %}" aria-label="Details of Bug">
-					    <h4 class="title">{{ ticket.title }}</h4>
-					    <p class="helper italic truncate">{{ ticket.description }}</p>
-				    </a>
-			    </li>
-			    {% endif %}
+			        {% if ticket.ticket_type.ticket_type == "Bug" %}
+			            <li class="">
+				            <a href="{% url 'view_one_ticket' ticket.id %}" aria-label="Details of Bug">
+					            <h4 class="title">{{ ticket.title }}</h4>
+					            <p class="helper italic truncate">{{ ticket.description }}</p>
+				            </a>
+			            </li>
+			        {% endif %}
 			    {% endfor %}
 		    </ul>
 
@@ -56,19 +56,19 @@
 	    </div>
 	    <div class="col s12 m6 profile-features">
 		    <h4 class="card-title center-align">
-			    <i class="fa fa-cogs" aria-hidden="true"></i>
+			    <i class="fas fa-cogs" aria-hidden="true"></i>
 			    My Features
 	    	</h4>
 		    <ul class="">
 			    {% for ticket in user_tickets %}
-			    {% if ticket.ticket_type.ticket_type == "Feature" %}
-			    <li class="">
-				    <a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Feature">
-					    <h6 class="title">{{ ticket.title }}</h6>
-					    <p class="helper italic truncate">{{ ticket.description }}</p>
-				    </a>
-			    </li>
-			    {% endif %}
+			        {% if ticket.ticket_type.ticket_type == "Feature" %}
+			            <li class="">
+				            <a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Feature">
+					            <h6 class="title">{{ ticket.title }}</h6>
+					            <p class="helper italic truncate">{{ ticket.description }}</p>
+				            </a>
+			            </li>
+			        {% endif %}
 			    {% endfor %}
 		    </ul>
 
@@ -85,12 +85,12 @@
 		    <h5 class="title">Edit Profile</h5>
 		    <form id="edit_profile_form" method="POST" class="userform" enctype="multipart/form-data">
 			    {% csrf_token %}
-			    {{ user_form.email|materializecss:'icon=fa fa-mail' }}
-			    {{ user_form.first_name |materializecss:'icon=fa fa-signature' }}
-			    {{ user_form.last_name |materializecss:'icon=fa fa-signature' }}
+			    {{ user_form.email|materializecss:'icon=fas fa-envelope' }}
+			    {{ user_form.first_name|materializecss:'icon=fas fa-signature' }}
+			    {{ user_form.last_name|materializecss:'icon=fas fa-signature' }}
 			    <button type="submit" class="btn btn primary large-btn" aria-label="Update Profile">
                     Update
-                    <i class="fa fa-edit icon-right" aria-hidden="true"></i>
+                    <i class="fas fa-edit icon-right" aria-hidden="true"></i>
                 </button>
 		    </form>
 	    </div>

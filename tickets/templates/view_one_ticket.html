@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load materializecss %}
 {% load staticfiles %}
-{% load bootstrap tags %}
+
 {% block page_title %}{{ ticket.title }} | Details | {% endblock %}
 
 {% block page_heading %}{{ ticket.title }}{% endblock %}
@@ -8,19 +9,19 @@
 {% block content %}
     
     <!-- Full Ticket Details -->
-    <div class="row ticket-card card z-depth-1 center-align">
+    <div class="row ticket-card center-align">
         <!-- Ticket Description -->
-        <div class="col-sm-12 col-md-6 center-align ticket-details-wrapper">
-            <p class="bold italic">{{ ticket.description }}</p>
+        <div class="col s12 m6 center-align">
+            <p>{{ ticket.description }}</p>
         </div>
         <!-- Ticket Stats -->
-        <div class="col-sm-12 col-md-6 center-align ticket-details">
-            <p class="ticket-status">
-                <i class="fa fa-user" aria-hidden="true"></i>
+        <div class="col s12 m6 center-align ticket-details">
+            <p>
+                <i class="fas fa-user" aria-hidden="true"></i>
                 {{ ticket.user }}
             </p>
             <p class="ticket-status">
-                <i class="fa fa-tools" aria-hidden="true"></i>
+                <i class="fas fa-tools" aria-hidden="true"></i>
                 {{ ticket.ticket_status }}
             </p>
             <!-- Only display the option to edit a ticket status for superusers -->
@@ -37,106 +38,106 @@
                             {% endfor%}
                         </select>
                         <button class="btn waves-effect waves-light sm-md-btn" type="submit" aria-label="Update Ticket Status button">
-                            <span class="">Update</span>
-                            <i class="fa fa-edit icon-right" aria-hidden="true"></i>
+                            <span class="hide-on-small-and-down">Update</span>
+                            <i class="fas fa-edit icon-right" aria-hidden="true"></i>
                         </button>
                     </form>
                 </p>
             {% endif %}
             <p class="ticket-status">
-                <i class="fa fa-eye" aria-hidden="true"></i>
+                <i class="fas fa-eye" aria-hidden="true"></i>
                 {{ ticket.views }}
             </p>
             <p class="ticket-status">
-                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                <i class="fas fa-thumbs-up" aria-hidden="true"></i>
                 {{ ticket.upvotes }}
             </p>
             <p class="ticket-status">
                 <!-- Show edited date if the ticket has been edited.
-                If not, show the created date-->
+                or show the created date-->
                 {% if ticket.created_date.date != ticket.edited_date.date or ticket.created_date.time.hour != ticket.edited_date.time.hour or ticket.created_date.time.minute != ticket.edited_date.time.minute %}
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    <i class="fas fa-calendar" aria-hidden="true"></i>
                     {{ ticket.edited_date|date:"j M Y" }}
-                    <small class="italic">({{ ticket.edited_date|time:"P" }})</small>
+                    <small>({{ ticket.edited_date|time:"P" }})</small>
                 {% else %}
-                    <i class="fa fa-calendar-plus" aria-hidden="true"></i>
+                    <i class="fas fa-calendar-plus" aria-hidden="true"></i>
                     {{ ticket.created_date|date:"j M Y" }}
-                    <small class="italic">({{ ticket.created_date|time:"P" }})</small>
+                    <small>({{ ticket.created_date|time:"P" }})</small>
                 {% endif %}
             </p>
-            <!-- Total Donations - only visible on Feature tickets -->
+            <!-- Total Donations only on Feature tickets -->
             {% if ticket.ticket_type.ticket_type == "Feature" %}
-                <!-- If the goal donation amount has been reached -->
+                <!-- If the target donation amount has been acheived -->
                 <p class="ticket-status">
                     {% if ticket.total_donations >= 100 %}
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                        Donation Goal Reached!
+                        <i class="fas fa-check" aria-hidden="true"></i>
+                        Donation Target Acheived!
                     {% else %}
-                        <i class="fa fa-pound-sign" aria-hidden="true"></i>
-                        {{ ticket.total_donations }} <span class="italic">/100</span>
+                        <i class="fas fa-pound-sign" aria-hidden="true"></i>
+                        {{ ticket.total_donations }} <span>/100</span>
                     {% endif %}
                 </p>
             {% endif %}
         </div>
         
-        <!-- Buttons only available when user logged in, if user has created the ticket, and ticket status is not closed -->
+        <!-- this part only available if user is logged in, if user has created the ticket, and ticket status is not closed -->
         {% if user.is_authenticated and user.id == ticket.user.id and ticket.ticket_status.ticket_status != "Closed" %}
-            <div class="col-sm-12 center-align">
+            <div class="col s12 center-align">
                 <div class="ticket-details-break"></div>
             </div>
-            <div class="col-sm-12 center-align ticket-details-btns">
+            <div class="col s12 center-align ticket-details-btns">
                 <a href="{% url 'edit_ticket' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn" aria-label="Edit Ticket page">
-                    <i class="fa fa-edit icon-left" aria-hidden="true"></i>
+                    <i class="fas fa-edit icon-left" aria-hidden="true"></i>
                     <span class="hide-on-small-and-down">Edit</span>
                 </a>
                 <a href="#delete_modal" class="waves-effect waves-light btn sm-md-btn modal-trigger"  aria-label="Delete Ticket modal">
-                    <i class="fa fa-trash icon-left" aria-hidden="true"></i>
+                    <i class="fas fa-trash icon-left" aria-hidden="true"></i>
                     <span class="hide-on-small-and-down">Delete</span>
                 </a>
             </div>
         {% endif %}
     </div>
     
-    <!-- Upvote Section - only available if user is logged in and ticket isn't closed, and user hasn't created the ticket -->
+    <!-- Upvote Section is only available if a user is logged in and the ticket isn't closed, and that the user hasn't created the ticket -->
     {% if user.is_authenticated and ticket.ticket_status.ticket_status != "Closed" and user != ticket.user %}
-        <div class="row ticket-card upvote-card card z-depth-1 center-align">
-            <!-- Allow upvoting if user hasn't already upvoted -->
+        <div class="row ticket-card upvote-card center-align">
+            <!-- Allow user upvoting if user hasn't already upvoted -->
             {% if user.id not in user_upvotes %}
-                <!-- If a Feature's donation goal hasn't been met, the user will need to donate to upvote -->
+                <!-- If the Feature's target hasn't been acheived, the user will need to donate to upvote -->
                 {% if ticket.ticket_type.ticket_type == "Feature" and ticket.total_donations < 100 %}
-                    <!-- Upvote button brings up a payment modal for feature tickets -->
-                    <div class="col-sm-12">
-                        <h3 class="card-title center-align">Want to donate for this cause?</h3>
-                        <small class="italic">We will begin development once the &pound;100 donation goal is reached!</small>
+                    <!-- Upvote button triggers a payment modal for feature tickets -->
+                    <div class="col s12">
+                        <h3 class="card-title center-align">Want to donate for this feature to become accessable?</h3>
+                        <small>We will begin development once the &pound;100 donation goal is reached!</small>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col s12">
                         <a href="#payment_modal" class="waves-effect waves-light btn sm-md-btn modal-trigger" aria-label="Donate and Upvote modal">
-                            <i class="fa fa-thumbs-up icon-left" aria-hidden="true"></i>
+                            <i class="fas fa-thumbs-up icon-left" aria-hidden="true"></i>
                             <span class="hide-on-small-and-down">Donate &amp; Upvote</span>
                         </a>
                     </div>
-                <!-- If a Feature's donation goal has been met, or if it is a Bug, users can upvote for free -->
+                <!-- If a Feature's donation target has been acheived, or a Bug ticket, users can upvote for free -->
                 {% else %}
-                    <div class="col-sm-12">
-                        <h3 class="card-title center-align">Want to support this cause?</h3>
+                    <div class="col s12">
+                        <h3 class="card-title center-align">Want to support this ticket?</h3>
                         {% if ticket.ticket_type.ticket_type == "Feature" and ticket.total_donations >= 100 %}
-                            <small class="italic">The &pound;100 dontation goal has been reached so upvotes are now free!</small>
+                            <small>The &pound;100 dontation target has been reached so upvotes are now free!</small>
                         {% endif %}
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col s12">
                         <a href="{% url 'upvote' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn" aria-label="Upvote button">
-                            <i class="fa fa-thumbs-up icon-left" aria-hidden="true"></i>
+                            <i class="fas fa-thumbs-up icon-left" aria-hidden="true"></i>
                             <span class="hide-on-small-and-down">Upvote</span>
                         </a>
                     </div>
                 {% endif %}
             {% else %}
-                <div class="col-sm-12">
-                    <h2 class="card-title center-align">No longer want to support this?</h2>
+                <div class="col s12">
+                    <h2 class="card-title center-align">No longer want to support this ticket?</h2>
                 </div>
-                <!-- Downvote Button - disabled on features to prevent user being able to donate again -->
-                <div class="col-sm-12">
-                    <a href="{% url 'downvote' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn" aria-label="Downvote button" {% if ticket.ticket_type.ticket_type == 'Feature' %}disabled{% endif %}>
+                <!-- Downvote Button - disabled on feature tickets to stop user being able to donate again -->
+                <div class="col s12">
+                    <a href="{% url 'downvote' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn" aria-label="Downvote button" {% if ticket.ticket_type.ticket_type == "Feature" %}disabled{% endif %}>
                         <i class="fa fa-thumbs-down icon-left" aria-hidden="true"></i>
                         <span class="hide-on-small-and-down">Downvote</span>
                     </a>
@@ -146,21 +147,21 @@
     {% endif %}
 
     <!-- Comments -->
-    <div class="row ticket-card card z-depth-1">
-        <div class="col-sm-12">
+    <div class="row ticket-card">
+        <div class="col s12">
             <h3 class="card-title center-align">
-                <i class="fa fa-comments icon-left" aria-hidden="true"></i>
+                <i class="fas fa-comments icon-left" aria-hidden="true"></i>
                 Comments
             </h3>
         </div>
-        <div class="col-sm-12 comments">
+        <div class="col s12 comments">
             <!-- If there are comments on the ticket, they will be displayed -->
             {% if comments %}
-                <ul class="collection collection-wrapper">
+                <ul>
                     {% for comment in comments %}
-                        <li class="collection-item avatar">
-                            <p class="italic">
-                                <i class="fa fa-comments icon-left" aria-hidden="true"></i>
+                        <li class="">
+                            <p>
+                                <i class="fas fa-comments icon-left" aria-hidden="true"></i>
                                 {{ comment.description }}
                             </p>
                         </li>
@@ -168,12 +169,12 @@
                 </ul>
             {% else %}
                 <!-- If there are no comments on the ticket, some helper text will be displayed -->
-                <p class="center-align italic bold">Nobody has commented on this {{ ticket.ticket_type }}!</p>
+                <p class="center-align">Nobody has commented on this {{ ticket.ticket_type }}!</p>
             {% endif %}
         </div>
-        <!-- Add Comment Section - only available if ticket isn't closed -->
+        <!-- Add Comment Section but only available if the ticket isn't closed -->
         {% if ticket.ticket_status.ticket_status != "Closed" %}
-            <div class="col-sm-12 center-align comment-wrapper">
+            <div class="col s12 center-align">
                 {% if user.is_authenticated %}
                     <!-- Comment Form - only available if user is logged in -->
                     <form id="comment_form" method="POST" enctype="multipart/form-data">
@@ -181,17 +182,17 @@
                         {{ comment_form }}
                         <button type="submit" class="btn btn-primary sm-md-btn" aria-label="Add Comment button">
                             <span class="hide-on-small-and-down">Add Comment</span>
-                            <i class="fa fa-comment icon-right" aria-hidden="true"></i>
+                            <i class="fas fa-comment icon-right" aria-hidden="true"></i>
                         </button>
                     </form>
                 {% else %}
                     <!-- Links for user to login or register to add a comment if not logged in -->
                     <p>
-                        <a class="bold italic uppercase nav-link" href="{% url 'login' %}" aria-label="Login Page">
+                        <a href="{% url 'login' %}" aria-label="Login Page">
                             Login
                         </a>
                         or 
-                        <a class="bold italic uppercase nav-link" href="{% url 'registration' %}" aria-label="Registration Page">
+                        <a href="{% url 'registration' %}" aria-label="Registration Page">
                             Register
                         </a>
                         to add a comment!
@@ -202,11 +203,11 @@
     </div>
     
     <!-- Back button - only visible on tablet and below -->
-    <div class="row hide-on-large-only center-align back-btn-wrapper">
-        <div class="col-sm-12">
+    <div class="row hide-on-large-only center-align">
+        <div class="col s12">
             <a class="waves-effect waves-light btn standard-btn" aria-label="Back button" onclick="history.back()">
                 Back
-                <i class="fa fa-step-backward icon-right" aria-hidden="true"></i>
+                <i class="fas fa-step-backward icon-right" aria-hidden="true"></i>
             </a>
         </div>
     </div>
@@ -215,16 +216,16 @@
     <div id="delete_modal" class="modal">
         <div class="modal-content center-align">
             <h4 class="title">Are you sure you want to delete this ticket?</h4>
-            <p class="helper italic">
-                This {{ ticket.ticket_type }} will be permanently deleted if you go ahead!
+            <p class="helper">
+                This {{ ticket.ticket_type }} will be permanently deleted if you continue!
             </p>
-            <div class="input-field col s12 modal-btn-wrapper">
+            <div class="input-field col s12">
                 <a class="waves-effect waves-light btn delete-yes-btn sm-md-btn" href="{% url 'delete_ticket' ticket.id %}" aria-label="Confirm Ticket Deletion button">
-                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <i class="fas fa-check" aria-hidden="true"></i>
                     <span class="hide-on-small-and-down">Yes</span>
                 </a>
                 <a class="modal-close waves-effect waves-light btn delete-no-btn sm-md-btn" aria-label="Cancel Ticket Deletion button">
-                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <i class="fas fa-times" aria-hidden="true"></i>
                     <span class="hide-on-small-and-down">No</span>
                 </a>
             </div>
@@ -240,7 +241,7 @@
                     {% csrf_token %}
                     {{ donation_form }}
                 </div>
-                <div class="col-sm-12">
+                <div class="col s12">
                     <!-- Stripe Payment form -->
                     <label for="card-element" class="payment-form-label">
                         Credit or Debit Card
@@ -251,14 +252,14 @@
                     <!-- Used to display form errors. -->
                     <div id="card-errors" role="alert"></div>
                 </div>
-                <div class="input-field col-sm-12 modal-btn-wrapper">
+                <div class="input-field col s12">
                     <button class="btn waves-effect waves-light sm-md-btn" type="submit" aria-label="Upvote Feature button">
                         <span class="hide-on-small-and-down">Upvote</span>
-                        <i class="fa fa-check icon-right" aria-hidden="true"></i>
+                        <i class="fas fa-check icon-right" aria-hidden="true"></i>
                     </button>
                     <a class="modal-close waves-effect waves-light btn sm-md-btn" aria-label="Cancel Upvote button">
                         <span class="hide-on-small-and-down">Cancel</span>
-                        <i class="fa fa-times icon-right" aria-hidden="true"></i>
+                        <i class="fas fa-times icon-right" aria-hidden="true"></i>
                     </a>
                 </div>
             </form>

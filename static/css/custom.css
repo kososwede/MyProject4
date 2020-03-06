@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+main {
+    flex: 1 0 auto;
+}
 
-body,
-html {
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
+body {
+    min-height: 100vh;
+    flex-direction: column;
+    font-size: 18px;
 }
 
 .background1{
@@ -12,92 +14,99 @@ html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 
-
-.reg-box {
-    padding-bottom: 10%;
-}
-form {
-    width: 70%;
+/* NAVBAR */
+nav {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
 }
 
-.pass-reset-button {
-    text-align: center;
+.sidenav {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
 }
 
-.page-title{
-    color: darkviolet;
-    text-align: center;
-    font-size: 80px;
-    text-shadow: #ffff 0px 0px 7px, #ffff 0px 0px 7px, #ffff 0px 0px 7px,
-    #ffff 0px 0px 7px, #ffff 0px 0px 7px, #ffff 0px 0px 7px;
+.sidenav li {
+  padding-top: 0.6rem;
 }
 
-.navbar {
-    color: aquamarine;
-}
- a.nav-link
-  {
-    color:whitesmoke !important;
-    font-size: 25px;
-}
-.navbar {
-    background-color: rgba(0, 219, 188, 0.36) !important;
+.sidenav .sidenav-home {
+  margin-top: 3rem;
 }
 
-a.navbar-brand {
-    color:whitesmoke !important;
-    font-size: 25px;
+
+nav .brand-logo img,
+.sidenav .brand-logo img {
+  vertical-align: text-bottom;
+  height: 2.2rem;
+  width: 3rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
 }
 
-.form-box {
-    background-color:rgba(0, 219, 188, 0.36);
-    border-radius: 30px;
-    width: 80%;
-    color: darkviolet;
-    text-shadow: #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px,
-    #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px;
-    font-size: 23px;
+.sidenav .brand-logo {
+  width: 100%;
 }
 
-.link-to-sign-in {
-    color: whitesmoke;
-    font-size: 27px;
-    text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
-    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+.sidenav .brand-logo-title {
+  font-size: 1.6rem;
+  color: #ede9df;
+  vertical-align: super;
 }
 
-div.about-game {
-    color: #ffff;
-    text-shadow: #0000 0px 0px 1px, #0000 0px 0px 1px, #0000 0px 0px 1px,
-    #0000 0px 0px 1px, #0000 0px 0px 1px, #0000 0px 0px 1px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FLASH MESSAGES */
+.flash-message {
+  visibility: hidden;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: fixed;
+  z-index: 100;
+  top: 5rem;
+  color: #ede9df;
 }
 
-h1.headers{
-    color:darkviolet;
-    text-shadow: #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px,
-    #ffff 0px 0px 1px, #ffff 0px 0px 1px, #ffff 0px 0px 1px;
+.flash-message.show {
+  visibility: visible;
+  animation: flashMessageShow 0.5s, flashMessageHide 0.5s 3.5s;
 }
 
-.page-title {
-    font-family: 'Righteous', cursive;
-    padding-top: 5%;
-    padding-bottom: 5%;
+/* KEYFRAMES */
+@keyframes flashMessageShow {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 5rem;
+    opacity: 1;
+  }
 }
-
-hr.divide {
-    width: 50%;
-    border: 0.5px solid white;
-}
-
-.app-link {
-  height: 3rem;
-  width: 10rem;
-  margin: 1rem;
-}
-
-.butt-pos {
-    position: relative;
+@keyframes flashMessageHide {
+  from {
+    top: 5rem;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
 }
