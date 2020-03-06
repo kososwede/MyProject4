@@ -1,5 +1,7 @@
 from django.conf.urls import url
-from .views import (get_tickets, new_bug_ticket, new_feature_ticket, view_one_ticket, upvote, downvote, admin_update_status, edit_ticket, delete_ticket)
+from .views import (get_tickets, new_bug_ticket, new_feature_ticket,
+                    view_one_ticket, upvote, downvote,
+                    admin_update_status, edit_ticket, delete_ticket)
 
 urlpatterns = [
     url(r"^$", get_tickets, name="get_tickets"),

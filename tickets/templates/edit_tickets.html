@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load bootstrap tags %}
+{% load materializecss %}
 {% load staticfiles %}
 
 {% block page_title %}{{ ticket.title }} | Edit {% if ticket.ticket_type.ticket_type == "Bug" %}Bug
@@ -7,24 +7,24 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-sm-12" id="edit_ticket">
-            <form class="col-sm-12" method="POST">
-                <div>
+        <div class="col s12" id="edit_ticket">
+            <form class="col s12" method="POST">
+                <div class="center-align">
                     <h4 class="form-title">Edit {{ ticket.ticket_type }}</h4>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col s12">
                             {% csrf_token %}
-                            {{ edit_form.title }}
-                            {{ edit_form.description }}
+                            {{ edit_form.title|materializecss:'icon=fas fa-heading' }}
+                            {{ edit_form.description|materializecss:'icon=fas fa-file-alt' }}
                         </div>
-                        <div class="col_sm_12">
-                            <button type="submit" class="btn btn-primary" aria-label="Edit Ticket">
+                        <div class="col s12">
+                            <button type="submit" class="btn waves-effect waves-light add-btn sm-md-btn" aria-label="Edit Ticket">
                                 <span>Edit</span>
-                                <i class="fa fa-edit icon-right" aria-hidden="true"></i>
+                                <i class="fas fa-edit icon-left" aria-hidden="true"></i>
                             </button>
-                            <a class="btn btn-md btn-warning" aria-label="cancel button" onclick="history.back()">
-                                <span>Cancel</span>
-                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            <a class="btn waves-effect waves-light sm-md-btn" aria-label="cancel button" onclick="history.back()">
+                                <span class="hide-on-small-and-down">Cancel</span>
+                                <i class="fas fa-times-circle icon-left" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>

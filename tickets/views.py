@@ -37,7 +37,7 @@ def get_tickets(request):
     args = {
         "tickets": tickets,
         "ticket_type_dropdown": ticket_type_dropdown,
-        "ticket_status_dropdown": ticket_status_dropdown
+        "ticket_status_dropdown": ticket_status_dropdown,
     }
 
     return render(request, "get_tickets.html", args)
@@ -51,8 +51,8 @@ def new_bug_ticket(request):
         # This will save the form and redirect user to the page for corresponding ticket
         if bug_form.is_valid():
             bug_form.instance.user = request.user
-            bug_form.instance.ticket_type__id = 1
-            bug_form.instance.ticket_status__id = 1
+            bug_form.instance.ticket_type_id = 1
+            bug_form.instance.ticket_status_id = 1
             bug_form.save()
             messages.success(request, f"Thanks for making Unicorn Attractor better by submitting a Bug Report!")
             return redirect(get_tickets)

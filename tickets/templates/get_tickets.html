@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
-{% load bootstrap_tags %}
 {% load materializecss %}
+{% load staticfiles %}
+
 {% block page_title %}Tickets | {% endblock %}
 {% block page_heading %}Tickets{% endblock %}
 
 {% block content %}
-<!-- Log a Bug or Feature. User must register or login -->
+<!-- report a Bug or request Feature. User must register or login -->
     <div class="row center-align">
 	<!-- BUG SECTION -->
-	    <div class="col-sm-12 col-md-6 ticket-card card form-box mx-auto">
-		    <h1 class="card-title font-weight-bold headers">Bugs</h1>
+	    <div class="col s12 l6 ticket-card card">
+		    <h1 class="card-title">Bugs</h1>
 		    {% if user.is_authenticated %}
-		        <p class="bold">
+		        <p>
 			        Noticed an issue?
 			        <br>
-                    Submit a new Bug Report!
+                    Submit a new Bug Report NOW!
                 </p>
 			    <p class="italic">
 				    Bug Reports are FREE!
 			    </p>
-			    <a href="{% url 'new_bug_ticket' %}" class="btn btn-primary">
-				    <i class="fa fa-bug icon-left" aria-hidden="true"></i>
+			    <a href="{% url 'new_bug_ticket' %}" class="btn waves-effect waves-light standard-btn">
+				    <i class="fas fa-bug icon-left" aria-hidden="true"></i>
 				    New Bug
 			    </a>
 			{% else %}
@@ -29,11 +29,11 @@
 				    Noticed an issue?
 			    </p>
 			    <p>
-				    <a href="{% url 'login' %}">
+				    <a href="{% url 'login' %}" aria-label="Login Page">
 					    Login
 				    </a>
 				    or
-				    <a href="{% url 'registration' %}">
+				    <a href="{% url 'registration' %}" aria-label="Registration Page">
 					    Register
 				    </a>
 				    to submit a Bug Report.
@@ -41,23 +41,23 @@
 			{% endif %}
 	    </div>
 	<!--feature-->
-	    <div class="col-sm-12 col-lg-6 ticket-card card form-box mx-auto">
+	    <div class="col s12 l6 ticket-card card">
 		    <h2 class="card-title center-align">Features</h2>
 		    {% if user.is_authenticated %}
-		        <p class="bold">
+		        <p>
 			        Want something new?
 			        <br>
                     Submit a new Feature Request!
                 </p>
-			    <p class="italic">
-				    Feature Requests require a small donation!
+			    <p>
+				    Feature Requests require a donation!
 			    </p>
-			    <a href="{% url 'new_feature_ticket' %}" class="btn btn-primary" aria-label="New Feature Page">
-				    <i class="fa fa-cogs icon-left" aria-hidden="true"></i>
+			    <a href="{% url 'new_feature_ticket' %}" class="btn waves-effect waves-light standard-btn" aria-label="New Feature Page">
+				    <i class="fas fa-cogs icon-left" aria-hidden="true"></i>
 				    New Feature
 			    </a>
 			{% else %}
-			    <p class="bold">
+			    <p>
 				    Want something new?
 			    </p>
 			    <p>
@@ -81,18 +81,18 @@
                 <li>
                     <div class="collapsible-header filter-header">
                         <h3 class="filter-form-title">
-                            <i class="fa fa-filter" aria-hidden="true"></i>
+                            <i class="fas fa-filter" aria-hidden="true"></i>
                             Filter
                         </h3>
                     </div>
                     <div class="collapsible-body collection collapsible-collection filter-body">
                         <!--Helper Text/Instructions-->
-                        <div class="col-sm-12">
-                            <h6 class="helper bold italic">Filter by one or multiple categories.</h6>
+                        <div class="col s12">
+                            <h6 class="helper">Filter by one or multiple categories.</h6>
                         </div>
-                        <div class="row filter-form-wrapper">
+                        <div class="row">
                             <!--Ticket Type Category Drop Down-->
-                            <div class="input-field col-sm-12 col-md-6">
+                            <div class="input-field col s12 m6">
                                 <select id="ticket_type" name="ticket_type" class="form-control validate">
                                     <option value="" disabled selected>Type</option>
                                     {% for type in ticket_type_dropdown %}
@@ -102,7 +102,7 @@
                                 <label for="ticket_type">Ticket Type</label>
                             </div>
                             <!--Ticket Status Drop Down-->
-                            <div class="input-field col-sm-12 col-md-6">
+                            <div class="input-field col s12 m6">
                                 <select id="ticket_status" name="ticket_status" class="form-control validate">
                                     <option value="" disabled selected>Status</option>
                                     {% for status in ticket_status_dropdown %}
@@ -112,16 +112,16 @@
                                 <label for="ticket_status">Ticket Status</label>
                             </div>
                             <!--Submit Button-->
-                            <div class="row submit-button-wrapper">
-                                <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col s12">
                                     <button class="btn waves-effect waves-light sm-md-btn" type="submit" aria-label="Filter button">
                                         <span class="hide-on-small-and-down">Filter</span>
-                                        <i class="fa fa-filter icon-right" aria-hidden="true"></i>
+                                        <i class="fas fa-filter icon-right" aria-hidden="true"></i>
                                     </button>
                                     <!--Reset Button-->
                                     <a class="btn waves-effect waves-light sm-md-btn" href="{% url 'get_tickets' %}" aria-label="Reset Results button">
                                         <span class="hide-on-small-and-down">Reset</span>
-                                        <i class="fa fa-undo-alt icon-right" aria-hidden="true"></i>
+                                        <i class="fas fa-undo-alt icon-right" aria-hidden="true"></i>
                                     </a>
                                 </div>
                             </div>
@@ -132,16 +132,16 @@
         </form>
     </div>
     
-    <div class="row container text-center form-box">
+    <div class="row center-align">
 	    {% for ticket in tickets %}
 	        <a href="{ url 'view_one_ticket' ticket.id}" aria-label="View This Tickets Details">
-		        <div class="col-sm-12 col-md-6 ticket-preview-card">
+		        <div class="col s12 m6 ticket-preview-card">
 			        <div class="card hoverable results-card">
 				        <div class="ticket-type center-align">
 					        {% if ticket.ticket_type.ticket_type == "Bug" %}
-					            <i class="fa fa-bug" aria-hidden="true"></i>
+					            <i class="fas fa-bug" aria-hidden="true"></i>
 					        {% elif ticket.ticket_type.ticket_type == "Feature" %}
-					            <i class="fa fa-cogs" aria-hidden="true"></i>
+					            <i class="fas fa-cogs" aria-hidden="true"></i>
 					        {% endif %}
 				        </div>
 				<!-- Ticket Title -->
@@ -150,34 +150,34 @@
 				        </div>
 				        <div class="card-content center-align">
 					        <p class="ticket-status">
-						        <i class="fa fa-ticket" aria-hidden="true"></i>
+						        <i class="fas fa-ticket" aria-hidden="true"></i>
 						        {{ ticket.ticket_type }}
 					        </p>
 					        <p class="ticket-status">
-						        <i class="fa fa-tools" aria-hidden="true"></i>
+						        <i class="fas fa-tools" aria-hidden="true"></i>
 						        {{ ticket.ticket_status }}
 					        </p>
 					        <p class="ticket-status">
-						        <i class="fa fa-user" aria-hidden="true"></i>
+						        <i class="fas fa-user" aria-hidden="true"></i>
 						        {{ ticket.username }}
 					        </p>
 					        <p class="ticket-status truncate">
-						        <i class="fa fa-file" aria-hidden="true"></i>
+						        <i class="fas fa-file" aria-hidden="true"></i>
 						        {{ ticket.description }}
 					        </p>
 				        </div>
 				<!--ticket stats-->
 				        <div class="card-action card-stats">
 					        <span>
-                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                <i class="fas fa-eye" aria-hidden="true"></i>
                                 {{ ticket.views }}
                             </span>
 					        <span>
-                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                <i class="fas fa-thumbs-up" aria-hidden="true"></i>
                                 {{ ticket.upvotes }}
                             </span>
 					        <span>
-                                <i class="fa fa-pound-sign" aria-hidden="true"></i>
+                                <i class="fas fa-pound-sign" aria-hidden="true"></i>
                                 {% if ticket.ticket_type == "Feature" %}
                                     {% if ticket.total_donations >= 100 %}
                                         <i class="fa fa-check target-reached"></i>
@@ -193,7 +193,7 @@
 		        </div>
 	        </a>
 	    {% empty %}
-	        <h3 tick-detail-txt>
+	        <h3>
 		        <span class="ticket-count">No Tickets Found</span>
 	        </h3>
 	    {% endfor %}
