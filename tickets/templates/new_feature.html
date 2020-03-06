@@ -5,25 +5,27 @@
 {% block title %}New Feature | {% endblock %}
 
 {% block content %}
-
-    <div class="row">
-        <div class="col s12" id="new_feature">
+    
+    <div class="row  white z-depth-2 add-feature-wrapper">
+    
+        <!-- New Feature Form -->
+        <div id="new_feature" class="col s12">
             <form class="col s12" method="POST" id="payment-form" data-token="{{ publishable }}">
-                <div class="">
+                <div class="new-feature-wrapper">
                     <h3 class="form-title center-align">New Feature</h3>
                     <div class="row">
                         <div class="col s12 center-align">
                             {% csrf_token %}
-                            {{ feature_form.title }}
-                            {{ feature_form.description }}
+                            {{ feature_form.title|materializecss:'icon=fas fa-cogs' }}
+                            {{ feature_form.description|materializecss:'icon=fas fa-file-alt' }}
                             <p class="center-align">
                                 Please make a small donation to submit your Feature Request
                                 <br>
-                                <small>
+                                <small class="italic">
                                     Production of a Feature Request won't begin until the donation goal of £100 is reached!
                                 </small>
                             </p>
-                            {{ donation_form }}
+                            {{ donation_form|materializecss:'icon=fas fa-pound-sign' }}
                         </div>
                         <div class="col s12">
                             <!-- Stripe Payment form -->
@@ -49,9 +51,10 @@
                         </div>
                     </div>
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
+    
 {% endblock %}
 
 {% block js %}

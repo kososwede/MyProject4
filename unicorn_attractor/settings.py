@@ -140,10 +140,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-AWS_S3_OBJECT_PARAMETERS = {
-    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-    'CacheControl': 'max-age=9460800',
-}
+#AWS_S3_OBJECT_PARAMETERS = {
+ #   'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+ #   'CacheControl': 'max-age=9460800',
+#}
 
 #AWS_STORAGE_BUCKET_NAME = 'mcilgrews-myproject4'
 #AWS_S3_REGION_NAME = 'eu-north-1'
@@ -172,7 +172,7 @@ EMAIL_PORT = 587
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'accounts.backends.EmailAuth'
+    'accounts.backends.EmailAuth',
 ]
 
 
