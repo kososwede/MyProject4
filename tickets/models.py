@@ -7,14 +7,14 @@ from django.contrib.auth.models import User
 
 class TypeTicket(models.Model):
     """ Choose ticket type (bug or feature)"""
-    TICKET_TYPE_CHOICES = (
+    TICKET_CHOICE_TYPE = (
         ("Bug", "Bug"),
         ("Feature", "Feature"),
     )
     ticket_type = models.CharField(
         max_length=7,
         unique=True,
-        choices=TICKET_TYPE_CHOICES,
+        choices=TICKET_CHOICE_TYPE
     )
 
     def __str__(self):
@@ -23,7 +23,7 @@ class TypeTicket(models.Model):
 
 class StatusTicket(models.Model):
     """status of ticket open, working on or closed"""
-    TICKET_STATUS_CHOICES = [
+    TICKET_CHOICE_STATUS = [
         ('Open', "Open"),
         ('In Progress', "In Progress"),
         ('Closed', "Closed"),
@@ -31,7 +31,8 @@ class StatusTicket(models.Model):
     ticket_status = models.CharField(
         max_length=10,
         unique=True,
-        choices=TICKET_STATUS_CHOICES)
+        choices=TICKET_CHOICE_STATUS
+    )
 
     def __str__(self):
         return self.ticket_status

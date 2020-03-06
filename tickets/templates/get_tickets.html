@@ -9,15 +9,15 @@
 <!-- report a Bug or request Feature. User must register or login -->
     <div class="row center-align">
 	<!-- BUG SECTION -->
-	    <div class="col s12 l6 ticket-card card">
-		    <h1 class="card-title">Bugs</h1>
+	    <div class="col s12 l6 ticket-card card bug">
+		    <h2 class="card-title">Bugs</h2>
 		    {% if user.is_authenticated %}
 		        <p>
 			        Noticed an issue?
 			        <br>
                     Submit a new Bug Report NOW!
                 </p>
-			    <p class="italic">
+			    <p>
 				    Bug Reports are FREE!
 			    </p>
 			    <a href="{% url 'new_bug_ticket' %}" class="btn waves-effect waves-light standard-btn">
@@ -29,11 +29,11 @@
 				    Noticed an issue?
 			    </p>
 			    <p>
-				    <a href="{% url 'login' %}" aria-label="Login Page">
+				    <a class="nav-link" href="{% url 'login' %}" aria-label="Login Page">
 					    Login
 				    </a>
 				    or
-				    <a href="{% url 'registration' %}" aria-label="Registration Page">
+				    <a class="nav-link" href="{% url 'registration' %}" aria-label="Registration Page">
 					    Register
 				    </a>
 				    to submit a Bug Report.
@@ -41,7 +41,7 @@
 			{% endif %}
 	    </div>
 	<!--feature-->
-	    <div class="col s12 l6 ticket-card card">
+	    <div class="col s12 l6 ticket-card card feature">
 		    <h2 class="card-title center-align">Features</h2>
 		    {% if user.is_authenticated %}
 		        <p>
@@ -61,11 +61,11 @@
 				    Want something new?
 			    </p>
 			    <p>
-				    <a href="{% url 'login' %}" aria-label="Login Page">
+				    <a class="nav-link" href="{% url 'login' %}" aria-label="Login Page">
 					    Login
 				    </a>
 				    or
-				    <a href="{% url 'registration' %}" aria-label="Registration Page">
+				    <a class="nav-link" href="{% url 'registration' %}" aria-label="Registration Page">
 					    Register
 				    </a>
 				    to submit a Feature Request.
@@ -90,7 +90,7 @@
                         <div class="col s12">
                             <h6 class="helper">Filter by one or multiple categories.</h6>
                         </div>
-                        <div class="row">
+                        <div class="row filter-form-wrapper">
                             <!--Ticket Type Category Drop Down-->
                             <div class="input-field col s12 m6">
                                 <select id="ticket_type" name="ticket_type" class="form-control validate">
