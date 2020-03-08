@@ -5,6 +5,8 @@ function materializeInit() {
     $('.modal').modal();
     $('.collapsible').collapsible();
     $('.tooltipped').tooltip();
+    
+    
 }
 materializeInit();
 

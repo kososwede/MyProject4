@@ -186,6 +186,11 @@ nav .brand-logo img,
     padding: 1rem;
 }
 
+.filter-option .filter-body {
+  height: 21rem;
+  overflow: visible;
+}
+
 /* LINKS */
 nav ul a {
   color: #ede9df;

@@ -8,14 +8,13 @@ from django.contrib.auth.models import User
 class TypeTicket(models.Model):
     """ Choose ticket type (bug or feature)"""
     TICKET_CHOICE_TYPE = (
-        ("Bug", "Bug"),
-        ("Feature", "Feature"),
+        ('Bug', 'Bug'),
+        ('Feature', 'Feature'),
     )
     ticket_type = models.CharField(
         max_length=7,
         unique=True,
-        choices=TICKET_CHOICE_TYPE
-    )
+        choices=TICKET_CHOICE_TYPE)
 
     def __str__(self):
         return self.ticket_type
@@ -23,11 +22,11 @@ class TypeTicket(models.Model):
 
 class StatusTicket(models.Model):
     """status of ticket open, working on or closed"""
-    TICKET_CHOICE_STATUS = [
+    TICKET_CHOICE_STATUS = (
         ('Open', "Open"),
-        ('In Progress', "In Progress"),
-        ('Closed', "Closed"),
-    ]
+        ('Working On', "Working On"),
+        ('Closed', "Closed")
+    )
     ticket_status = models.CharField(
         max_length=10,
         unique=True,
