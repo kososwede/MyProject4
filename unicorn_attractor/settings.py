@@ -32,7 +32,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = [os.environ.get('SECRET_KEY')]
 
 
-ALLOWED_HOSTS = [os.environ.get('GITPOD_HOSTNAME'), 'https://myproject-4.herokuapp.com/']
+ALLOWED_HOSTS = [os.environ.get('GITPOD_HOSTNAME'), 'myproject-4.herokuapp.com']
 
 
 # Application definition
