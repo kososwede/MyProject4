@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import TypeTicket, StatusTicket, Ticket, Comments, Upvote
+from .models import TicketType, TicketStatus, Ticket, Comments, Upvote
 from .forms import TicketForm, CommentForm, DonationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -18,8 +18,8 @@ def get_tickets(request):
     """ Return a list of tickets that were published prior to now
     and render them in the tickets.html page """
     tickets = Ticket.objects.all()
-    ticket_type_dropdown = TypeTicket.objects.all()
-    ticket_status_dropdown = StatusTicket.objects.all()
+    ticket_type_dropdown = TicketType.objects.all()
+    ticket_status_dropdown = TicketStatus.objects.all()
 
     """parameters"""
     ticket_type = request.GET.get("ticket_type")
@@ -142,7 +142,7 @@ def view_one_ticket(request, pk):
     # Get the ticket details
     ticket = get_object_or_404(Ticket, pk=pk)
     # Options for the ticket status dropdown
-    ticket_status_dropdown = StatusTicket.objects.all()
+    ticket_status_dropdown = TicketStatus.objects.all()
     ticket_status = ticket.ticket_status_id
 
     # Increment views by 1 when ticket is viewed

@@ -18,14 +18,14 @@
 
 </head>
 
-<body>
+<body class="background1">
 
 	
 
 		<nav class="nav-extended">
 			<div class="nav-wrapper">
-				<a class="brand-logo" href="{% url 'index' %}"><img src="{% static 'img/unicorn-logo2.png' %}" width="30" height="30" class="d-inline-block align-top" alt="unicorn-logo">
-					<span class="brand-logo-title">Unicorn Attractor</span>
+				<a class="brand-logo" href="{% url 'index' %}"><img src="{% static 'img/uni-logo.png' %}" width="30" height="30" class="d-inline-block align-top my-logo" alt="unicorn-logo">
+					<span class="brand-logo-title hide-on-small-and-down">Unicorn Attractor</span>
 				</a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Sidenav trigger">
 					<i class="fas fa-bars" aria-hidden="true"></i>
@@ -71,8 +71,8 @@
 		<ul class="sidenav" id="mobile-demo">
 			<li>
 				<a href="{% url 'index' %}" class="brand-logo avatar">
-					<img src="{% static 'img/unicorn-logo2.png' %}" alt="brand logo">
-					<span class="brand-logo-title">Unicorn Attractor</span>
+					<img src="{% static 'img/uni-logo.png' %}" alt="brand logo">
+					<span class="brand-logo-title-side">Unicorn Attractor</span>
 				</a>
 			</li>
 			<li class="sidenav-home">

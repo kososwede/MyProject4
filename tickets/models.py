@@ -5,40 +5,50 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-class TypeTicket(models.Model):
-    """ Choose ticket type (bug or feature)"""
-    TICKET_CHOICE_TYPE = (
-        ('Bug', 'Bug'),
-        ('Feature', 'Feature'),
+# Create your models here.
+class TicketType(models.Model):
+    '''
+    Provides the choices for the ticket type (bug or feature)
+    '''
+    # Choices for ticket type
+    TICKET_TYPE_CHOICES = (
+        ("Bug", "Bug"),
+        ("Feature", "Feature"),
     )
     ticket_type = models.CharField(
         max_length=7,
         unique=True,
-        choices=TICKET_CHOICE_TYPE)
+        choices=TICKET_TYPE_CHOICES)
 
     def __str__(self):
         return self.ticket_type
 
 
-class StatusTicket(models.Model):
-    """status of ticket open, working on or closed"""
-    TICKET_CHOICE_STATUS = (
-        ('Open', "Open"),
-        ('Working On', "Working On"),
-        ('Closed', "Closed")
+class TicketStatus(models.Model):
+    '''
+    Provides the choices for the ticket status (Open, In Progress or Closed)
+    '''
+    # Choices for ticket status
+    TICKET_STATUS_CHOICES = (
+        ("Open", "Open"),
+        ("In Progress", "In Progress"),
+        ("Closed", "Closed"),
     )
     ticket_status = models.CharField(
-        max_length=10,
+        max_length=11,
         unique=True,
-        choices=TICKET_CHOICE_STATUS
-    )
+        choices=TICKET_STATUS_CHOICES)
 
     def __str__(self):
         return self.ticket_status
 
 
 class Ticket(models.Model):
-    '''Allows users to log bug/feature tickets'''
+    '''
+    Allows users to log bug or feature tickets
+    Uses CASCADE to remove ticket from user's list when deleted
+    Auto-adds current date to created_date/edited_date
+    '''
     user = models.ForeignKey(
         User,
         null=True,
@@ -48,16 +58,16 @@ class Ticket(models.Model):
         null=False,
         auto_now_add=True)
     ticket_type = models.ForeignKey(
-        TypeTicket,
+        TicketType,
         null=True)
     ticket_status = models.ForeignKey(
-        StatusTicket,
+        TicketStatus,
         null=True)
     title = models.CharField(
-        max_length=80,
+        max_length=100,
         blank=False)
     description = models.TextField(
-        max_length=1500,
+        max_length=2000,
         blank=False)
     views = models.IntegerField(
         default=0)
@@ -76,7 +86,6 @@ class Ticket(models.Model):
     def __str__(self):
         return "#{0} [{1} - {2}] - {3}".format(
             self.id, self.ticket_type, self.ticket_status, self.title)
-
 
 class Comments(models.Model):
     '''user to comment on tickets'''
