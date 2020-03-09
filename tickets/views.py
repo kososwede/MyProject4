@@ -1,15 +1,14 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.utils import timezone
-from .models import TicketType, TicketStatus, Ticket, Comments, Upvote
-from .forms import TicketForm, CommentForm, DonationForm
+from django.shortcuts import render, redirect, get_object_or_404
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.conf import settings
 from django.contrib.auth.models import User
+from django.utils import timezone
 from accounts.models import Profile
-from django.db import models
-
+from .models import TicketType, TicketStatus, Ticket, Comment, Upvote
+from .forms import TicketForm, CommentForm, DonationForm
 import stripe
+
 # Create your views here.
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -72,15 +71,18 @@ def new_bug_ticket(request):
 
 @login_required
 def new_feature_ticket(request):
-    '''user can create a new bug ticket'''
+    '''
+    Allows user to create a new bug ticket
+    '''
     if request.method == "POST":
         feature_form = TicketForm(request.POST)
         donation_form = DonationForm(request.POST)
         if feature_form.is_valid() and donation_form.is_valid():
+            # Total Donation Amount
             donation_amount = 0
             donation_amount += int(request.POST.get("donation_amount"))
             try:
-                """ Use stripe's API to create a customer and charge them"""
+                # Use stripe's inbuilt API to create a customer and charge
                 customer = stripe.Charge.create(
                     amount=int(donation_amount * 100),
                     currency="GBP",
@@ -88,41 +90,40 @@ def new_feature_ticket(request):
                     source=request.POST["stripeToken"]
                 )
             except stripe.error.CardError:
-                """ shows error message if the card is declined"""
-                messages.error(request, "Your card has been declined!")
+                # Display error message if card is declined
+                messages.error(request, "Your card was declined!")
 
-            """If the payment has been successful"""
+            # If payment is successful
             if customer.paid:
                 feature_form.instance.user = request.user
                 feature_form.instance.ticket_type_id = 2
                 feature_form.instance.total_donations = donation_amount
-                """ it will be Added to the user's total_donated amount
-                and get the users current donations"""
+                # Add the donation to the user's total_donated amount
+                # Get the user's current donations...
                 current_user_donated = Profile.objects.values_list(
                     "total_donated", flat=True).get(user_id=request.user.id)
-                """ this will be added to the donated amount"""
+                # Add it to the donation amount
                 new_user_donated = current_user_donated + donation_amount
-                """ The new amount will be added to the user's total donated amount"""
+                # Push the new amount to the user's total_donated amount
                 Profile.objects.filter(user_id=request.user.id).update(
                     total_donated=new_user_donated)
-                """ The status of the Ticket will be Working on if the user donates
-                the target amount for the feature"""
+                # Ticket's status will be In Progress if user donates
+                # the goal amount for the feature to be implemented
                 if donation_amount >= int(100):
                     feature_form.instance.ticket_status_id = 2
                 else:
-                    """ If the goal amount has not reached the target ammount, the status of the ticket will be Open"""
+                    # If goal amount not reached, ticket status will be Open
                     feature_form.instance.ticket_status_id = 1
                 feature_form.save()
-                messages.success(
-                    request, f"Thanks for submitting a Feature Request for Unicorn Attractor!")
+                messages.success(request, f"Thanks for submitting a \
+                                 Feature Request!")
                 return redirect(get_tickets)
             else:
-                messages.error(
-                    request, "Unable to take a payment at this time")
-            """If the feature form or donation_form aren't valid"""
+                messages.error(request, "Unable to take payment")
+        # If feature_form or donation_form aren't valid
         else:
-            messages.error(
-                request, f"Sorry, We were unable to take a payment with that card. Please try again.")
+            messages.error(request, f"We were unable to take a payment with \
+                           that card. Please try again.")
     else:
         feature_form = TicketForm()
         donation_form = DonationForm()
@@ -157,7 +158,7 @@ def view_one_ticket(request, pk):
     # Allows injection of donation form into Upvote & donate modal
     donation_form = DonationForm()
 
-    comments = Comments.objects.filter(ticket_id=ticket.pk)
+    comments = Comment.objects.filter(ticket_id=ticket.pk)
 
     if request.method == "POST":
         comment_form = CommentForm(request.POST)
@@ -213,7 +214,7 @@ def upvote(request, pk):
                     amount=int(donation_amount * 100),
                     currency="GBP",
                     description=request.user.email,
-                    source=request.POST["stripe_id"]
+                    source=request.POST["stripeToken"]
                 )
             except stripe.error.CardError:
                 # Display error message if card is declined
@@ -316,29 +317,35 @@ def admin_update_status(request, pk):
 
 @login_required
 def edit_ticket(request, pk):
-    """Users can only edit their own tickets"""
+    '''
+    Allows users to edit a ticket, only if they have added it
+    Inserts the current date in the edited_date field
+    '''
     ticket = get_object_or_404(Ticket, pk=pk)
 
     if request.method == "POST":
         edit_form = TicketForm(request.POST, instance=ticket)
+        # Save form and redirect user to the page for that ticket
         if edit_form.is_valid():
+            # Insert current date in edited_date field
             edit_form.instance.edited_date = timezone.now()
             edit_form.save()
-
+            # Decrement views by -1 to prevent incorrect incrementation
             ticket.views -= 1
             ticket.save()
-            messages.success(
-                request, f"Your ticket has been successfully edited, Thankyou.")
+            messages.success(request, f"Your ticket has successfully been \
+                             edited!")
             return redirect(view_one_ticket, ticket.pk)
-        else:
-            edit_form = TicketForm(instance=ticket)
+    else:
+        # Populate existing ticket data in the ticket_form
+        edit_form = TicketForm(instance=ticket)
 
-        args = {
-            "ticket": ticket,
-            "edit_form": edit_form
-        }
+    args = {
+        "ticket": ticket,
+        "edit_form": edit_form
+    }
 
-        return render(request, "edit_tickets.html", args)
+    return render(request, "edit_tickets.html", args)
 
 
 @login_required

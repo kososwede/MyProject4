@@ -1,6 +1,7 @@
 from django import forms
-from .models import Ticket, Comments
 from datetime import datetime
+from .models import Ticket, Comment
+from .models import TicketType, TicketStatus
 
 
 class TicketForm(forms.ModelForm):
@@ -14,10 +15,10 @@ class TicketForm(forms.ModelForm):
     description = forms.CharField(
         label="Ticket Description",
         min_length=10,
-        max_length=1500,
+        max_length=2000,
         widget=forms.Textarea(),
         required=True)
-
+    
     class Meta:
         model = Ticket
         fields = ["title", "description"]
@@ -45,5 +46,5 @@ class CommentForm(forms.ModelForm):
         required=True)
 
     class Meta:
-        model = Comments
+        model = Comment
         fields = ["description"]

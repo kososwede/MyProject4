@@ -12,7 +12,7 @@ class Profile(models.Model):
     total_donated = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.user.username}s profile"
+        return f"{self.user.username}'s profile"
 
 
 @receiver(post_save, sender=User)

@@ -1,6 +1,8 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
+from django.utils import timezone
+from django.conf import settings
+
 
 # Create your models here.
 
@@ -11,10 +13,10 @@ class TicketType(models.Model):
     Provides the choices for the ticket type (bug or feature)
     '''
     # Choices for ticket type
-    TICKET_TYPE_CHOICES = (
+    TICKET_TYPE_CHOICES = [
         ("Bug", "Bug"),
         ("Feature", "Feature"),
-    )
+    ]
     ticket_type = models.CharField(
         max_length=7,
         unique=True,
@@ -29,11 +31,11 @@ class TicketStatus(models.Model):
     Provides the choices for the ticket status (Open, In Progress or Closed)
     '''
     # Choices for ticket status
-    TICKET_STATUS_CHOICES = (
+    TICKET_STATUS_CHOICES = [
         ("Open", "Open"),
         ("In Progress", "In Progress"),
         ("Closed", "Closed"),
-    )
+    ]
     ticket_status = models.CharField(
         max_length=11,
         unique=True,
@@ -50,7 +52,7 @@ class Ticket(models.Model):
     Auto-adds current date to created_date/edited_date
     '''
     user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         null=True,
         on_delete=models.CASCADE)
     created_date = models.DateTimeField(
@@ -59,6 +61,7 @@ class Ticket(models.Model):
         auto_now_add=True)
     ticket_type = models.ForeignKey(
         TicketType,
+        max_length=7,
         null=True)
     ticket_status = models.ForeignKey(
         TicketStatus,
@@ -81,13 +84,14 @@ class Ticket(models.Model):
         default=0)
 
     class Meta:
-        ordering = ("-upvotes", )
+        ordering = ("-upvotes",)
 
     def __str__(self):
         return "#{0} [{1} - {2}] - {3}".format(
             self.id, self.ticket_type, self.ticket_status, self.title)
 
-class Comments(models.Model):
+
+class Comment(models.Model):
     '''user to comment on tickets'''
 
     comment_date = models.DateTimeField(

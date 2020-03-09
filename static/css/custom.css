@@ -80,10 +80,14 @@ nav .brand-logo img,
   font-size: 1.6rem;
   color: white;
   vertical-align: super;
+  font-family: 'Bellota', cursive;
+  text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
+    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
 }
 
 .brand-logo-title{
-    font-family: 'Bellota', cursive;
+     text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
+    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
 }
 
 .payment-form-label {
@@ -218,6 +222,24 @@ nav .brand-logo img,
   overflow: visible;
 }
 
+
+
+.ticket-card {
+    background-color: white;
+}
+
+
+.collapsible-body {
+    background-color: white;
+}
+
+.page-title {
+    color: white;
+     text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
+    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+
+}
+
 /* LINKS */
 nav ul a {
   color: #ede9df;
@@ -271,14 +293,18 @@ nav ul a:hover {
 .btn-icon {
   font-size: 1.3rem;
   padding-right: 0.3rem;
+   text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
+    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
 }
 
 .btn-text {
   font-size: 1.2rem;
+   text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
+    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
 }
 
 .sidenav .btn-text {
-  color: #ede9df;
+  color: white;
 }
 
 .sidenav .btn-icon {
@@ -306,7 +332,7 @@ nav ul a:hover {
 .sm-md-btn:focus,
 .file-field.input-field .btn:hover,
 .file-field.input-field .btn:focus {
-  background-color: #413b69;
+  background-color: blue;
 }
 
 .icon-left {
@@ -333,8 +359,8 @@ nav ul a:hover {
 }
 
 .file-field.input-field .btn {
-  background-color: #e83352;
-  color: #ede9df;
+  background-color: blue;
+  color: white;
   border-radius: 2rem;
   width: 3.5rem;
   transition: all 0.35s ease-in-out;
@@ -344,7 +370,7 @@ nav ul a:hover {
 }
 
 .large-btn {
-  background-color: #e83352;
+  background-color:blue;
   color: #ede9df;
   border-radius: 1.3rem;
   width: 90%;
@@ -355,7 +381,7 @@ nav ul a:hover {
 }
 
 .sm-md-btn {
-  background-color: #e83352;
+  background-color: blue;
   color: #ede9df;
   border-radius: 1.3rem;
   width: 4rem;

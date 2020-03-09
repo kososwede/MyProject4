@@ -76,10 +76,17 @@
 				</a>
 			</li>
 			<li class="sidenav-home">
+                <a href="{% url 'index' %}" aria-label="Home page">
+                    <i class="btn-icon fas fa-home" aria-hidden="true"></i>
+                    <span class="btn-text">HOME</span>
+                </a>
+			</li>
+            <li>
 				<a href="{% url 'get_tickets' %}"><i class="btn-icon fas fa-ticket-alt" aria-hidden="true"></i>
 					<span class="btn-text">TICKETS</span>
 				</a>
-			</li>
+            </li>
+		
 			{% if user.is_authenticated %}
 			<li>
 				<a href="{% url 'profile' %}"><i class="btn-icon fas fa-user"></i>

@@ -1,8 +1,10 @@
-from django.shortcuts import render, reverse, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import auth, messages
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from accounts.forms import (UserLoginForm, UserRegistrationForm, UserUpdateForm)
+from .forms import UserLoginForm, UserRegistrationForm, UserUpdateForm
 from tickets.models import Ticket
+from django.template.context_processors import csrf
 # Create your views here.
 
 
@@ -30,7 +32,7 @@ def login(request):
         if login_form.is_valid():
             user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
             if user:
-                auth.login(user=user, request=request)
+                auth.login(request=request, user=user)
                 messages.success(request, "You have successfully logged in to Unicorn Attractor!")
 
                 # Redirect user to home page once logged in
@@ -63,7 +65,7 @@ def registration(request):
             user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
 
             if user:
-                auth.login(user=user, request=request)
+                auth.login(request=request, user=user)
                 messages.success(request, "You have successfully registered and are now logged in to UNICORN ATTRACTOR")
 
                 return redirect(reverse('profile'))

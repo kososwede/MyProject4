@@ -14,8 +14,8 @@ class UserLoginForm(forms.Form):
 class UserRegistrationForm(UserCreationForm):
     """ Form used to register new users """
     username = forms.CharField(label='Username',
-                               min_length=4,
-                               max_length=15,
+                               min_length=5,
+                               max_length=10,
                                widget=forms.TextInput(),
                                required=True)
     """ Email Address"""
@@ -59,7 +59,8 @@ class UserRegistrationForm(UserCreationForm):
         username = self.cleaned_data.get('username')
 
         if User.objects.filter(email=email).exclude(username=username):
-            raise forms.ValidationError(u'The email address you have entered has already been registered.')
+            raise forms.ValidationError(
+                u'The email address you entered has already been registered.')
 
         return email
 
