@@ -14,9 +14,9 @@ import os
 import dj_database_url
 from os import path
 if path.exists("env.py"):
-    import env
+  import env
 # Set debug to True only in test environment
-if 'GITPOD_HOSTNAME' in os.environ:
+if 'HOSTNAME' in os.environ:
     DEBUG = True
 else:
     DEBUG = False
@@ -29,10 +29,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = [os.environ.get('SECRET_KEY')]
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
-ALLOWED_HOSTS = [os.environ.get('GITPOD_HOSTNAME'), 'myproject-4.herokuapp.com']
+ALLOWED_HOSTS = os.environ.get('GITPOD_HOSTNAME'), 'myproject-4.herokuapp.com'
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'materialize',
     'materializecssform',
     'accounts',
     'tickets',

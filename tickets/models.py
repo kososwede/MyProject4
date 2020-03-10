@@ -7,7 +7,6 @@ from django.conf import settings
 # Create your models here.
 
 
-# Create your models here.
 class TicketType(models.Model):
     '''
     Provides the choices for the ticket type (bug or feature)

@@ -13,6 +13,10 @@ def index(request):
     return render(request, 'index.html')
 
 
+def about(request):
+    """Returns the 'about.html page """
+    return render(request, 'about.html')
+
 @login_required
 def logout(request):
     """ Logs user out and displays a message """

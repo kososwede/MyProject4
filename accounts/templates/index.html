@@ -2,42 +2,29 @@
 {% load staticfiles %}
 
 {% block page_title %}Home Page | {% endblock %}
-{% block page_heading %}Welcome{% if user.is_authenticated %} {{ user.username }} {% endif %} to Unicorn
-Attractor{% endblock %}
+{% block page_heading %}WELCOME{% if user.is_authenticated %} {{ user.username }} {% endif %} TO UNICORN ATTRACTOR{% endblock %}
 {% block content %}
-<div class="container ticket-card">
-	<h1 class="font-weight-bold headers">What is Unicorn Attractor?</h1>
+<div class="container index-page center-align">
+	<h1 class="what-we-do">What we do?</h1>
 	<hr>
-	<p class="about-game font-weight-bold">Unicorn attractor is an augmented reality mobile game which uses
-		your mobile devices GPS to locate, capture and customise the virtual unicorns, which
-		appear as if they are in the players real-world location.</p>
+	<p class="about-game">We here at Unicorn Attractor handle all the BUG reports and FEATURE requests for the game.
+    </p>
 </div>
-<div class="container ticket-card">
-	<h1 class="font-weight-bold headers">How to play</h1>
-	<hr class="divide">
-	<p class="about-game font-weight-bold">Unicorn Attractor is played by using your mobile device as a special screen
-		where only through this screen
-		you can see these magical and beautiful creatures. If none are seen on your screen you can take a walk and try
-		and find them
-		or alternativly you can drop the magical unicorn food on the screen and wait for them to come to you.</p>
+<div class="container index-page center-align">
+	<h1 class="what-we-do">BUG REPORT <i class="fas fa-bug"></i></h1>
+	<hr>
+	<p class="about-game">If you have found a BUG and would like to report it you must be registered and signed in
+    </p>
 </div>
-<div class="container ticket-card">
-	<h1 class="font-weight-bold headers">Customise Unicorns</h1>
-	<hr class="divide">
-	<p class="about-game font-weight-bold">Want to have a Unicorn that looks how you want it to look?? Then look no
-		further.
-		Once you have found some Unicorns you can then customise them from the colour of their horn to the colour of
-		their tail, the possibilities are endless.</p>
+<div class="container index-page center-align">
+	<h1 class="what-we-do">FEATURE REQUEST <i class="fas fa-cogs"></i></h1>
+	<hr>
+	<p class="about-game">We here at Unicorn Attractor beleive that it is very important that the user has some control of how the game looks
+    and feels. That is why we have decided to let YOU the user request features that you would like to see in the game. A small donation is required to make a 
+    feature request. All feature request must meet a target of £100 to be put forward to the game developers to add to the game.
+    </p>
 </div>
-<div class="container ticket-card">
-	<h1 class="font-weight-bold headers">Download Unicorn Attractor NOW</h1>
-	<hr class="divide">
-	<a href="https://www.apple.com/ie/ios/app-store" target="_blank" aria-label="Apple App Store">
-		<img src="{% static 'img/app-store-icon.png' %}" class="app-link" alt="Apple App Store">
-    </a>
-		<a href="https://play.google.com/store/apps" target="_blank" aria-label="Google Play Store">
-			<img src="{% static 'img/google-play-icon.png' %}" class="app-link" alt="Google Play Store">
-    </a>
+
 
 
 {% endblock %}

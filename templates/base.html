@@ -22,7 +22,7 @@
 
 	
 
-		<nav class="nav-extended">
+		<nav>
 			<div class="nav-wrapper">
 				<a class="brand-logo" href="{% url 'index' %}"><img src="{% static 'img/uni-logo.png' %}" width="30" height="30" class="d-inline-block align-top my-logo" alt="unicorn-logo">
 					<span class="brand-logo-title hide-on-small-and-down">Unicorn Attractor</span>
@@ -33,35 +33,40 @@
 				<ul class="right hide-on-med-and-down">
 					<li>
 						<a href="{% url 'index' %}"><i class="btn-icon fas fa-home"></i>
-							<span class="btn-text">HOME</span>
+							<span class="nav-text">HOME</span>
 						</a>
 					</li>
 					<li>
 						<a href="{% url 'get_tickets' %}"><i class="btn-icon fas fa-ticket-alt"></i>
-							<span class="btn-text">TICKETS</span>
+							<span class="nav-text">TICKETS</span>
 						</a>
 					</li>
 
 					{% if user.is_authenticated %}
 					<li>
 						<a href="{% url 'profile' %}"><i class="btn-icon fas fa-user"></i>
-							<span class="btn-text">PROFILE</span>
+							<span class="nav-text">PROFILE</span>
 						</a>
 					</li>
 					<li>
 						<a href="{% url 'logout' %}"><i class="btn-icon fas fa-sign-out-alt"></i>
-							<span class="btn-text">LOGOUT</span>
+							<span class="nav-text">LOGOUT</span>
 						</a>
 					</li>
 					{% else %}
 					<li>
-						<a href="{% url 'login' %}"><i class="btn-icon fas fa-sign-in"></i>
-							<span class="btn-text">LOGIN</span>
+						<a href="{% url 'login' %}"><i class="btn-icon fas fa-sign-in-alt"></i>
+							<span class="nav-text">LOGIN</span>
 						</a>
 					</li>
 					<li>
 						<a href="{% url 'registration' %}"><i class="btn-icon fas fa-user-plus"></i>
-							<span class="btn-text">REGISTER</span>
+							<span class="nav-text">REGISTER</span>
+						</a>
+					</li>
+                    <li>
+						<a href="{% url 'about' %}"><i class="btn-icon fas fa-question"></i>
+							<span class="nav-text">ABOUT</span>
 						</a>
 					</li>
 					{% endif %}
@@ -78,35 +83,35 @@
 			<li class="sidenav-home">
                 <a href="{% url 'index' %}" aria-label="Home page">
                     <i class="btn-icon fas fa-home" aria-hidden="true"></i>
-                    <span class="btn-text">HOME</span>
+                    <span class="nav-text">HOME</span>
                 </a>
 			</li>
             <li>
 				<a href="{% url 'get_tickets' %}"><i class="btn-icon fas fa-ticket-alt" aria-hidden="true"></i>
-					<span class="btn-text">TICKETS</span>
+					<span class="nav-text">TICKETS</span>
 				</a>
             </li>
 		
 			{% if user.is_authenticated %}
 			<li>
 				<a href="{% url 'profile' %}"><i class="btn-icon fas fa-user"></i>
-					<span class="btn-text">PROFILE</span>
+					<span class="nav-text">PROFILE</span>
 				</a>
 			</li>
 			<li>
 				<a href="{% url 'logout' %}"><i class="btn-icon fas fa-sign-out-alt"></i>
-					<span class="btn-text">LOGOUT</span>
+					<span class="nav-text">LOGOUT</span>
 				</a>
 			</li>
 			{% else %}
 			<li>
 				<a href="{% url 'login' %}"><i class="btn-icon fas fa-sign-in-alt"></i>
-					<span class="btn-text">LOGIN</span>
+					<span class="nav-text">LOGIN</span>
 				</a>
 			</li>
 			<li>
 				<a href="{% url 'registration' %}"><i class="btn-icon fas fa-user-plus"></i>
-					<span class="btn-text">REGISTER</span>
+					<span class="nav-text">REGISTER</span>
 				</a>
 			</li>
 			{% endif %}

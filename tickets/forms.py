@@ -1,7 +1,6 @@
 from django import forms
 from datetime import datetime
 from .models import Ticket, Comment
-from .models import TicketType, TicketStatus
 
 
 class TicketForm(forms.ModelForm):
