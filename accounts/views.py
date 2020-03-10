@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from .forms import UserLoginForm, UserRegistrationForm, UserUpdateForm
 from tickets.models import Ticket
-from django.template.context_processors import csrf
+
 # Create your views here.
 
 
@@ -16,6 +16,7 @@ def index(request):
 def about(request):
     """Returns the 'about.html page """
     return render(request, 'about.html')
+
 
 @login_required
 def logout(request):

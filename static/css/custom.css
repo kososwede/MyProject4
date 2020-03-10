@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Bellota:700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 
 body,
 html {
@@ -19,6 +20,7 @@ html {
 
 /*  Index  */
 .what-we-do{
+    padding-top: 10px;
     color:  rgb(0, 0, 0);
      text-shadow: rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px,
     rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px;
@@ -59,10 +61,24 @@ hr {
 }
 
 /*  Navbar */
+.nav-burger{
+    color: blue;
+}
+
+.nav-icon {
+    color: royalblue;
+}
+
+.sidenav li>a>i {
+    color: blue;
+}
+
 .nav-text {
     color:  rgb(0, 0, 0);
-     text-shadow: rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px,
-    rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px;
+     text-shadow: rgb(0, 162, 255) 0px 0px 2px, rgb(0, 162, 255) 0px 0px 2px, rgb(0, 162, 255) 0px 0px 2px,
+    rgb(0, 162, 255) 0px 0px 2px, rgb(0, 162, 255) 0px 0px 2px, rgb(0, 162, 255) 0px 0px 2px;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 20px;
 }
 
 nav {
@@ -86,13 +102,19 @@ nav {
 .sidenav .sidenav-home {
   margin-top: 3rem;
 }
-
-.brand-logo-title-side{
-    font-size: 20px;
-    font-weight: 700;
+.brand-logo-title {
+    font-size: 30px;
     color:  rgb(0, 0, 0);
-     text-shadow: rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px,
-    rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px;
+     text-shadow: rgb(0, 162, 255) 0px 0px 1px, rgb(0, 162, 255) 0px 0px 1px, rgb(0, 162, 255) 0px 0px 1px,
+    rgb(0, 162, 255) 0px 0px 1px, rgb(0, 162, 255) 0px 0px 1px, rgb(0, 162, 255) 0px 0px 1px;
+}
+
+
+.brand-logo-title-side-nav {
+    font-size: 20px;
+    color:  rgb(0, 0, 0);
+     text-shadow: rgb(0, 162, 255) 0px 0px 1px, rgb(0, 162, 255) 0px 0px 1px, rgb(0, 162, 255) 0px 0px 1px,
+    rgb(0, 162, 255) 0px 0px 1px, rgb(0, 162, 255) 0px 0px 1px, rgb(0, 162, 255) 0px 0px 1px;
 }
 
 
@@ -109,20 +131,37 @@ nav .brand-logo img,
   width: 100%;
 }
 
-.sidenav .brand-logo-title {
-  
-  font-size: 1.6rem;
-  color: white;
-  vertical-align: super;
-  font-family: 'Bellota', cursive;
-  text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
-    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+/*  About */
+.about-page {
+    background:  linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(179,220,237,1) 12%, rgba(41,184,229,1) 48%, rgba(188,224,238,1) 83%, rgba(188,224,238,1) 100%);
+    border-radius: 25px;
 }
 
-.brand-logo-title{
-     text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
-    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+.about-game-header {
+    padding-top: 10px;
+    color:  rgb(0, 0, 0);
+     text-shadow: rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px,
+    rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px;
+    font-family: 'Bellota', cursive;
 }
+
+.app-link {
+    width: 40%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .payment-form-label {
     margin-left: 1rem;
