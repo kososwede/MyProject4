@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -36,24 +36,15 @@ def login(request):
 
         if login_form.is_valid():
             user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+            messages.success(request, "You have successfully logged in to Unicorn Attractor!")
             if user:
                 auth.login(request=request, user=user)
-                messages.success(request, "You have successfully logged in to Unicorn Attractor!")
-
-                # Redirect user to home page once logged in
-                if request.GET and request.GET['next'] != '':
-                    next = request.GET['next']
-                    return HttpResponseRedirect(next)
-                else:
-                    return redirect(reverse('profile'))
+                return redirect(reverse('profile'))
             else:
                 login_form.add_error(None, "Your username or password is incorrect")
     else:
         login_form = UserLoginForm()
-
-    args = {'login_form': login_form, 'next': request.GET.get('next', '')}
-    
-    return render(request, 'login.html', args)
+    return render(request, 'login.html', {'login_form': login_form})
 
 
 def registration(request):
@@ -81,9 +72,7 @@ def registration(request):
     else:
         registration_form = UserRegistrationForm()
 
-    args = {'registration_form': registration_form}
-
-    return render(request, "registration.html", args)
+    return render(request, "registration.html", {"registartion_form": registration_form})
 
 
 @login_required
@@ -92,8 +81,7 @@ def user_profile(request):
     user_tickets = Ticket.objects.filter(user_id=request.user.id)
 
     if request.method == "POST":
-        user_form = UserUpdateForm(request.POST,
-                                   instance=request.user)
+        user_form = UserUpdateForm(request.POST, instance=request.user)
 
         if user_form.is_valid():
             """ Save data if form is valid"""
@@ -103,10 +91,6 @@ def user_profile(request):
 
     else:
         user_form = UserUpdateForm(instance=request.user)
-    
-    args = {
-        'user_form': user_form,
-        'user_tickets': user_tickets
-    }
 
+    args = {'user_form': user_form, 'user_tickets': user_tickets}
     return render(request, 'profile.html', args)

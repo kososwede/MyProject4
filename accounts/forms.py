@@ -14,8 +14,8 @@ class UserLoginForm(forms.Form):
 class UserRegistrationForm(UserCreationForm):
     """ Form used to register new users """
     username = forms.CharField(label='Username',
-                               min_length=5,
-                               max_length=10,
+                               min_length=4,
+                               max_length=20,
                                widget=forms.TextInput(),
                                required=True)
     """ Email Address"""
@@ -30,7 +30,7 @@ class UserRegistrationForm(UserCreationForm):
                                  max_length=40,
                                  widget=forms.TextInput(),
                                  required=True)
-    """ First Name"""
+    """ Last Name"""
     last_name = forms.CharField(label='Last Name',
                                 min_length=1,
                                 max_length=40,
@@ -42,7 +42,7 @@ class UserRegistrationForm(UserCreationForm):
                                 max_length=25,
                                 widget=forms.PasswordInput(),
                                 required=True)
-    """ Confirm password with a label"""
+    """ Confirm password """
     password2 = forms.CharField(label="Repeat Password",
                                 min_length=6,
                                 max_length=25,
@@ -59,21 +59,18 @@ class UserRegistrationForm(UserCreationForm):
         username = self.cleaned_data.get('username')
 
         if User.objects.filter(email=email).exclude(username=username):
-            raise forms.ValidationError(
-                u'The email address you entered has already been registered.')
-
+            raise forms.ValidationError(u'The email address you entered has already been registered.')
         return email
 
     def clean_password2(self):
-        '''Validates password field, returns clean data that we can verify'''
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
 
         if not password1 or not password2:
-            raise forms.ValidationError(u'Please confirm your password.')
+            raise ValidationError(u'Please confirm your password.')
 
         if password1 != password2:
-            raise forms.ValidationError(u'Passwords must match')
+            raise ValidationError(u'Passwords must match')
 
         return password2
 
@@ -85,14 +82,14 @@ class UserUpdateForm(forms.ModelForm):
                             min_length=6,
                             max_length=40,
                             widget=forms.EmailInput(),
-                            required=False)
+                            required=True)
     # First Name
     first_name = forms.CharField(label='First Name',
                                  min_length=1,
                                  max_length=40,
                                  widget=forms.TextInput(),
                                  required=False)
-    # First Name
+    # Last Name
     last_name = forms.CharField(label='Last Name',
                                 min_length=1,
                                 max_length=40,
