@@ -44,7 +44,7 @@ class TicketStatus(models.Model):
         return self.ticket_status
 
 
-class Ticket(models.Model):
+class TicketModel(models.Model):
     '''
     Allows users to log bug or feature tickets
     Uses CASCADE to remove ticket from user's list when deleted

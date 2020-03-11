@@ -1,9 +1,9 @@
 from django import forms
 from datetime import datetime
-from .models import Ticket, Comment
+from .models import Tickets, CommentsOnTickets
 
 
-class TicketForm(forms.ModelForm):
+class FormForTickets(forms.ModelForm):
     """form allows users to create new tickets"""
     title = forms.CharField(
         label="Ticket Title",
@@ -17,33 +17,31 @@ class TicketForm(forms.ModelForm):
         max_length=2000,
         widget=forms.Textarea(),
         required=True)
-    
+        
     class Meta:
-        model = Ticket
+        model = Tickets
         fields = ["title", "description"]
 
 
-class DonationForm(forms.Form):
-    '''users can select a donation amount
-    its only used when adding or upvoting features
-    users get a list of donation amounts, in multiples of 5'''
-    DONATION_AMOUNT_CHOICES = [(i, i) for i in range(5, 105, 5)]
+class DonationFormForTickets(forms.Form):
+    '''users can select a donation amount its only used when adding or upvoting features users get a list of donation amounts'''
+    DONATION_CHOICES = [(i, i) for i in range(1, 201, 10)]
 
     donation_amount = forms.ChoiceField(
         label="Donation Amount",
-        choices=DONATION_AMOUNT_CHOICES,
+        choices=DONATION_CHOICES,
         required=False)
 
 
-class CommentForm(forms.ModelForm):
+class CommentFormForTickets(forms.ModelForm):
     """Allows users to comment on any tickets"""
     description = forms.CharField(
-        label="Comment",
+        label="Comment Here",
         min_length=5,
         max_length=1500,
         widget=forms.Textarea(),
         required=True)
 
     class Meta:
-        model = Comment
+        model = CommentsOnTickets
         fields = ["description"]
