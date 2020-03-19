@@ -22,7 +22,7 @@
                                 Please make a small donation to submit your Feature Request
                                 <br>
                                 <small class="italic">
-                                    Production of a Feature Request won't begin until the donation goal of £100 is reached!
+                                    Production of a Feature Request won't begin until the donation goal of £200 is reached!
                                 </small>
                             </p>
                             {{ donation_form|materializecss:'icon=fas fa-pound-sign' }}
@@ -44,7 +44,7 @@
                                 <span class="hide-on-small-and-down">Pay &amp; Add</span>
                                 <i class="fas fa-plus-circle icon-right" aria-hidden="true"></i>
                             </button>
-                            <a class="btn waves-effect waves-light sm-md-btn" aria-label="Cancel button" onclick="history.back()">
+                            <a class="btn waves-effect waves-light sm-md-btn" aria-label="Cancel button" href="{% url 'get_tickets' %}">
                                 <span class="hide-on-small-and-down">Cancel</span>
                                 <i class="fas fa-times-circle icon-right" aria-hidden="true"></i>
                             </a>

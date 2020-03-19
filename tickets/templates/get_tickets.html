@@ -8,187 +8,133 @@
 {% block page_heading %}Tickets{% endblock %}
 
 {% block content %}
-    
-    <!-- Log Bug or Feature Section - Asks user to log in/register if not logged in -->
-    <div class="row center-align">
-        <!-- BUG SECTION -->
-        <div class="col s12 l6 ticket-card card z-depth-1 bug">
-            <h3 class="card-title">Bugs</h3>
-            {% if user.is_authenticated %}
-                <p class="bold">
-                    Noticed an issue?
-                    <br>
+<div class="container get-ticket-page center-align">
+	<!-- Log Bug or Feature Section - Asks user to log in/register if not logged in -->
+	<div class="row center-align">
+		<!-- BUG SECTION -->
+		<div class="col s12 l6">
+			<h3 class="card-title">Bugs</h3>
+			{% if user.is_authenticated %}
+			<p class="bold">
+				Noticed an issue?
+				<br>
                     Submit a new Bug Report!
                 </p>
-                <p class="italic">
-                    Bug Reports are FREE to open!
+				<p class="bug-button">
+					Bug Reports are FREE to open, Just click on the BUG!
+				</p>
+				<a href="{% url 'new_bug_ticket' %}" class="" aria-label="New Bug Page">
+
+					<i class="fas fa-bug icon-left fa-3x" aria-hidden="true"></i>
+				</a>
+
+				{% else %}
+				<p>
+					Noticed an issue?
+				</p>
+				<p>
+					<a class="italic bold uppercase nav-link" href="{% url 'login' %}" aria-label="Login Page">
+						Login
+					</a>
+					or
+					<a class="italic bold uppercase nav-link" href="{% url 'registration' %}"
+						aria-label="Registration Page">
+						Register
+					</a>
+					to submit a Bug Report.
+				</p>
+				{% endif %}
+		</div>
+		<!-- FEATURE SECTION -->
+		<div class="get-ticket-page">
+			<h3 class="card-title center-align">Features*</h3>
+			{% if user.is_authenticated %}
+			<p>
+				Want something new?
+				<br>
+                    Submit a new Feature Request by clicking on the COGS!
                 </p>
-                <a href="{% url 'new_bug_ticket' %}" class="btn waves-effect waves-light standard-btn" aria-label="New Bug Page">
-                    <i class="fas fa-bug icon-left" aria-hidden="true"></i>
-                    New Bug
-                </a>
-            {% else %}
-                <p class="bold">
-                    Noticed an issue?
-                </p>
-                <p>
-                    <a class="italic bold uppercase nav-link" href="{% url 'login' %}" aria-label="Login Page">
-                        Login
-                    </a>
-                    or
-                    <a class="italic bold uppercase nav-link" href="{% url 'registration' %}" aria-label="Registration Page">
-                        Register
-                    </a>
-                    to submit a Bug Report.
-                </p>
-            {% endif %}
-        </div>
-        <!-- FEATURE SECTION -->
-        <div class="col s12 l6 ticket-card card z-depth-1 feature">
-            <h3 class="card-title center-align">Features</h3>
-            {% if user.is_authenticated %}
-                <p class="bold">
-                    Want something new?
-                    <br>
-                    Submit a new Feature Request!
-                </p>
-                <p class="italic">
-                    Feature Requests require a small donation!
-                </p>
-                <a href="{% url 'new_feature_ticket' %}" class="btn waves-effect waves-light standard-btn" aria-label="New Feature Page">
-                    <i class="fas fa-cogs icon-left" aria-hidden="true"></i>
-                    New Feature
-                </a>
-            {% else %}
-                <p class="bold">
-                    Want something new?
-                </p>
-                <p>
-                    <a class="italic bold uppercase nav-link" href="{% url 'login' %}" aria-label="Login Page">
-                        Login
-                    </a>
-                    or
-                    <a class="italic bold uppercase nav-link" href="{% url 'registration' %}" aria-label="Registration Page">
-                        Register
-                    </a>
-                    to submit a Feature Request.
-                </p>
-            {% endif %}
-        </div>
-    </div>
-    
-    <div class="row center-align">
-        <!-- Filter Form -->
-        <form id="filter_form" method="GET">
-            <ul class="collapsible filter-option">
-                <li>
-                    <div class="collapsible-header filter-header">
-                        <h3 class="filter-form-title">
-                            <i class="fas fa-filter" aria-hidden="true"></i>
-                            Filter
-                        </h3>
-                    </div>
-                    <div class="collapsible-body collection collapsible-collection filter-body">
-                        <!--Helper Text/Instructions-->
-                        <div class="col s12">
-                            <h6 class="helper bold italic">Filter categories.</h6>
-                        </div>
-                        <div class="row filter-form-wrapper">
-                            <!--Ticket Type Category Drop Down-->
-                            <div class="input-field col s12 m6">
-                                <select id="ticket_type" name="ticket_type" class="form-control validate">
-                                    <option value="" disabled selected>Type</option>
-                                    {% for type in ticket_type_dropdown %}
-                                    <option value="{{ type.id }}">{{ type }}</option>
-                                    {% endfor %}
-                                </select>
-                                <label for="ticket_type">Ticket Type</label>
-                            </div>
-                            <!--Ticket Status Drop Down-->
-                            <div class="input-field col s12 m6">
-                                <select id="ticket_status" name="ticket_status" class="form-control validate">
-                                    <option value="" disabled selected>Status</option>
-                                    {% for status in ticket_status_dropdown %}
-                                        <option value="{{ status.id }}">{{ status }}</option>
-                                    {% endfor%}
-                                </select>
-                                <label for="ticket_status">Ticket Status</label>
-                            </div>
-                            <!--Submit Button-->
-                            <div class="row submit-button-wrapper">
-                                <div class="col s12">
-                                    <button class="btn waves-effect waves-light sm-md-btn" type="submit" aria-label="Filter button">
-                                        <span class="hide-on-small-and-down">Filter</span>
-                                        <i class="fas fa-filter icon-right" aria-hidden="true"></i>
-                                    </button>
-                                    <!--Reset Button-->
-                                    <a class="btn waves-effect waves-light sm-md-btn" href="{% url 'get_tickets' %}" aria-label="Reset Results button">
-                                        <span class="hide-on-small-and-down">Reset</span>
-                                        <i class="fas fa-undo-alt icon-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </form>
-    </div>
-    
-    <!-- Ticket Cards -->
-    <div class="row center-align">
-        {% for ticket in tickets %}
-            <a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Ticket Details">
-                <div class="col s12 m6 ticket-preview-card">
-                    <div class="card hoverable results-card z-depth-1">
-                        <div class="ticket-type center-align">
-                            <!-- Ticket Type Icon -->
-                            {% if ticket.ticket_type.ticket_type == "Bug" %}
-                                <i class="fas fa-bug" aria-hidden="true"></i>
-                            {% elif ticket.ticket_type.ticket_type == "Feature" %}
-                                <i class="fas fa-cogs" aria-hidden="true"></i>
-                            {% endif %}
-                        </div>
-                        <!-- Ticket Title -->
-                        <div class="card-title center-align">
-                            <h4>{{ ticket.title }}</h4>
-                        </div>
-                        <!-- Ticket Details -->
-                        <div class="card-content center-align">
-                            <p class="stat">
-                                <i class="fas fa-ticket-alt" aria-hidden="true"></i>
-                                {{ ticket.ticket_type }}
-                            </p>
-                            <p class="stat">
-                                <i class="fas fa-tools" aria-hidden="true"></i>
-                                {{ ticket.ticket_status }}
-                            </p>
-                            <p class="stat">
-                                <i class="fas fa-user-circle" aria-hidden="true"></i>
-                                {{ ticket.user.username }}
-                            </p>
-                            <p class="stat truncate">
-                                <i class="fas fa-file-alt" aria-hidden="true"></i>
-                                {{ ticket.description }}
-                            </p>
-                        </div>
-                        <!-- Ticket Quick Stats -->
-                        <div class="card-action card-stats">
-                            <!-- Views -->
-                            <span>
+
+				<a href="{% url 'new_feature_ticket' %}" aria-label="New Feature Page">
+					<i class="fas fa-cogs icon-left fa-3x" aria-hidden="true"></i>
+				</a>
+				<p class="feature-button">
+					*Feature Requests require a small donation!
+				</p>
+				{% else %}
+				<p class="bold">
+					Want something new?
+				</p>
+				<p>
+					<a class="" href="{% url 'login' %}" aria-label="Login Page">
+						Login
+					</a>
+					or
+					<a class="" href="{% url 'registration' %}" aria-label="Registration Page">
+						Register
+					</a>
+					to submit a Feature Request.
+				</p>
+				{% endif %}
+		</div>
+	</div>
+</div>
+
+
+<!-- Ticket Cards -->
+<div class="row center-align">
+	{% for ticket in tickets %}
+	<a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Ticket Details">
+		<div class="col s12 m6 ticket-preview-card">
+			<div class="card hoverable results-card z-depth-1">
+				<div class="ticket-type center-align">
+					<!-- Ticket Type Icon -->
+					{% if ticket.ticket_type.ticket_type == "Bug" %}
+					<i class="fas fa-bug" aria-hidden="true"></i>
+					{% elif ticket.ticket_type.ticket_type == "Feature" %}
+					<i class="fas fa-cogs" aria-hidden="true"></i>
+					{% endif %}
+				</div>
+				<!-- Ticket Title -->
+				<div class="card-title center-align">
+					<h4>{{ ticket.title }}</h4>
+				</div>
+				<!-- Ticket Details -->
+				<div class="card-content center-align">
+					<p class="stat">
+						<i class="fas fa-ticket-alt" aria-hidden="true"></i>
+						{{ ticket.ticket_type }}
+					</p>
+					<p class="stat">
+						<i class="fas fa-tools" aria-hidden="true"></i>
+						{{ ticket.ticket_status }}
+					</p>
+					<p class="stat">
+						<i class="fas fa-user-circle" aria-hidden="true"></i>
+						{{ ticket.user.username }}
+					</p>
+					<p class="stat truncate">
+						<i class="fas fa-file-alt" aria-hidden="true"></i>
+						{{ ticket.description }}
+					</p>
+				</div>
+				<!-- Ticket Quick Stats -->
+				<div class="card-action card-stats">
+					<!-- Views -->
+					<span>
                                 <i class="far fa-eye" aria-hidden="true"></i><br>
                                 {{ ticket.views }}
                             </span>
-                            <span>
+					<span>
                                 <!-- Upvotes -->
                                 <i class="fas fa-thumbs-up" aria-hidden="true"></i><br>
                                 {{ ticket.upvotes }}
                             </span>
-                            <span>
+					<span>
                                 <!-- Donations -->
                                 <i class="fas fa-pound-sign" aria-hidden="true"></i><br>
                                 {% if ticket.ticket_type.ticket_type == "Feature" %}
-                                    {% if ticket.total_donations >= 100 %}
+                                    {% if ticket.total_donations >= 200 %}
                                         <!-- Show check icon for Feature tickets if
                                         donation goal has been reached -->
                                         <i class="fas fa-check goal-reached" aria-hidden="true"></i>
@@ -200,20 +146,20 @@
                                 {% else %}
                                     <!-- Show 'Free!' for Bug tickets -->
                                     <span class="uppercase">Free!</span>
-                                {% endif %}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        {% empty %}
-            <h4 class="ticket-details-text">
-                <span class="ticket-count bold italic">No</span>
-                 tickets found!
-             </h4>
-        {% endfor %}
-    </div>
-    
-    
+					{% endif %}
+					</span>
+				</div>
+			</div>
+		</div>
+	</a>
+	{% empty %}
+	<h4 class="ticket-details-text">
+		<span class="ticket-count bold italic">No</span>
+		tickets found!
+	</h4>
+	{% endfor %}
+</div>
+
+
 
 {% endblock %}

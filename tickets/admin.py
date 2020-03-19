@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import TicketType, TicketStatus, Ticket, Comment, Upvote
+from .models import TicketTypeModel, TicketStatusModel, TicketModel, CommentModel, UpvoteModel
 # Register your models here.
 
 
-admin.site.register(TicketType)
-admin.site.register(TicketStatus)
-admin.site.register(Ticket)
-admin.site.register(Comment)
-admin.site.register(Upvote)
+admin.site.register(TicketTypeModel)
+admin.site.register(TicketStatusModel)
+admin.site.register(TicketModel)
+admin.site.register(CommentModel)
+admin.site.register(UpvoteModel)

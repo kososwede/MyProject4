@@ -1,6 +1,6 @@
 from django import forms
 from datetime import datetime
-from .models import Tickets, CommentsOnTickets
+from .models import TicketModel, CommentModel
 
 
 class FormForTickets(forms.ModelForm):
@@ -19,13 +19,13 @@ class FormForTickets(forms.ModelForm):
         required=True)
         
     class Meta:
-        model = Tickets
+        model = TicketModel
         fields = ["title", "description"]
 
 
 class DonationFormForTickets(forms.Form):
     '''users can select a donation amount its only used when adding or upvoting features users get a list of donation amounts'''
-    DONATION_CHOICES = [(i, i) for i in range(1, 201, 10)]
+    DONATION_CHOICES = [(i, i) for i in range(10, 201, 10)]
 
     donation_amount = forms.ChoiceField(
         label="Donation Amount",
@@ -43,5 +43,5 @@ class CommentFormForTickets(forms.ModelForm):
         required=True)
 
     class Meta:
-        model = CommentsOnTickets
+        model = CommentModel
         fields = ["description"]

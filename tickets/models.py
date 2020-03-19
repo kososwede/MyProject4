@@ -7,7 +7,7 @@ from django.conf import settings
 # Create your models here.
 
 
-class TicketType(models.Model):
+class TicketTypeModel(models.Model):
     '''
     Provides the choices for the ticket type (bug or feature)
     '''
@@ -25,14 +25,14 @@ class TicketType(models.Model):
         return self.ticket_type
 
 
-class TicketStatus(models.Model):
+class TicketStatusModel(models.Model):
     '''
     Provides the choices for the ticket status (Open, In Progress or Closed)
     '''
     # Choices for ticket status
     TICKET_STATUS_CHOICES = [
         ("Open", "Open"),
-        ("In Progress", "In Progress"),
+        ("Working On", "Working On"),
         ("Closed", "Closed"),
     ]
     ticket_status = models.CharField(
@@ -45,6 +45,7 @@ class TicketStatus(models.Model):
 
 
 class TicketModel(models.Model):
+    
     '''
     Allows users to log bug or feature tickets
     Uses CASCADE to remove ticket from user's list when deleted
@@ -59,11 +60,10 @@ class TicketModel(models.Model):
         null=False,
         auto_now_add=True)
     ticket_type = models.ForeignKey(
-        TicketType,
-        max_length=7,
+        TicketTypeModel,
         null=True)
     ticket_status = models.ForeignKey(
-        TicketStatus,
+        TicketStatusModel,
         null=True)
     title = models.CharField(
         max_length=100,
@@ -90,13 +90,13 @@ class TicketModel(models.Model):
             self.id, self.ticket_type, self.ticket_status, self.title)
 
 
-class Comment(models.Model):
+class CommentModel(models.Model):
     '''user to comment on tickets'''
 
     comment_date = models.DateTimeField(
         auto_now_add=True)
     ticket = models.ForeignKey(
-        Ticket,
+        TicketModel,
         null=True,
         on_delete=models.CASCADE)
     user = models.ForeignKey(
@@ -113,10 +113,10 @@ class Comment(models.Model):
             self.user.username, self.ticket.id)
 
 
-class Upvote(models.Model):
+class UpvoteModel(models.Model):
     '''users can upvote any ticket'''
     ticket = models.ForeignKey(
-        Ticket,
+        TicketModel,
         null=True,
         on_delete=models.CASCADE)
     user = models.ForeignKey(

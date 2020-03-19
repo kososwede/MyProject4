@@ -41,6 +41,11 @@
 							<span class="nav-text">TICKETS</span>
 						</a>
 					</li>
+                    <li>
+						<a href="{% url 'about' %}"><i class="nav-icon fas fa-question"></i>
+							<span class="nav-text">ABOUT</span>
+						</a>
+					</li>
 
 					{% if user.is_authenticated %}
 					<li>

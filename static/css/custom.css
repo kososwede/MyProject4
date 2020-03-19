@@ -60,6 +60,24 @@ hr {
     font-weight: bolder;
 }
 
+/* get_tickets page */
+
+.get-ticket-page {
+    background:  linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(179,220,237,1) 12%, rgba(41,184,229,1) 48%, rgba(188,224,238,1) 83%, rgba(188,224,238,1) 100%);
+    border-radius: 25px;
+    padding-top: 10px;
+}
+
+
+/* view_one_ticket page */
+
+.view-one-ticket {
+    background:  linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(179,220,237,1) 12%, rgba(41,184,229,1) 48%, rgba(188,224,238,1) 83%, rgba(188,224,238,1) 100%);
+    border-radius: 25px;
+    padding-top: 10px;
+}
+
+
 /*  Navbar */
 .nav-burger{
     color: blue;

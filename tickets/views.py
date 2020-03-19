@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils import timezone
 from accounts.models import Profile
-from .models import TicketType, TicketStatus, TicketModel, UserComments, Upvote
+from .models import TicketTypeModel, TicketStatusModel, TicketModel, CommentModel, UpvoteModel
 from .forms import FormForTickets, CommentFormForTickets, DonationFormForTickets
 import stripe
 
@@ -17,9 +17,8 @@ def get_tickets(request):
     """ Return a list of tickets that were published prior to now
     and render them in the tickets.html page """
     tickets = TicketModel.objects.all()
-    
-    ticket_type_dropdown = TicketType.objects.all()
-    ticket_status_dropdown = TicketStatus.objects.all()
+    ticket_type_dropdown = TicketTypeModel.objects.all()
+    ticket_status_dropdown = TicketStatusModel.objects.all()
 
     """parameters"""
     ticket_type = request.GET.get("ticket_type")
@@ -38,10 +37,12 @@ def get_tickets(request):
 
     args = {
         "tickets": tickets,
+        "ticket_type": ticket_type,
+        "ticket_status": ticket_status,
         "ticket_type_dropdown": ticket_type_dropdown,
         "ticket_status_dropdown": ticket_status_dropdown,
     }
-  
+
     return render(request, "get_tickets.html", args)
 
 
@@ -97,7 +98,7 @@ def new_feature(request):
                 feature_form.instance.total_donations = donation_amount
                 current_user_donated = Profile.objects.values_list(
                     "total_donated", flat=True).get(user_id=request.user.id)
-                
+
                 new_user_donated = current_user_donated + donation_amount
                 # Push the new amount to the user's total donated amount
                 Profile.objects.filter(user_id=request.user.id).update(
@@ -105,18 +106,19 @@ def new_feature(request):
                 # The ticket's status will be 'working on' if user donates
                 # the goal amount for the feature to be implemented
                 if donation_amount >= int(200):
-                    feature_form.instance.ticket_status_id = [2]
+                    feature_form.instance.ticket_status_id = 2
                 else:
                     # If goal amount is not reached, ticket status will be Open
-                    feature_form.instance.ticket_status_id = [1]
-                feature_form.save()
-                messages.success(request, f"Thanks for submitting a Feature Request!")
+                    feature_form.instance.ticket_status_id = 1
+                    feature_form.save()
+                    messages.success(request, f"Thanks for submitting a Feature Request!")
                 return redirect(get_tickets)
             else:
                 messages.error(request, "Unable to take payment")
         # If donation_form is not valid
         else:
-            messages.error(request, f"We were unable to take a payment with that card. Please try again.")
+            messages.error(
+                request, f"We were unable to take a payment with that card. Please try again.")
     else:
         feature_form = FormForTickets()
         donation_form = DonationFormForTickets()
@@ -136,22 +138,22 @@ def view_one_ticket(request, pk):
     # Gets the details of the ticket
     ticket = get_object_or_404(TicketModel, pk=pk)
     # Options for the ticket status dropdown
-    ticket_status_dropdown = TicketStatus.objects.all()
-    ticket_status = ticket.ticket_status_id
+    ticket_status_dropdown = TicketStatusModel.objects.all()
+    ticket_status = ticket.ticket_status
 
     # Increases views by 1 when ticket is viewed
     ticket.views += 1
     ticket.save()
 
     # user's upvotes will be filtered by their user_id
-    ticket_upvotes = Upvote.objects.filter(ticket_id=ticket.pk)\
+    ticket_upvotes = UpvoteModel.objects.filter(ticket_id=ticket.pk)\
         .values("user_id")
     user_upvotes = [upvote["user_id"] for upvote in ticket_upvotes]
 
     # Allows injection of donation form into Upvote & donate
     donation_form = DonationFormForTickets()
 
-    comments = UserComments.objects.filter(ticket_id=ticket.pk)
+    comments = CommentModel.objects.filter(ticket_id=ticket.pk)
 
     if request.method == "POST":
         comment_form = CommentFormForTickets(request.POST)
@@ -171,15 +173,13 @@ def view_one_ticket(request, pk):
 
     args = {
         "ticket": ticket,
-        
         "ticket_status": ticket_status,
-        "ticket_status_dropdown": ticket_status_dropdown,
-    
         "comment_form": comment_form,
         "comments": comments,
         "donation_form": donation_form,
         "publishable": settings.STRIPE_PUBLISHABLE,
         "user_upvotes": user_upvotes,
+        "ticket_status_dropdown": ticket_status_dropdown,
 
     }
 
@@ -213,15 +213,16 @@ def upvote(request, pk):
                 )
             except stripe.error.CardError:
                 # Display error message if card is declined
-                messages.error(request, "Ooops...Sorry, Your card was declined!")
+                messages.error(
+                    request, "Ooops...Sorry, Your card was declined!")
 
             # If payment is successful
             if customer.paid:
                 '''Create an object of the Upvote model to store the user's
                 ID against the ticket - enables the user's upvote to
                 be received if the user downvotes the ticket'''
-                Upvote.objects.create(ticket_id=ticket.pk,
-                                      user_id=request.user.id)
+                UpvoteModel.objects.create(
+                    ticket_id=ticket.pk, user_id=request.user.id)
 
                 # Add the donation to the user's total donated amount
                 current_user_donated = Profile.objects.values_list(
@@ -243,8 +244,9 @@ def upvote(request, pk):
                     total_donations=new_ticket_donations)
 
                 # Update the ticket's status to Working on if user donates the goal amount for the feature to be implemented
-                if new_ticket_donations >= int(100):
-                    TicketModel.objects.filter(id=ticket.pk).update(ticket_status_id=2)
+                if new_ticket_donations >= int(200):
+                    TicketModel.objects.filter(
+                        id=ticket.pk).update(ticket_status_id=2)
                 messages.success(
                     request, f"Thankyou, your payment has been approved and your upvote has been registered on this Ticket!")
                 return redirect(view_one_ticket, ticket.pk)
@@ -258,8 +260,8 @@ def upvote(request, pk):
     else:
         '''Create an object of the Upvote model to store the user's
         ID against the ticket'''
-        Upvote.objects.create(ticket_id=ticket.pk,
-                              user_id=request.user.id)
+        UpvoteModel.objects.create(
+            ticket_id=ticket.pk, user_id=request.user.id)
 
         messages.success(
             request, f"Thankyou, your upvote has been registered on this Ticket!")
@@ -305,5 +307,6 @@ def delete_ticket(request, pk):
     """ User can delete their own ticket only """
     ticket = get_object_or_404(TicketModel, pk=pk)
     ticket.delete()
-    messages.success(request, f"You have successfully deleted your ticket from Unicorn Attractor")
+    messages.success(
+        request, f"You have successfully deleted your ticket from Unicorn Attractor")
     return redirect(get_tickets)

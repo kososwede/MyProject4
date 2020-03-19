@@ -3,7 +3,7 @@ from django.contrib import auth, messages
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from .forms import UserLoginForm, UserRegistrationForm, UserUpdateForm
-from tickets.models import Ticket
+from tickets.models import TicketModel
 
 # Create your views here.
 
@@ -72,13 +72,13 @@ def registration(request):
     else:
         registration_form = UserRegistrationForm()
 
-    return render(request, "registration.html", {"registartion_form": registration_form})
+    return render(request, "registration.html", {"registration_form": registration_form})
 
 
 @login_required
 def user_profile(request):
     '''renders user's profile page and allows the user to update their User details and Profile image'''
-    user_tickets = Ticket.objects.filter(user_id=request.user.id)
+    user_tickets = TicketModel.objects.filter(user_id=request.user.id)
 
     if request.method == "POST":
         user_form = UserUpdateForm(request.POST, instance=request.user)
