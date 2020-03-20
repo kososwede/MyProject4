@@ -8,11 +8,11 @@
 {% block page_heading %}Tickets{% endblock %}
 
 {% block content %}
-<div class="container get-ticket-page center-align">
+<div class="center-align">
 	<!-- Log Bug or Feature Section - Asks user to log in/register if not logged in -->
-	<div class="row center-align">
+	<div class="row center-align get-ticket-page">
 		<!-- BUG SECTION -->
-		<div class="col s12 l6">
+		<div class="col s12 l6 ">
 			<h3 class="card-title">Bugs</h3>
 			{% if user.is_authenticated %}
 			<p class="bold">
@@ -46,7 +46,7 @@
 				{% endif %}
 		</div>
 		<!-- FEATURE SECTION -->
-		<div class="get-ticket-page">
+		<div class="col s12 l6">
 			<h3 class="card-title center-align">Features*</h3>
 			{% if user.is_authenticated %}
 			<p>
@@ -85,78 +85,75 @@
 <div class="row center-align">
 	{% for ticket in tickets %}
 	<a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Ticket Details">
-		<div class="col s12 m6 ticket-preview-card">
-			<div class="card hoverable results-card z-depth-1">
+		<div class="col s12 m6">
+			<div class="card ticket-view hoverable">
 				<div class="ticket-type center-align">
 					<!-- Ticket Type Icon -->
 					{% if ticket.ticket_type.ticket_type == "Bug" %}
-					<i class="fas fa-bug" aria-hidden="true"></i>
+					<i class="fas fa-bug fa-2x" aria-hidden="true"></i>
 					{% elif ticket.ticket_type.ticket_type == "Feature" %}
-					<i class="fas fa-cogs" aria-hidden="true"></i>
+					<i class="fas fa-cogs fa-2x" aria-hidden="true"></i>
 					{% endif %}
 				</div>
+            
 				<!-- Ticket Title -->
-				<div class="card-title center-align">
-					<h4>{{ ticket.title }}</h4>
+				<div class="ticket-info info-title center-align ">
+					<h4 class="capitalize">{{ ticket.title }}</h4>
 				</div>
 				<!-- Ticket Details -->
 				<div class="card-content center-align">
-					<p class="stat">
-						<i class="fas fa-ticket-alt" aria-hidden="true"></i>
+					<p class="ticket-info">
+						<i class="fas fa-ticket-alt fa-2x ticket-icon" aria-hidden="true"></i>
 						{{ ticket.ticket_type }}
 					</p>
-					<p class="stat">
-						<i class="fas fa-tools" aria-hidden="true"></i>
+					<p class="ticket-info">
+						<i class="fas fa-tools fa-2x ticket-icon" aria-hidden="true"></i>
 						{{ ticket.ticket_status }}
 					</p>
-					<p class="stat">
-						<i class="fas fa-user-circle" aria-hidden="true"></i>
+					<p class="ticket-info">
+						<i class="fas fa-user-circle fa-2x ticket-icon" aria-hidden="true"></i>
 						{{ ticket.user.username }}
 					</p>
-					<p class="stat truncate">
-						<i class="fas fa-file-alt" aria-hidden="true"></i>
+					<p class="ticket-info truncate">
+						<i class="fas fa-file-alt fa-2x ticket-icon" aria-hidden="true"></i>
 						{{ ticket.description }}
 					</p>
 				</div>
 				<!-- Ticket Quick Stats -->
 				<div class="card-action card-stats">
 					<!-- Views -->
-					<span>
-                                <i class="far fa-eye" aria-hidden="true"></i><br>
-                                {{ ticket.views }}
-                            </span>
-					<span>
-                                <!-- Upvotes -->
-                                <i class="fas fa-thumbs-up" aria-hidden="true"></i><br>
-                                {{ ticket.upvotes }}
-                            </span>
-					<span>
-                                <!-- Donations -->
-                                <i class="fas fa-pound-sign" aria-hidden="true"></i><br>
-                                {% if ticket.ticket_type.ticket_type == "Feature" %}
-                                    {% if ticket.total_donations >= 200 %}
-                                        <!-- Show check icon for Feature tickets if
-                                        donation goal has been reached -->
-                                        <i class="fas fa-check goal-reached" aria-hidden="true"></i>
+					<span class="info-stats">
+                        <i class="fas fa-eye" aria-hidden="true"></i>
+                            {{ ticket.views }} View/s
+                    </span>
+					<span class="info-stats">
+                        <!-- Upvotes -->
+                        <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+                            {{ ticket.upvotes }} Vote/s
+                    </span>
+					<span class="info-stats">
+                        <!-- Donations -->
+                        <i class="fas fa-pound-sign" aria-hidden="true"></i>
+                            {% if ticket.ticket_type.ticket_type == "Feature" %}
+                                {% if ticket.total_donations >= 200 %}
+                                    <!-- Show check icon for Feature tickets if
+                                    donation goal has been reached -->
+                                    <i class="fas fa-check total-reached" aria-hidden="true"> TARGET REACHED</i>
                                     {% else %}
                                         <!-- Show total donations for Feature tickets if
                                         donation goal hasn't been reached -->
-                                        {{ ticket.total_donations }}
-                                    {% endif %}
+                                    £{{ ticket.total_donations }} /£200
+                                {% endif %}
                                 {% else %}
                                     <!-- Show 'Free!' for Bug tickets -->
-                                    <span class="uppercase">Free!</span>
+                                <span class="free-ticket">FREE!</span>
 					{% endif %}
-					</span>
+					            </span>
 				</div>
 			</div>
 		</div>
 	</a>
-	{% empty %}
-	<h4 class="ticket-details-text">
-		<span class="ticket-count bold italic">No</span>
-		tickets found!
-	</h4>
+
 	{% endfor %}
 </div>
 
