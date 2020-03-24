@@ -5,76 +5,87 @@
 {% block page_title %}{{ user.username }}'s Profile {% endblock %}
 {% block page_heading %}{{ user.username }}'s Profile {% endblock %}
 {% block content %}
-    <div class="row ticket-card center-align">
+    <div class="row profile-page">
     	<div class="col s12">
-    		<p>
-	    		<i class="fas fa-signature" aria-hidden="true"></i>
+    		<p class="profile-name center-align">
+	    		<i class="fas fa-signature fa-2x signature-icon" aria-hidden="true"></i>
 	    		{{ user.first_name }} {{ user.last_name }}
 	    	</p>
-		    <p>
-			    <i class="fas fa-user" aria-hidden="true"></i>
+		    <p class="profile-titles center-align">
+			    <i class="fas fa-user fa-2x user-icon" aria-hidden="true"></i>
 			    {{ user.username }}
     		</p>
-	    	<p>
-		    	<i class="fas fa-envelope" aria-hidden="true"></i>
+	    	<p class="profile-titles center-align">
+		    	<i class="fas fa-envelope fa-2x envelope-icon" aria-hidden="true"></i>
 			    {{ user.email }}
 	    	</p>
 	    </div>
 
-	    <div class="col s12">
-		    <a href="#edit_profile_modal" class="waves-effect waves-light btn modal-trigger change-pwd-btn large-btn" aria-label="Edit Profile Modal">
+	    <div class="col s12 edit-profile-button">
+		    <a href="#edit_profile_modal" class="waves-effect waves-light btn modal-trigger large-btn" aria-label="Edit Profile Modal">
 			    <i class="fas fa-edit icon-left" aria-hidden="true"></i>
 		    	Edit Profile
 	    	</a>
 	    </div>
     </div>
 
-    <div class="row ticket-card card">
-	    <div class="col s12 m6 profile-bugs">
-		    <h4 class="card-title center-align">
+    <div class="row profile-page center-align">
+	    <div class="col s12 m6">
+		    <h4 class="center-align">
 			    <i class="fas fa-bug" aria-hidden="true"></i>
 			    My Bugs
 		    </h4>
-		    <ul class="">
+		    <ul class="card my-features">
 			    {% for ticket in user_tickets %}
 			        {% if ticket.ticket_type.ticket_type == "Bug" %}
-			            <li class="">
+                    
+			            <li>
 				            <a href="{% url 'view_one_ticket' ticket.id %}" aria-label="Details of Bug">
-					            <h4 class="title">{{ ticket.title }}</h4>
-					            <p class="helper italic truncate">{{ ticket.description }}</p>
+					            <h4 class="title my-ticket-title">{{ ticket.title }}</h4>
+					            <p class="my-ticket-description truncate">{{ ticket.description }}</p>
+                                <p class="my-ticket-created-date">{{ ticket.created_date }}</p>
+                            
 				            </a>
+                         
 			            </li>
+                        
 			        {% endif %}
+                        
 			    {% endfor %}
+                    
 		    </ul>
-
-	    	<p class="center-align">
-		    	<a href="{% url 'new_bug_ticket' %}" aria-label="New Bug Report">
-			    	Submit New Bug Report Here
+        
+	    	<p class="center-align request-feature-text">
+                Want to submit a Bug Report? Click
+		    	<a class="new-feature-click-here" href="{% url 'new_bug_ticket' %}" aria-label="New Bug Report">
+                    HERE
     			</a>
 	    	</p>
 	    </div>
-	    <div class="col s12 m6 profile-features">
-		    <h4 class="card-title center-align">
+	    <div class="col s12 m6">
+		    <h4 class="center-align">
 			    <i class="fas fa-cogs" aria-hidden="true"></i>
 			    My Features
 	    	</h4>
-		    <ul class="">
+		    <ul class="card my-features">
 			    {% for ticket in user_tickets %}
 			        {% if ticket.ticket_type.ticket_type == "Feature" %}
-			            <li class="">
+			            <li>
 				            <a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Feature">
-					            <h6 class="title">{{ ticket.title }}</h6>
-					            <p class="helper italic truncate">{{ ticket.description }}</p>
+					            <h4 class="title my-ticket-title">{{ ticket.title }}</h4>
+					            <p class="my-ticket-description truncate">{{ ticket.description }}</p>
+                                <p class="my-ticket-created-date">{{ ticket.created_date }}</p>
 				            </a>
+                            
 			            </li>
 			        {% endif %}
 			    {% endfor %}
 		    </ul>
-
-		    <p class="center-align">
-			    <a href="{% url 'new_feature_ticket' %}" aria-label="New Feature">
-				    Request a Feature
+        
+		    <p class="center-align request-feature-text">
+            Want to request a Feature? Click
+			    <a class="new-feature-click-here" href="{% url 'new_feature_ticket' %}" aria-label="New Feature">
+				HERE  
 			    </a>
 		    </p>
 	    </div>

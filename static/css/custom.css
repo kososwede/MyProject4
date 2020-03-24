@@ -142,6 +142,92 @@ div.ticket-info.info-title.center-align {
     padding-top: 10px;
 }
 
+/* profile.html */
+
+.profile-page {
+    background:  linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(179,220,237,1) 12%, rgba(41,184,229,1) 48%, rgba(188,224,238,1) 83%, rgba(188,224,238,1) 100%);
+    border-radius: 25px;
+    padding-top: 10px;
+    width: 75%;
+}
+
+.profile-name {
+    text-transform: capitalize;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.profile-titles {
+     font-weight: bolder;
+    font-size: 20px;
+}
+
+.signature-icon {
+    color: red;
+    padding-right: 15px;
+}
+
+.user-icon {
+    color: blue;
+    padding-right: 15px;
+
+}
+
+.envelope-icon {
+    color: yellow;
+    padding-right: 15px;
+}
+
+.edit-profile-button {
+    padding-bottom: 10px !important;
+    text-align: center;
+}
+
+.my-bugs {
+   border-radius: 25px; 
+
+}
+
+.my-features {
+   border-radius: 25px; 
+}
+
+.my-ticket-title {
+    text-decoration: underline;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.my-ticket-description {
+    color: black;
+    padding: 5px;
+}
+
+.my-ticket-title {
+     color: black;
+}
+
+.my-ticket-created-date {
+    color: blue;
+    font-weight: 600;
+}
+
+.new-feature-click-here {
+    font-weight: bolder;
+}
+
+.request-feature-text {
+    font-weight: 600;
+}
+
+.submit-bug-text a {
+    font-weight: 550;
+    color: black !important;
+}
+
+hr.ticket-line {
+    border: 1px solid red;
+}
 
 /*  Navbar */
 .nav-burger{
