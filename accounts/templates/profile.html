@@ -5,106 +5,108 @@
 {% block page_title %}{{ user.username }}'s Profile {% endblock %}
 {% block page_heading %}{{ user.username }}'s Profile {% endblock %}
 {% block content %}
-    <div class="row profile-page">
-    	<div class="col s12">
-    		<p class="profile-name center-align">
-	    		<i class="fas fa-signature fa-2x signature-icon" aria-hidden="true"></i>
-	    		{{ user.first_name }} {{ user.last_name }}
-	    	</p>
-		    <p class="profile-titles center-align">
-			    <i class="fas fa-user fa-2x user-icon" aria-hidden="true"></i>
-			    {{ user.username }}
-    		</p>
-	    	<p class="profile-titles center-align">
-		    	<i class="fas fa-envelope fa-2x envelope-icon" aria-hidden="true"></i>
-			    {{ user.email }}
-	    	</p>
-	    </div>
+<div class="row profile-page">
+	<div class="col s12">
+		<p class="profile-name center-align">
+			<i class="fas fa-signature fa-2x signature-icon" aria-hidden="true"></i>
+			{{ user.first_name }} {{ user.last_name }}
+		</p>
+		<p class="profile-titles center-align">
+			<i class="fas fa-user fa-2x user-icon" aria-hidden="true"></i>
+			{{ user.username }}
+		</p>
+		<p class="profile-titles center-align">
+			<i class="fas fa-envelope fa-2x envelope-icon" aria-hidden="true"></i>
+			{{ user.email }}
+		</p>
+	</div>
 
-	    <div class="col s12 edit-profile-button">
-		    <a href="#edit_profile_modal" class="waves-effect waves-light btn modal-trigger large-btn" aria-label="Edit Profile Modal">
-			    <i class="fas fa-edit icon-left" aria-hidden="true"></i>
-		    	Edit Profile
-	    	</a>
-	    </div>
-    </div>
+	<div class="col s12 edit-profile-button">
+		<a href="#edit_profile_modal" class="waves-effect waves-light btn modal-trigger large-btn"
+			aria-label="Edit Profile Modal">
+			<i class="fas fa-edit icon-left" aria-hidden="true"></i>
+			Edit Profile
+		</a>
+	</div>
+</div>
 
-    <div class="row profile-page center-align">
-	    <div class="col s12 m6">
-		    <h4 class="center-align">
-			    <i class="fas fa-bug" aria-hidden="true"></i>
-			    My Bugs
-		    </h4>
-		    <ul class="card my-features">
-			    {% for ticket in user_tickets %}
-			        {% if ticket.ticket_type.ticket_type == "Bug" %}
-                    
-			            <li>
-				            <a href="{% url 'view_one_ticket' ticket.id %}" aria-label="Details of Bug">
-					            <h4 class="title my-ticket-title">{{ ticket.title }}</h4>
-					            <p class="my-ticket-description truncate">{{ ticket.description }}</p>
-                                <p class="my-ticket-created-date">{{ ticket.created_date }}</p>
-                            
-				            </a>
-                         
-			            </li>
-                        
-			        {% endif %}
-                        
-			    {% endfor %}
-                    
-		    </ul>
-        
-	    	<p class="center-align request-feature-text">
-                Want to submit a Bug Report? Click
-		    	<a class="new-feature-click-here" href="{% url 'new_bug_ticket' %}" aria-label="New Bug Report">
-                    HERE
-    			</a>
-	    	</p>
-	    </div>
-	    <div class="col s12 m6">
-		    <h4 class="center-align">
-			    <i class="fas fa-cogs" aria-hidden="true"></i>
-			    My Features
-	    	</h4>
-		    <ul class="card my-features">
-			    {% for ticket in user_tickets %}
-			        {% if ticket.ticket_type.ticket_type == "Feature" %}
-			            <li>
-				            <a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Feature">
-					            <h4 class="title my-ticket-title">{{ ticket.title }}</h4>
-					            <p class="my-ticket-description truncate">{{ ticket.description }}</p>
-                                <p class="my-ticket-created-date">{{ ticket.created_date }}</p>
-				            </a>
-                            
-			            </li>
-			        {% endif %}
-			    {% endfor %}
-		    </ul>
-        
-		    <p class="center-align request-feature-text">
-            Want to request a Feature? Click
-			    <a class="new-feature-click-here" href="{% url 'new_feature_ticket' %}" aria-label="New Feature">
-				HERE  
-			    </a>
-		    </p>
-	    </div>
-    </div>
+<div class="row profile-page center-align">
+	<div class="col s12 m6">
+		<h4 class="center-align">
+			<i class="fas fa-bug" aria-hidden="true"></i>
+			My Bugs
+		</h4>
+		<ul class="card my-features">
+			{% for ticket in user_tickets %}
+			{% if ticket.ticket_type.ticket_type == "Bug" %}
 
-    <div id="edit_profile_modal" class="modal">
-	    <div class="modal-content center-align">
-		    <h5 class="title">Edit Profile</h5>
-		    <form id="edit_profile_form" method="POST" class="userform" enctype="multipart/form-data">
-			    {% csrf_token %}
-			    {{ user_form.email|materializecss:'icon=fas fa-envelope' }}
-			    {{ user_form.first_name|materializecss:'icon=fas fa-signature' }}
-			    {{ user_form.last_name|materializecss:'icon=fas fa-signature' }}
-			    <button type="submit" class="btn btn primary large-btn" aria-label="Update Profile">
+			<li>
+				<a href="{% url 'view_one_ticket' ticket.id %}" aria-label="Details of Bug">
+					<h4 class="title my-ticket-title">{{ ticket.title }}</h4>
+					<p class="my-ticket-description truncate">{{ ticket.description }}</p>
+					<p class="my-ticket-created-date">{{ ticket.created_date }}</p>
+
+				</a>
+
+			</li>
+
+			{% endif %}
+
+			{% endfor %}
+
+		</ul>
+
+		<p class="center-align request-feature-text">
+			Want to submit a Bug Report? Click
+			<a class="new-feature-click-here" href="{% url 'new_bug_ticket' %}" aria-label="New Bug Report">
+				HERE
+			</a>
+		</p>
+	</div>
+	<div class="col s12 m6">
+		<h4 class="center-align">
+			<i class="fas fa-cogs" aria-hidden="true"></i>
+			My Features
+		</h4>
+		<ul class="card my-features">
+			{% for ticket in user_tickets %}
+			{% if ticket.ticket_type.ticket_type == "Feature" %}
+			<li>
+				<a href="{% url 'view_one_ticket' ticket.id %}" aria-label="View Feature">
+					<h4 class="title my-ticket-title">{{ ticket.title }}</h4>
+					<p class="my-ticket-description truncate">{{ ticket.description }}</p>
+					<p class="my-ticket-created-date">{{ ticket.created_date }}</p>
+				</a>
+
+			</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+
+	<p class="center-align request-feature-text">
+		Want to request a Feature? Click
+		<a class="new-feature-click-here" href="{% url 'new_feature_ticket' %}" aria-label="New Feature">
+			HERE
+		</a>
+	</p>
+</div>
+
+
+<div id="edit_profile_modal" class="modal">
+	<div class="modal-content center-align">
+		<h5 class="title">Edit Profile</h5>
+		<form id="edit_profile_form" method="POST" class="userform" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ user_form.email|materializecss:'icon=fas fa-envelope' }}
+			{{ user_form.first_name|materializecss:'icon=fas fa-signature' }}
+			{{ user_form.last_name|materializecss:'icon=fas fa-signature' }}
+			<button type="submit" class="btn btn primary large-btn" aria-label="Update Profile">
                     Update
                     <i class="fas fa-edit icon-right" aria-hidden="true"></i>
                 </button>
-		    </form>
-	    </div>
-    </div>
+		</form>
+	</div>
+</div>
 
 {% endblock %}

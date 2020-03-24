@@ -90,6 +90,15 @@ hr {
 
 }
 
+.ticket-stats {
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+
+}
+
 .total-reached {
     color: green;
 }
@@ -104,11 +113,18 @@ hr {
     padding-right: 0.6rem;
 }
 
-.ticket-info {
+.ticket-info-description {
     color: black;
-     display: grid;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.ticket-info {
+    text-align: center;
+    color: black;
+    display: grid;
     grid-template-columns: repeat(1, 1fr);
-    padding-right: 0.6rem;
+    font-weight: bold;
 }
 
 .ticket-icon.fa-ticket-alt{
@@ -225,9 +241,6 @@ div.ticket-info.info-title.center-align {
     color: black !important;
 }
 
-hr.ticket-line {
-    border: 1px solid red;
-}
 
 /*  Navbar */
 .nav-burger{
