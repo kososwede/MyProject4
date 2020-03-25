@@ -186,7 +186,6 @@ div.ticket-info.info-title.center-align {
 .user-icon {
     color: blue;
     padding-right: 15px;
-
 }
 
 .envelope-icon {
@@ -230,6 +229,16 @@ div.ticket-info.info-title.center-align {
 
 .new-feature-click-here {
     font-weight: bolder;
+}
+
+a#click-here {
+    color: blue;
+    font-size: 18px;
+}
+
+a#feature-here {
+    color: green;
+    font-size: 18px;
 }
 
 .request-feature-text {
