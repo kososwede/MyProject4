@@ -22,39 +22,20 @@
 			    </p>
 			    <p class="ticket-status">
 				    <i class="fas fa-tools" aria-hidden="true"></i>
-				    {{ ticket.ticket_status }}
+				    {{ ticket.ticket_status }} 
 			    </p>
 			<!-- Only display the option to edit a ticket status for superusers -->
-			    {% if user.is_superuser %}
-			        <p>
-				        <small>Edit Status</small>
-				        <br/>
-				        <form id="change_status_form" method="GET" action="{% url 'admin_update_status' ticket.id %}">
-					        {% csrf_token %}
-					        <select id="ticket_status" name="ticket_status" class="form-control validate">
-                                <option value="" disabled selected>Status</option>
-                                {% for status in ticket_status_dropdown %}
-                                    <option value="{{ status.id }}">{{ status }}</option>
-                                {% endfor%}
-                            </select>
-					        <button class="btn waves-effect waves-light sm-md-btn" type="submit" aria-label="Update Ticket Status button">
-                                <span class="hide-on-small-and-down">Update</span>
-                                <i class="fas fa-edit icon-right" aria-hidden="true"></i>
-                            </button>
-				        </form>
-			        </p>
-			    {% endif %}
+
 			    <p class="ticket-status">
 				    <i class="fas fa-eye" aria-hidden="true"></i>
-				    {{ ticket.views }}
+				    {{ ticket.views }} View/s
 			    </p>
 			    <p class="ticket-status">
 				    <i class="fas fa-thumbs-up" aria-hidden="true"></i>
-				    {{ ticket.upvotes }}
+				    {{ ticket.upvotes }} Upvote/s
 			    </p>
 			    <p class="ticket-status">
-				<!-- Show edited date if the ticket has been edited.
-                or show the created date-->
+				<!-- Show edited date if the ticket has been edited or show the created date-->
 				    {% if ticket.created_date.date != ticket.edited_date.date or ticket.created_date.time.hour != ticket.edited_date.time.hour or ticket.created_date.time.minute != ticket.edited_date.time.minute %}
 				        <i class="fas fa-calendar" aria-hidden="true"></i>
 				        {{ ticket.edited_date|date:"j M Y" }}
@@ -86,11 +67,11 @@
 			    <div class="ticket-details-break"></div>
 		    </div>
 		    <div class="col s12 center-align ticket-details-btns">
-			    <a href="{% url 'edit_ticket' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn" aria-label="Edit Ticket page">
+			    <a href="{% url 'edit_ticket' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn edit-button" aria-label="Edit Ticket page">
 				    <i class="fas fa-edit icon-left" aria-hidden="true"></i>
 				    <span class="hide-on-small-and-down">Edit</span>
 			    </a>
-			    <a href="#delete_modal" class="waves-effect waves-light btn sm-md-btn modal-trigger" aria-label="Delete Ticket modal">
+			    <a href="#delete_modal" class="waves-effect waves-light btn sm-md-btn modal-trigger delete-button" aria-label="Delete Ticket modal">
 				    <i class="fas fa-trash icon-left" aria-hidden="true"></i>
 				    <span class="hide-on-small-and-down">Delete</span>
 			    </a>
