@@ -73,9 +73,26 @@ hr {
     border-radius: 5%;
     }
 
+.ticket-title {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .fa-bug {
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.fa-thumbs-up {
+    color: red;
+}
+
+.fa-pound-sign {
+    color: red;
+}
+
+.fa-eye {
+    color: red;
 }
 
 .fa-cogs {
@@ -111,6 +128,9 @@ hr {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     padding-right: 0.6rem;
+    padding-top: 10px;
+    font-weight: 900;
+    color: black;
 }
 
 .ticket-info-description {
@@ -125,6 +145,7 @@ hr {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     font-weight: bold;
+    padding-top: 15px;
 }
 
 .ticket-icon.fa-ticket-alt{
@@ -140,7 +161,8 @@ hr {
 }
 
 .ticket-icon.fa-file-alt{
-    color:white;
+    color: purple;
+    padding-top: 15px;
 }
 
 div.ticket-info.info-title.center-align {
@@ -156,6 +178,72 @@ div.ticket-info.info-title.center-align {
     background:  linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(179,220,237,1) 12%, rgba(41,184,229,1) 48%, rgba(188,224,238,1) 83%, rgba(188,224,238,1) 100%);
     border-radius: 25px;
     padding-top: 10px;
+}
+
+.comments-title {
+    color:  white;
+     text-shadow: rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px,
+    rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px, rgb(0, 162, 255) 0px 0px 3px;
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+
+}
+
+i.fas.fa-user.circle {
+    color:blue;
+}
+
+.ticket-icon.fa-tools{
+    color:brown;
+}
+
+.ticket-icon.fa-user-circle{
+    color:blue;
+}
+
+.ticket-icon.fa-file-alt{
+    color: purple;
+    padding-top: 15px;
+}
+
+.helper-text {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.one-ticket-view {
+    background:  linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(179,220,237,1) 12%, rgba(41,184,229,1) 48%, rgba(188,224,238,1) 83%, rgba(188,224,238,1) 100%);
+    border-radius: 50%;
+}
+
+label {
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.fa-comment {
+    color:blue;
+}
+
+.fa-comments {
+    color: blue;
+}
+
+.comment-button {
+    background:  linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(179,220,237,1) 12%, rgba(41,184,229,1) 48%, rgba(188,224,238,1) 83%, rgba(188,224,238,1) 100%);
+    border-radius: 25px;
+}
+
+.add-comment-span {
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+textarea {
+    background-color: white !important;
 }
 
 /* profile.html */

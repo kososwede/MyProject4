@@ -7,17 +7,17 @@
 {% block page_heading %}{{ ticket.title }}{% endblock %}
 
 {% block content %}
-    <div class="container center-align">
+    
 	<!-- Full Ticket Details -->
-	    <div class="container view-one-ticket row ticket-card center-align">
+	    <div class="row view-one-ticket center-align">
 		<!-- Ticket Description -->
-		    <div class="col s12 m6 center-align">
+		    <div class="col s12 m6 center-align ticket-info-description">
 			    <p>{{ ticket.description }}</p>
 		    </div>
 		<!-- Ticket Stats -->
 		    <div class="col s12 m6 center-align ticket-details">
 			    <p>
-				    <i class="fas fa-user" aria-hidden="true"></i>
+				    <i class="fas fa-user ticket-icon" aria-hidden="true"></i>
 				    {{ ticket.user }}
 			    </p>
 			    <p class="ticket-status">
@@ -97,7 +97,7 @@
 		    </div>
 		{% endif %}
 	    </div>
-	</div>
+
 
 	<!-- Upvote Section is only available if a user is logged in and the ticket isn't closed, and that the user hasn't created the ticket -->
 	{% if user.is_authenticated and ticket.ticket_status.ticket_status != "Closed" and user != ticket.user %}
@@ -120,9 +120,9 @@
 		<!-- If a Feature's donation target has been acheived, or a Bug ticket, users can upvote for free -->
 		        {% else %}
 		            <div class="col s12">
-			            <h3 class="card-title center-align">Want to support this ticket?</h3>
+			            <h3 class="ticket-title center-align">Want to support this ticket?</h3>
 			            {% if ticket.ticket_type.ticket_type == "Feature" and ticket.total_donations >= 100 %}
-			                <small>The &pound;200 dontation target has been reached so upvotes are now free!</small>
+			                <p>The &pound;200 donation target has been reached so upvotes are now free!</p>
 			            {% endif %}
 		            </div>
 		            <div class="col s12">
@@ -138,7 +138,7 @@
 	<!-- Comments -->
 	<div class="row ticket-card">
 		<div class="col s12">
-			<h3 class="card-title center-align">
+			<h3 class="comments-title center-align">
 				<i class="fas fa-comments icon-left" aria-hidden="true"></i>
 				Comments
 			</h3>
@@ -158,7 +158,9 @@
 			    </ul>
 			{% else %}
 			<!-- If there are no comments on the ticket, some helper text will be displayed -->
-			    <p class="center-align">Nobody has commented on this {{ ticket.ticket_type }}!</p>
+                <div class="one-ticket-view">
+			    <p class="helper-text center-align">Nobody has commented on this {{ ticket.ticket_type }}!</p>
+                </div>
 			{% endif %}
 		</div>
 		<!-- Add Comment Section but only available if the ticket isn't closed -->
@@ -169,8 +171,8 @@
 			        <form id="comment_form" method="POST" enctype="multipart/form-data">
 				        {% csrf_token %}
 				        {{ comment_form }}
-				        <button type="submit" class="btn btn-primary sm-md-btn" aria-label="Add Comment button">
-                            <span class="hide-on-small-and-down">Add Comment</span>
+				        <button type="submit" class="btn btn-primary sm-md-btn comment-button" aria-label="Add Comment button">
+                            <span class="hide-on-small-and-down add-comment-span">Add Comment</span>
                             <i class="fas fa-comment icon-right" aria-hidden="true"></i>
                         </button>
 			        </form>
