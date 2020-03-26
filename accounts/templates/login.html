@@ -5,7 +5,7 @@
 {% block page_title %}Login Page | {% endblock %} 
 {% block page_heading %}User Login{% endblock %} 
 {% block content %}
-    <div class="row">
+    <div class="row view-one-ticket">
         <div class="col s12" id="login">
             <form method="POST" id="login_form col s12" action="{% url 'login' %}?next={{ next }}">
                 <div class="center-align">
@@ -16,8 +16,8 @@
                             {{ login_form.username|materializecss:'icon=fas fa-user' }}
                             {{ login_form.password|materializecss:'icon=fas fa-lock' }}
                             <p>
-                                <a href="{% url 'password_reset' %}">FORGOT YOUR PASSWORD</a>
-                                <br>
+                                <a href="{% url 'password_reset' %}">FORGOT YOUR PASSWORD? CLICK HERE</a>
+                                <hr>
                                 Dont have an account, Dont worry you can register <a href="{% url 'registration' %}">HERE</a>
                             </p>
                              <button type="submit" class="btn btn-primary large-btn">LOGIN

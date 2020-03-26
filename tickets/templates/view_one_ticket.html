@@ -55,7 +55,7 @@
 				            Donation Target Acheived!
 				        {% else %}
 				            <i class="fas fa-pound-sign" aria-hidden="true"></i>
-				            {{ ticket.total_donations }} <span>/200</span>
+				            £{{ ticket.total_donations }} <span>/£200</span>
 				        {% endif %}
 			        </p>
 			    {% endif %}
@@ -107,7 +107,7 @@
 			            {% endif %}
 		            </div>
 		            <div class="col s12">
-			            <a href="{% url 'upvote' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn" aria-label="Upvote button">
+			            <a href="{% url 'upvote' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn upvote-thumb" aria-label="Upvote button">
 				            <i class="fas fa-thumbs-up icon-left" aria-hidden="true"></i>
 				            <span class="hide-on-small-and-down">Upvote</span>
 			            </a>
@@ -117,27 +117,29 @@
     {% endif %}
 
 	<!-- Comments -->
-	<div class="row ticket-card">
+	<div class="row ticket-card center-align">
 		<div class="col s12">
-			<h3 class="comments-title center-align">
+			<h3 class="comments-title">
 				<i class="fas fa-comments icon-left" aria-hidden="true"></i>
 				Comments
 			</h3>
 		</div>
-		<div class="col s12 user-comments">
+		<div class="col s12 view-one-ticket center-align comment-area">
 			<!-- If there are comments on the ticket, they will be displayed -->
 			{% if comments %}
-			    <ul>
-				    {% for comment in comments %}
-				        <li class="">
-					        <p>
+			    <ul class="center-align">
+                    {% for comment in comments %}
+                        <li class="center-align">
+		                    <p>
 						        <i class="fas fa-comments icon-left" aria-hidden="true"></i>
 						        {{ comment.description }}
                                 <p>comment by "{{ comment.user.username }}"</p>
 					        </p>
-				        </li>
-				    {% endfor %}
-			    </ul>
+                        </li>
+                    {% endfor %}
+                </ul>    
+				
+			    
 			{% else %}
 			<!-- If there are no comments on the ticket, some helper text will be displayed -->
                 <div class="one-ticket-view">
@@ -160,16 +162,18 @@
 			        </form>
 			    {% endif %}
 			<!-- Links for user to login or register to add a comment if not logged in -->
-			        <p>
-				        <a href="{% url 'login' %}" aria-label="Login Page">
+			        <div class="view-one-ticket center-align">
+                    <p class="help-text-login">
+				        <a href="{% url 'login' %}" class="login-text" aria-label="Login Page">
 					        Login
 				        </a>
 				        or
-				        <a href="{% url 'registration' %}" aria-label="Registration Page">
+				        <a href="{% url 'registration' %}" class="register-text" aria-label="Registration Page">
 					        Register
 				        </a>
 				            to add a comment!
 			        </p>
+                    </div>
 			    {% endif %}
 		    </div>
 		{% endif %}
