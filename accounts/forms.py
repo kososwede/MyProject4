@@ -13,37 +13,37 @@ class UserLoginForm(forms.Form):
 
 class UserRegistrationForm(UserCreationForm):
     """ Form used to register new users """
-    username = forms.CharField(label='Username',
+    username = forms.CharField(label='  Username',
                                min_length=4,
                                max_length=20,
                                widget=forms.TextInput(),
                                required=True)
     """ Email Address"""
-    email = forms.CharField(label='Email Address',
+    email = forms.CharField(label='  Email Address',
                             min_length=6,
                             max_length=40,
                             widget=forms.EmailInput(),
                             required=True)
     """First Name"""
-    first_name = forms.CharField(label='First Name',
+    first_name = forms.CharField(label='  First Name',
                                  min_length=1,
                                  max_length=40,
                                  widget=forms.TextInput(),
                                  required=True)
     """ Last Name"""
-    last_name = forms.CharField(label='Last Name',
+    last_name = forms.CharField(label='  Last Name',
                                 min_length=1,
                                 max_length=40,
                                 widget=forms.TextInput(),
                                 required=True)
     """ First password entry"""
-    password1 = forms.CharField(label="Password",
+    password1 = forms.CharField(label="  Password",
                                 min_length=6,
                                 max_length=25,
                                 widget=forms.PasswordInput(),
                                 required=True)
     """ Confirm password """
-    password2 = forms.CharField(label="Repeat Password",
+    password2 = forms.CharField(label="  Repeat Password",
                                 min_length=6,
                                 max_length=25,
                                 widget=forms.PasswordInput(),

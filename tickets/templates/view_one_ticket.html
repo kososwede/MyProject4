@@ -82,7 +82,7 @@
 
 	<!-- Upvote Section is only available if a user is logged in and the ticket isn't closed, and that the user hasn't created the ticket -->
 	{% if user.is_authenticated and ticket.ticket_status.ticket_status != "Closed" and user != ticket.user %}
-	    <div class="row ticket-card upvote-card center-align">
+	    <div class="row view-one-ticket center-align">
 		<!-- Allow user upvoting if user hasn't already upvoted -->
 		    {% if user.id not in user_upvotes %}
 		<!-- If the Feature's target hasn't been acheived, the user will need to donate to upvote -->
@@ -124,7 +124,7 @@
 				Comments
 			</h3>
 		</div>
-		<div class="col s12 comments">
+		<div class="col s12 user-comments">
 			<!-- If there are comments on the ticket, they will be displayed -->
 			{% if comments %}
 			    <ul>
@@ -133,6 +133,7 @@
 					        <p>
 						        <i class="fas fa-comments icon-left" aria-hidden="true"></i>
 						        {{ comment.description }}
+                                <p>comment by "{{ comment.user.username }}"</p>
 					        </p>
 				        </li>
 				    {% endfor %}
