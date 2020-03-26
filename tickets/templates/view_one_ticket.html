@@ -175,9 +175,9 @@
 	</div>
 
 	<!-- Back button - only visible on tablet and below -->
-	<div class="row hide-on-large-only center-align">
+	<div class="row center-align">
 		<div class="col s12">
-			<a class="waves-effect waves-light btn standard-btn" aria-label="Back button" onclick="history.back()">
+			<a class="waves-effect waves-light btn standard-btn back-button" aria-label="Back button" onclick="history.back()">
 				Back
 				<i class="fas fa-step-backward icon-right" aria-hidden="true"></i>
 			</a>
@@ -185,18 +185,18 @@
 	</div>
 
 	<!-- Delete Modal - Allows users to delete the relevant ticket -->
-	<div id="delete_modal" class="modal">
-		<div class="modal-content center-align">
-			<h4 class="title">Are you sure you want to delete this ticket?</h4>
-			<p class="helper">
-				This {{ ticket.ticket_type }} will be permanently deleted if you continue!
+	<div id="delete_modal" class="modal view-one-ticket">
+		<div class="center-align">
+			<h4 class="modal-title">Are you sure you want to delete this ticket?</h4>
+			<p class="delete-warning">
+				This {{ ticket.ticket_type }} ticket will be permanently deleted if you proceed!
 			</p>
 			<div class="input-field col s12">
-				<a class="waves-effect waves-light btn delete-yes-btn sm-md-btn" href="{% url 'delete_ticket' ticket.id %}" aria-label="Confirm Ticket Deletion button">
+				<a class="waves-effect waves-light btn delete-button sm-md-btn" href="{% url 'delete_ticket' ticket.id %}" aria-label="Confirm Deletion button">
 					<i class="fas fa-check" aria-hidden="true"></i>
 					<span class="hide-on-small-and-down">Yes</span>
 				</a>
-				<a class="modal-close waves-effect waves-light btn delete-no-btn sm-md-btn" aria-label="Cancel Ticket Deletion button">
+				<a class="modal-close waves-effect waves-light btn edit-button sm-md-btn" aria-label="Cancel Deletion button">
 					<i class="fas fa-times" aria-hidden="true"></i>
 					<span class="hide-on-small-and-down">No</span>
 				</a>

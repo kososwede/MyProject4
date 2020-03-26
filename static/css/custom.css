@@ -250,6 +250,26 @@ textarea {
     background-color: white !important;
 }
 
+.modal {
+    background-color: transparent;
+}
+
+.delete-warning {
+    font-size: 25px;
+}
+
+.back-button {
+    background-color: blue;
+}
+
+.modal-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: 'Anton';
+}
+
 /* profile.html */
 
 .profile-page {
@@ -432,6 +452,38 @@ nav .brand-logo img,
     width: 40%;
 }
 
+/* registration */
+ 
+ input#id_email{
+    background-color: #E8F0FE;
+    border-radius: 25px;
+}
+
+input#id_first_name {
+    background-color: #E8F0FE; 
+    border-radius: 25px;
+}
+
+input#id_last_name {
+     background-color: #E8F0FE;
+     border-radius: 25px;
+}
+
+input#id_password1 {
+    background-color: #E8F0FE;
+     border-radius: 25px;
+}
+
+input#id_password2 {
+     background-color: #E8F0FE;
+     border-radius: 25px;
+}
+
+input#id_username {
+     background-color: #E8F0FE;
+     border-radius: 25px;
+}
+
 
 
 
@@ -543,7 +595,9 @@ nav .brand-logo img,
   position: fixed;
   z-index: 100;
   top: 5rem;
-  color: #ede9df;
+  color: black;
+ background:  linear-gradient(to bottom, rgba(179,220,237,1) 0%, rgba(179,220,237,1) 12%, rgba(41,184,229,1) 48%, rgba(188,224,238,1) 83%, rgba(188,224,238,1) 100%);
+     
 }
 
 .flash-message.show {
