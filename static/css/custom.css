@@ -276,6 +276,14 @@ label {
     text-transform: uppercase;
 }
 
+form#comment_form {
+    margin-top: 15px;
+}
+
+.positioner {
+    margin-top: 15px;
+}
+
 textarea {
     background-color: white !important;
 }
