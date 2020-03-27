@@ -93,7 +93,7 @@
 			            <small>We will begin development once the &pound;200 donation goal is reached!</small>
 		            </div>
 		            <div class="col s12">
-			            <a href="#payment_modal" class="waves-effect waves-light btn sm-md-btn modal-trigger" aria-label="Donate and Upvote modal">
+			            <a href="#payment_modal" class="waves-effect waves-light btn edit-button modal-trigger" aria-label="Donate and Upvote modal">
 				            <i class="fas fa-thumbs-up icon-left" aria-hidden="true"></i>
 				            <span class="hide-on-small-and-down">Donate &amp; Upvote</span>
 			            </a>
@@ -107,7 +107,7 @@
 			            {% endif %}
 		            </div>
 		            <div class="col s12">
-			            <a href="{% url 'upvote' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn upvote-thumb" aria-label="Upvote button">
+			            <a href="{% url 'upvote' ticket.pk %}" class="waves-effect waves-light upvote-thumb" aria-label="Upvote button">
 				            <i class="fas fa-thumbs-up icon-left" aria-hidden="true"></i>
 				            <span class="hide-on-small-and-down">Upvote</span>
 			            </a>
@@ -197,11 +197,11 @@
 				This {{ ticket.ticket_type }} ticket will be permanently deleted if you proceed!
 			</p>
 			<div class="input-field col s12">
-				<a class="waves-effect waves-light btn delete-button sm-md-btn" href="{% url 'delete_ticket' ticket.id %}" aria-label="Confirm Deletion button">
+				<a class="waves-effect waves-light btn edit-button" href="{% url 'delete_ticket' ticket.id %}" aria-label="Confirm Deletion button">
 					<i class="fas fa-check" aria-hidden="true"></i>
 					<span class="hide-on-small-and-down">Yes</span>
 				</a>
-				<a class="modal-close waves-effect waves-light btn edit-button sm-md-btn" aria-label="Cancel Deletion button">
+				<a class="modal-close waves-effect waves-light btn delete-button" aria-label="Cancel Deletion button">
 					<i class="fas fa-times" aria-hidden="true"></i>
 					<span class="hide-on-small-and-down">No</span>
 				</a>
@@ -210,9 +210,9 @@
 	</div>
 
 	<!-- Payment Modal - Allows users to donate when upvoting a feature ticket -->
-	<div id="payment_modal" class="modal">
+	<div id="payment_modal" class="modal view-one-ticket">
 		<div class="modal-content center-align">
-			<h4 class="title">Donate &amp; Upvote</h4>
+			<h4 class="title ticket-title">Donate &amp; Upvote</h4>
 			<form method="POST" action="{% url 'upvote' ticket.pk %}" id="payment-form" data-token="{{ publishable }}">
 				<div class="col-sm-12 center-align">
 					{% csrf_token %}
@@ -230,11 +230,11 @@
 					<div id="card-errors" role="alert"></div>
 				</div>
 				<div class="input-field col s12">
-					<button class="btn waves-effect waves-light sm-md-btn" type="submit" aria-label="Upvote Feature button">
+					<button class="btn waves-effect waves-light edit-button" type="submit" aria-label="Upvote Feature button">
                         <span class="hide-on-small-and-down">Upvote</span>
                         <i class="fas fa-check icon-right" aria-hidden="true"></i>
                     </button>
-					<a class="modal-close waves-effect waves-light btn sm-md-btn" aria-label="Cancel Upvote button">
+					<a class="modal-close waves-effect waves-light btn delete-button" aria-label="Cancel Upvote button">
 						<span class="hide-on-small-and-down">Cancel</span>
 						<i class="fas fa-times icon-right" aria-hidden="true"></i>
 					</a>

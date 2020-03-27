@@ -28,7 +28,7 @@ class DonationFormForTickets(forms.Form):
     DONATION_CHOICES = [(i, i) for i in range(10, 201, 10)]
 
     donation_amount = forms.ChoiceField(
-        label="Donation Amount",
+        label="Donation Amount (£)",
         choices=DONATION_CHOICES,
         required=False)
 

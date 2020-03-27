@@ -133,6 +133,7 @@ hr {
     color: black;
 }
 
+
 .ticket-info-description {
     color: black;
     font-weight: 500;
@@ -146,6 +147,7 @@ hr {
     grid-template-columns: repeat(1, 1fr);
     font-weight: bold;
     padding-top: 15px;
+
 }
 
 .ticket-icon.fa-ticket-alt{
@@ -228,6 +230,7 @@ i.fas.fa-tools{
 }
 
 .edit-button {
+    
     background-color: green;
     margin-bottom: 15px;
     margin-top: 15px;
@@ -235,6 +238,7 @@ i.fas.fa-tools{
 }
 
 .delete-button {
+  
     background-color: red;
     margin-bottom: 15px;
     margin-top: 15px;
@@ -308,6 +312,31 @@ textarea {
     font-family: 'Anton';
 }
 
+/* edit ticket */
+
+input#id_title {
+    background-color: #E8F0FE;
+    border-radius: 25px;
+    text-align: center; 
+}
+
+textarea#id_description {
+    background-color: #E8F0FE !important;
+    border-radius: 25px;
+    text-align: center; 
+}
+
+label.active {
+    color: green;
+}
+
+.fa-heading {
+    color: blue;
+}
+
+.fa-file-alt {
+    color: blue;
+}
 /* login */
 
 input#id_password {

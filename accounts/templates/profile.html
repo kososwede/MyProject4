@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="col s12 edit-profile-button">
-		<a href="#edit_profile_modal" class="waves-effect waves-light btn modal-trigger large-btn"
+		<a href="#edit_profile_modal" class="waves-effect waves-light btn modal-trigger large-btn edit-button"
 			aria-label="Edit Profile Modal">
 			<i class="fas fa-edit icon-left" aria-hidden="true"></i>
 			Edit Profile
@@ -94,14 +94,14 @@
 
 
 <div id="edit_profile_modal" class="modal">
-	<div class="modal-content center-align">
+	<div class="modal-content view-one-ticket center-align">
 		<h5 class="title">Edit Profile</h5>
 		<form id="edit_profile_form" method="POST" class="userform" enctype="multipart/form-data">
 			{% csrf_token %}
 			{{ user_form.email|materializecss:'icon=fas fa-envelope' }}
 			{{ user_form.first_name|materializecss:'icon=fas fa-signature' }}
 			{{ user_form.last_name|materializecss:'icon=fas fa-signature' }}
-			<button type="submit" class="btn btn primary large-btn" aria-label="Update Profile">
+			<button type="submit" class="btn btn primary large-btn edit-button" aria-label="Update Profile">
                     Update
                     <i class="fas fa-edit icon-right" aria-hidden="true"></i>
                 </button>
