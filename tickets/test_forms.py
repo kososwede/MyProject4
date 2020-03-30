@@ -13,7 +13,7 @@ class TestTheTicketForm(TestCase):
 
     def testing_empty_field_message(self):
         '''Test that the appropriate fields are required for it to be valid'''
-        form = FormForTickets({"title": "a"})
+        form = FormForTickets({"title": ""})
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors["title"],
                          [u"This field is required."])
