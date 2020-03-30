@@ -9,10 +9,9 @@
         <div id="register" class="col s12">
             <form id="registration_form" method="POST" action="{% url 'registration' %}" class="col s12">
                 <div class="center-align">
-                    <h2>REGISTER</h2>
                     <div class="row">
                         <div class="col s12 registration-from-background">
-                            <p>If you already have an account login<a href="{% url 'login' %}">HERE
+                            <p>If you already have an account login <a class="login-here" href="{% url 'login' %}">HERE
                                 </a>
                             </p>
                             {% csrf_token %} 
@@ -22,7 +21,7 @@
                             {{ registration_form.last_name|materializecss:'icon=fas fa-signature' }}
                             {{ registration_form.password1|materializecss:'icon=fas fa-lock' }}
                             {{ registration_form.password2|materializecss:'icon=fas fa-key' }}
-                            <button type="submit" class="btn btn-primary large-btn">CREATE ACCOUNT
+                            <button type="submit" class="btn btn-primary large-btn edit-button">CREATE ACCOUNT
                                 <i class="fas fa-user-plus icon-left"></i>
                             </button>
                         </div>

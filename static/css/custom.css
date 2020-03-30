@@ -196,9 +196,9 @@ div.ticket-info.info-title.center-align {
     font-family: sans-serif;
 }
 
-.upvote-thumb {
-    background-color:  green;
-    margin-bottom: 6px;
+.comment-area {
+    background-color: beige;
+    border-radius: 25px;
 }
 
 .user-comments {
@@ -441,6 +441,88 @@ a#feature-here {
     color: black !important;
 }
 
+/* registration */
+
+.fa-signature:before {
+    color: red;
+}
+
+.fa-envelope:before {
+    color: yellow;
+}
+
+.fa-user:before {
+    color: blue;
+}
+
+.fa-lock:before {
+    color: goldenrod;
+}
+
+.fa-key:before {
+    color: goldenrod;
+}
+
+.login-here {
+    color: blue;
+    font-weight: bold;
+}
+
+/* reset-password */
+ div#password_reset {
+     align-content: center;
+ }
+
+ .fa-at:before {
+     color: yellow;
+ }
+
+.reset-pswd-text {
+    font-weight: bold;
+}
+
+.reset-sent {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+input#id_new_password1 {
+    background-color: #E8F0FE;
+    border-radius: 25px;
+    text-align: center;
+}
+
+input#id_new_password2 {
+    background-color: #E8F0FE;
+    border-radius: 25px;
+    text-align: center;
+}
+
+/* add bug */
+.fa-bug.prefix{
+    padding: 0px !important;
+    color: blue;
+}
+
+.fa-bug:before{
+    color: blue;
+}
+
+.fa-file-alt:before {
+    color:purple;
+}
+
+/* feature */
+.donate-text {
+    font-weight: bolder;
+}
+
+.fa-cogs.prefix {
+       padding: 0px !important;
+    color: green;
+}
+
+
 
 /*  Navbar */
 .nav-burger{
@@ -449,6 +531,9 @@ a#feature-here {
 
 .nav-icon {
     color: royalblue;
+}
+i.nav-icon.fas.fa-ticket-alt:before {
+    color: blue;
 }
 
 .sidenav li>a>i {

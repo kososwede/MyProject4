@@ -36,12 +36,13 @@ def login(request):
 
         if login_form.is_valid():
             user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
-            messages.success(request, "You have successfully logged in to Unicorn Attractor!")
+            
             if user:
                 auth.login(request=request, user=user)
+                messages.success(request, "You have successfully logged in to Unicorn Attractor!")
                 return redirect(reverse('profile'))
             else:
-                login_form.add_error(None, "Your username or password is incorrect")
+                messages.error(request, "Your username or password is incorrect")
     else:
         login_form = UserLoginForm()
     return render(request, 'login.html', {'login_form': login_form})

@@ -36,6 +36,12 @@
 			<i class="fas fa-bug" aria-hidden="true"></i>
 			My Bugs
 		</h4>
+        <p class="center-align request-feature-text">
+			Want to submit a Bug Report? Click
+			<a class="new-feature-click-here" id="click-here" href="{% url 'new_bug_ticket' %}" aria-label="New Bug Report">
+				HERE
+			</a>
+		</p>
 		<ul class="my-features">
 			{% for ticket in user_tickets %}
 			{% if ticket.ticket_type.ticket_type == "Bug" %}
@@ -56,18 +62,19 @@
 
 		</ul>
 
-		<p class="center-align request-feature-text">
-			Want to submit a Bug Report? Click
-			<a class="new-feature-click-here" id="click-here" href="{% url 'new_bug_ticket' %}" aria-label="New Bug Report">
-				HERE
-			</a>
-		</p>
+		
 	</div>
 	<div class="col s12 m6">
 		<h4 class="center-align">
 			<i class="fas fa-cogs" aria-hidden="true"></i>
 			My Features
 		</h4>
+        <p class="center-align request-feature-text">
+		Want to request a Feature? Click
+		<a class="new-feature-click-here"  id="feature-here" href="{% url 'new_feature_ticket' %}" aria-label="New Feature">
+			HERE
+		</a>
+	    </p>
 		<ul class="my-features">
 			{% for ticket in user_tickets %}
 			{% if ticket.ticket_type.ticket_type == "Feature" %}
@@ -84,12 +91,7 @@
 		</ul>
 	</div>
 
-	<p class="center-align request-feature-text">
-		Want to request a Feature? Click
-		<a class="new-feature-click-here"  id="feature-here" href="{% url 'new_feature_ticket' %}" aria-label="New Feature">
-			HERE
-		</a>
-	</p>
+	
 </div>
 
 

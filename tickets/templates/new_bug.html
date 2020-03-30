@@ -6,23 +6,22 @@
 {% block page_heading %}Leave a BUG report{% endblock %}
 {% block content %}
 
-<div class="row text-center ticket-card">
+<div class="row text-center view-one-ticket">
 	<div id="new_bug" class="col s12">
 		<form method="POST" id="new_bug_form" class=" col s12">
 			<div class="center-align">
-				<p class="form-title">Report a BUG</p>
 				<div class="row">
 					<div class="col s12">
 						{% csrf_token %}
-						{{ bug_form.title|materializecss:'icon=fas fa-heading' }}
+						{{ bug_form.title|materializecss:'icon=fas fa-bug' }}
 						{{ bug_form.description|materializecss:'icon=fas fa-file-alt' }}
 					</div>
 					<div class="col s12">
-						<button class="btn waves-effect waves-light add-btn sm-md-btn" type="submit" aria-label="Add bug button">
+						<button class="btn waves-effect waves-light edit-button" type="submit" aria-label="Add bug button">
                                 <span class="hide-on-small-and-down">Add</span>
                                 <i class="fas fa-plus-circle icon-left" aria-hidden="true"></i>
                         </button>
-						<a class="btn waves-effect waves-light sm-md-btn" aria-label="Cancel button" onclick="history.back()">
+						<a class="btn waves-effect waves-light delete-button" aria-label="Cancel button" onclick="history.back()">
 							<span>Cancel</span>
 							<i class="fas fa-times-circle icon-left" aria-hidden="true"></i>
 						</a>

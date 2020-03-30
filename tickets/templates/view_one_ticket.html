@@ -66,12 +66,12 @@
 		    <div class="col s12 center-align">
 			    <div class="ticket-details-break"></div>
 		    </div>
-		    <div class="col s12 center-align ticket-details-btns">
-			    <a href="{% url 'edit_ticket' ticket.pk %}" class="waves-effect waves-light btn sm-md-btn edit-button" aria-label="Edit Ticket page">
+		    <div class="col s12 center-align">
+			    <a href="{% url 'edit_ticket' ticket.pk %}" class="waves-effect waves-light btn edit-button" aria-label="Edit Ticket page">
 				    <i class="fas fa-edit icon-left" aria-hidden="true"></i>
 				    <span class="hide-on-small-and-down">Edit</span>
 			    </a>
-			    <a href="#delete_modal" class="waves-effect waves-light btn sm-md-btn modal-trigger delete-button" aria-label="Delete Ticket modal">
+			    <a href="#delete_modal" class="waves-effect waves-light btn modal-trigger delete-button" aria-label="Delete Ticket modal">
 				    <i class="fas fa-trash icon-left" aria-hidden="true"></i>
 				    <span class="hide-on-small-and-down">Delete</span>
 			    </a>
@@ -107,7 +107,7 @@
 			            {% endif %}
 		            </div>
 		            <div class="col s12">
-			            <a href="{% url 'upvote' ticket.pk %}" class="waves-effect waves-light upvote-thumb" aria-label="Upvote button">
+			            <a href="{% url 'upvote' ticket.pk %}" class="waves-effect waves-light btn upvote-thumb edit-button" aria-label="Upvote button">
 				            <i class="fas fa-thumbs-up icon-left" aria-hidden="true"></i>
 				            <span class="hide-on-small-and-down">Upvote</span>
 			            </a>
@@ -117,14 +117,14 @@
     {% endif %}
 
 	<!-- Comments -->
-	<div class="row ticket-card center-align">
+	<div class="row center-align">
 		<div class="col s12">
 			<h3 class="comments-title">
 				<i class="fas fa-comments icon-left" aria-hidden="true"></i>
 				Comments
 			</h3>
 		</div>
-		<div class="col s12 view-one-ticket center-align comment-area">
+		<div class="col s12 center-align comment-area">
 			<!-- If there are comments on the ticket, they will be displayed -->
 			{% if comments %}
 			    <ul class="center-align">
