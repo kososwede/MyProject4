@@ -654,76 +654,8 @@ input#id_username {
      border-radius: 25px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .payment-form-label {
     margin-left: 1rem;
-}
-
-/* MODAL 
-.modal {
-  border-radius: 1rem;
-}
-
-#delete_modal .modal-content {
-  padding: 1rem;
-}
-
-#payment_modal {
-  height: 18.1rem;
-  overflow-y: visible;
-}
-
-#payment_modal .modal-content {
-  padding: 1rem;
-}
-
-
-.new-feature-wrapper .fa-pound-sign{
-    position: absolute;
-    left: 0.8rem;
-}
-
-#payment_modal .fa-pound-sign {
-  position: absolute;
-  left: 0.4rem;
-}
-
-
-
-#payment_modal label {
-  position: absolute;
-  left: 0;
-}
-
-#payment_modal .input-field {
-  margin-top: 1.5rem;
-}
-
-#payment_modal .payment-form-label {
-  position: absolute;
-  margin-left: 2rem;
-  transform: translateY(-0.6rem)
-}
-
-#payment_modal #card-element {
-  margin-top: 1.7rem;
-}
-
-#filter_form {
-  margin-bottom: 2rem;
 }
 
 /* STRIPE PAYMENT FORM */
@@ -743,19 +675,6 @@ input#id_username {
   transition: box-shadow 150ms ease;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* FLASH MESSAGES */
 .flash-message {
   visibility: hidden;
@@ -774,15 +693,6 @@ input#id_username {
   visibility: visible;
   animation: flashMessageShow 0.5s, flashMessageHide 0.5s 3.5s;
 }
-
-
-
-
-
-
-
-
-
 
 /* KEYFRAMES */
 @keyframes flashMessageShow {
@@ -806,3 +716,8 @@ input#id_username {
   }
 }
 
+@media (max-width: 481px) {
+    .page-title {
+        font-size:40px;
+    }
+}
