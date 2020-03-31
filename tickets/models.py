@@ -83,7 +83,7 @@ class TicketModel(models.Model):
         default=0)
 
     class Meta:
-        ordering = ("-upvotes",)
+        ordering = ("-upvotes", )
 
     def __str__(self):
         return "#{0} [{1} - {2}] - {3}".format(
