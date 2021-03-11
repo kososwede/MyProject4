@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
-#from os import path
-if os.path.exists("env.py"):
+from os import path
+if path.exists("env.py"):
     import env
 # Set debug to True only in test environment
 
