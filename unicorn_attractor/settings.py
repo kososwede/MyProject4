@@ -16,7 +16,7 @@ from os import path
 if path.exists("env.py"):
     import env
 # Set debug to True only in test environment
-
+#DEBUG = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -152,10 +152,10 @@ USE_TZ = True
 
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-#STATIC_URL = "/static/"
-#STATICFILES_DIRS = [
- #   os.path.join(BASE_DIR, "static")
-#]
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
