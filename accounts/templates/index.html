@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-<!--{% load staticfiles %}-->
+{% load static %}
 
 {% block page_title %}Home Page | {% endblock %}
 {% block page_heading %}WELCOME{% if user.is_authenticated %} {{ user.username }} {% endif %} TO UNICORN ATTRACTOR{% endblock %}

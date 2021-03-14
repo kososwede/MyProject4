@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 	
 {% block page_title %}Home Page | {% endblock %}
 {% block page_heading %}About the Unicorn Attractor Game{% endblock %}
@@ -33,10 +33,10 @@
 	<h1 class="about-game-header">Download Unicorn Attractor NOW</h1>
 	<hr>
 	<a href="https://www.apple.com/ie/ios/app-store" target="_blank" aria-label="Apple App Store">
-		<img src="/static/img/app-store-icon.png" class="app-link" alt="Apple App Store">
+		<img src = "{% static 'img/app-store-icon.png' %}" class="app-link" alt="Apple App Store">
     </a>
 		<a href="https://play.google.com/store/apps" target="_blank" aria-label="Google Play Store">
-			<img src="/static/img/google-play-icon.png" class="app-link" alt="Google Play Store">
+			<img src="{% static 'img/google-play-icon.png' %}" class="app-link" alt="Google Play Store">
     </a>
 
 
