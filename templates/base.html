@@ -13,7 +13,7 @@
     <!-- FontAwesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="../static/css/custom.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
 	
 
 </head>
@@ -24,7 +24,7 @@
 
 		<nav>
 			<div class="nav-wrapper">
-				<a class="brand-logo" href="{% url 'index' %}"><img src="../static/img/uni-logo.png" width="30" height="30" class="d-inline-block align-top my-logo" alt="unicorn-logo">
+				<a class="brand-logo" href="{% url 'index' %}"><img src="/static/img/uni-logo.png" width="30" height="30" class="d-inline-block align-top my-logo" alt="unicorn-logo">
 					<span class="brand-logo-title hide-on-small-and-down">Unicorn Attractor</span>
 				</a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Sidenav trigger">
@@ -81,7 +81,7 @@
 		<ul class="sidenav" id="mobile-demo">
 			<li>
 				<a href="{% url 'index' %}" class="brand-logo avatar">
-					<img src="../static/img/uni-logo.png" alt="brand logo">
+					<img src="/static/img/uni-logo.png" alt="brand logo">
 					<span class="brand-logo-title-side-nav">Unicorn Attractor</span>
 				</a>
 			</li>
@@ -167,7 +167,7 @@
 
 	{% block js %}
 	{% endblock %}
-	<script src="../static/js/script.js"></script>
+	<script src="/static/js/script.js"></script>
 
 </body>
 
