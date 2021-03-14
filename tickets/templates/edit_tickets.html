@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load materializecss %}
-{% load static %}
+<!--{% load staticfiles %}-->
 
 {% block page_title %}{{ ticket.title }} | Edit {% if ticket.ticket_type.ticket_type == "Bug" %}Bug
 {% elif ticket.ticket_type.ticket_type == "Feature" %}Feature{% endif %} | {% endblock %}
