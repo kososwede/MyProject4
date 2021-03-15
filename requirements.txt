@@ -17,7 +17,7 @@ gunicorn==19.9.0
 httplib2==0.19.0
 idna==2.10
 jeepney==0.6.0
-Jinja2==2.10
+Jinja2==2.10.1
 jmespath==0.10.0
 olefile==0.46
 Pillow==8.1.2
