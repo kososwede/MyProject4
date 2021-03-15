@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load materializecss %}
-<!--{% load staticfiles %}-->
+{% load staticfiles %}
 
 {% block page_title %}{{ ticket.title }} | Details | {% endblock %}
 
@@ -248,5 +248,5 @@
 <!-- Stripe payment API tag -->
 <script src="https://js.stripe.com/v3/"></script>
 <!-- stripe.js file tag -->
-<script src="/static/js/script.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
