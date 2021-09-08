@@ -20,7 +20,7 @@ jeepney==0.6.0
 Jinja2==2.10
 jmespath==0.10.0
 olefile==0.46
-Pillow==8.1.2
+Pillow==8.3.2
 psycopg2==2.8.6
 psycopg2-binary==2.8.6
 pycparser==2.20
